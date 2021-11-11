@@ -17,6 +17,7 @@ export interface UserContextData {
     auth: string;
     userName: string;
     signup: (data: User) => void;
-    login: ({ email, password }: User) => void;
+    login: (data: User) => void;
     logout: () => void;
+    id: string;
 }

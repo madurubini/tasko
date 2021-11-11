@@ -10,14 +10,18 @@ export const UserProvider = ({ children }: UserProps) => {
     const [auth, setAuth] = useState<string>(
         localStorage.getItem('@token') || '',
     );
+    const [id, setId] = useState<string>(localStorage.getItem('@id') || '');
+
     const [userName, setUserName] = useState<string>('');
 
-    const login = ({ email, password }: User) => {
+    const login = (data: User) => {
         request
-            .post('/login', { email, password })
+            .post('/login', data)
             .then(({ data }) => {
                 setAuth(data.accessToken);
                 localStorage.setItem('@token', data.accessToken);
+                localStorage.setItem('@id', data.user.id);
+                setId(data.user.id);
                 setUserName(data.user.name);
             })
             .catch((error) => console.error('Miss', error));
@@ -37,7 +41,9 @@ export const UserProvider = ({ children }: UserProps) => {
     };
 
     return (
-        <UserContext.Provider value={{ auth, userName, signup, login, logout }}>
+        <UserContext.Provider
+            value={{ auth, userName, signup, login, logout, id }}
+        >
             {children}
         </UserContext.Provider>
     );
