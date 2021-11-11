@@ -8,18 +8,23 @@ import {
     DividerBlock,
     Error,
     Hr,
+    PasswordButton,
     RedirectTo,
     RegisterButton,
     RegisterContainer,
     RegisterForm,
     RegisterHeader,
     RegisterOption,
+    ShowButton,
     SubTitle,
     TextField,
     TextOptions,
     Title,
 } from './style';
 import { FormControl } from '@chakra-ui/form-control';
+import { InputGroup } from '@chakra-ui/input';
+import { BiHide, BiShowAlt } from 'react-icons/bi';
+import { useState } from 'react';
 
 export const RegisterCard = () => {
     const emptyMessage = 'Este campo não pode estar vazio!';
@@ -67,6 +72,11 @@ export const RegisterCard = () => {
     });
     const history = useHistory();
     const { signup } = useUser();
+    const [showPassword, setShowPassword] = useState(false);
+    const [showMathcedPassword, setShowMathcedPassword] = useState(false);
+    const changePasswordVisible = () => setShowPassword(!showPassword);
+    const changeMatchedPasswordVisible = () =>
+        setShowMathcedPassword(!showMathcedPassword);
 
     const toSubmit = (data: User) => {
         const newUser = {
@@ -111,24 +121,46 @@ export const RegisterCard = () => {
                     />
                     <Error>{errors.email?.message}</Error>
                 </FormControl>
-                <FormControl isInvalid={!!errors?.password}>
-                    <TextField
-                        variant="filled"
-                        type="password"
-                        placeholder="Senha"
-                        {...register('password')}
-                    />
-                    <Error>{errors.password?.message}</Error>
-                </FormControl>
-                <FormControl isInvalid={!!errors?.matchedPassword}>
-                    <TextField
-                        variant="filled"
-                        type="password"
-                        placeholder="Confirmar Senha"
-                        {...register('matchedPassword')}
-                    />
-                    <Error>{errors.matchedPassword?.message}</Error>
-                </FormControl>
+                <InputGroup>
+                    <FormControl isInvalid={!!errors?.password}>
+                        <TextField
+                            variant="filled"
+                            type={showPassword ? 'text' : 'password'}
+                            placeholder="Senha"
+                            {...register('password')}
+                        />
+                        <Error>{errors.password?.message}</Error>
+                    </FormControl>
+                    <ShowButton width="4.5rem">
+                        <PasswordButton
+                            h="2rem"
+                            size="sm"
+                            onClick={changePasswordVisible}
+                        >
+                            {showPassword ? <BiShowAlt /> : <BiHide />}
+                        </PasswordButton>
+                    </ShowButton>
+                </InputGroup>
+                <InputGroup>
+                    <FormControl isInvalid={!!errors?.matchedPassword}>
+                        <TextField
+                            variant="filled"
+                            type={showMathcedPassword ? 'text' : 'password'}
+                            placeholder="Confirmar Senha"
+                            {...register('matchedPassword')}
+                        />
+                        <Error>{errors.matchedPassword?.message}</Error>
+                    </FormControl>
+                    <ShowButton width="4.5rem">
+                        <PasswordButton
+                            h="2rem"
+                            size="sm"
+                            onClick={changeMatchedPasswordVisible}
+                        >
+                            {showMathcedPassword ? <BiShowAlt /> : <BiHide />}
+                        </PasswordButton>
+                    </ShowButton>
+                </InputGroup>
                 <RegisterButton type="submit">Registrar</RegisterButton>
             </RegisterForm>
             <DividerBlock>
