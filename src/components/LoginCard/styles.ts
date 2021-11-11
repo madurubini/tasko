@@ -1,16 +1,16 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { Input } from '@chakra-ui/input';
-import { FormErrorMessage } from "@chakra-ui/form-control";
-import { Button } from "@chakra-ui/button";
-import { Link } from "react-router-dom";
-import { Divider } from "@chakra-ui/layout";
+import { FormErrorMessage } from '@chakra-ui/form-control';
+import { Button } from '@chakra-ui/button';
+import { Link } from 'react-router-dom';
+import { Divider } from '@chakra-ui/layout';
 
-export const LoginContainer = styled.div`
+export const LoginContainer = styled.div``;
+export const LoginHeader = styled.div`
+    text-align: center;
+`;
 
-`
-export const LoginHeader = styled.div``
-
-export const LoginForm = styled.form``
+export const LoginForm = styled.form``;
 
 export const TextField = styled(Input)`
     margin-top: 2em !important;
@@ -37,13 +37,13 @@ export const TextField = styled(Input)`
 
         width: 480px !important;
     }
-`
+`;
 export const Error = styled(FormErrorMessage)`
     text-align: left;
     color: var(--redToast);
     font-size: 14px;
     opacity: 0.5;
-`
+`;
 export const LoginButton = styled(Button)`
     width: 85vw !important;
 
@@ -61,7 +61,7 @@ export const LoginButton = styled(Button)`
 export const DividerBlock = styled.div`
     display: flex;
     align-items: center;
-
+    justify-content: center;
     max-width: 90vw !important;
     margin-top: 1em;
     margin-bottom: 2em;
@@ -87,6 +87,7 @@ export const LoginOption = styled.pre`
 
 export const TextOptions = styled.p`
     margin-bottom: 0.5em;
+    text-align: center;
 `;
 
 export const RedirectTo = styled(Link)`
