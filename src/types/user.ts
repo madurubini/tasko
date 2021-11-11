@@ -20,4 +20,5 @@ export interface UserContextData {
     login: (data: User) => void;
     logout: () => void;
     id: string;
+    xp: number;
 }

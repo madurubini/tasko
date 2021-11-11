@@ -13,12 +13,14 @@ export const UserProvider = ({ children }: UserProps) => {
     const [id, setId] = useState<string>(localStorage.getItem('@id') || '');
 
     const [userName, setUserName] = useState<string>('');
+    const [xp, setXp] = useState<number>(0);
 
     const login = (data: User) => {
         request
             .post('/login', data)
             .then(({ data }) => {
                 setAuth(data.accessToken);
+                setXp(data.user.xp);
                 localStorage.setItem('@token', data.accessToken);
                 localStorage.setItem('@id', data.user.id);
                 setId(data.user.id);
@@ -41,9 +43,7 @@ export const UserProvider = ({ children }: UserProps) => {
     };
 
     return (
-        <UserContext.Provider
-            value={{ auth, userName, signup, login, logout, id }}
-        >
+        <UserContext.Provider value={{ auth, userName, signup, login, logout,id,xp }}>
             {children}
         </UserContext.Provider>
     );
