@@ -1,4 +1,6 @@
-import { Flex,Text,Heading,Image } from "@chakra-ui/react";
+import { Flex,Text,Heading, Box,Button,Divider } from "@chakra-ui/react";
+import { Input } from "@chakra-ui/input";
+import { Background, Content } from "./styles";
 const Login = () => {
   return <>
     <Flex 
@@ -8,15 +10,27 @@ const Login = () => {
     alignItems="center"
     background="var(--background)"
     >
-    
-    <Flex flexDirection="column" alignItems="center"
-    justifyContent="center"
-    width="100%"
-    maxWidth="700px">
-      <Heading fontWeight="400" color="var(--font-color)" fontSize="48px">Entre com a sua conta</Heading>
-      <Text color="var(--font-color)" fontSize="24px">Planeje o seu dia!</Text>
-    </Flex>
+    <Content>
+      <h1>Entre com a sua conta</h1>
+      <span>Planeje seu dia </span>
+      <Input 
+      
+      placeholder="Email" 
+      margin="10px" 
+      border="none" 
+      background="var(--input-background)" 
+      maxWidth="480px" height="81px"/>
+      <Input 
+      placeholder="Senha" 
+      margin="10px" 
+      border="none" 
+      background="var(--input-background)" 
+      maxWidth="480px" height="81px"/>
 
+    </Content>
+      <Box width="560px" height="560px" >
+          <Background />
+      </Box>
     </Flex>
   </>;
 };
