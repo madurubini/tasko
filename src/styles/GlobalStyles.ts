@@ -1,19 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
-  * {    
-      margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        outline: 0;
-        list-style-type: none;
-    }
-
-    body {
-        max-width: 100vw;
-        min-height: 100vh;
-        font-family: 'Oxanium', cursive;
-    }
 
 
     :root {
@@ -31,6 +18,22 @@ export default createGlobalStyle`
         --greenToast: #008000;
         --blueToast:#155BCB;
         --black-gradient: linear-gradient(309.43deg, #2C2F40 0.96%, #2C2F40 5.98%, #000000 89.08%, #050303 98.43%);
+    }
+    
+    *{    
+      margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        outline: 0;
+        list-style-type: none;
+           background-color: var(--background) ;
+
+    }
+
+    body {
+        max-width: 100vw;
+        min-height: 100vh;
+        font-family: 'Oxanium', cursive;
     }
 
     input, button {
@@ -56,4 +59,39 @@ export default createGlobalStyle`
     img {
         object-fit: cover;
     }
-`;
+
+     
+
+
+h1, h2, h3, h4, p{
+    color: var(--font-color)
+}
+
+
+
+::-webkit-scrollbar {
+      width: 12px;
+      height: 12px;
+    }
+    ::-webkit-scrollbar-button {
+      width: 0px;
+      height: 0px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--green-linear);
+      border: 0px none #ffffff;
+      border-radius: 50px;
+    }
+
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+      border: 0px none #ffffff;
+      border-radius: 50px;
+    }
+
+
+    ::-webkit-scrollbar-corner {
+      background: transparent;
+    }
+`
