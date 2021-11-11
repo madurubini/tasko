@@ -22,8 +22,7 @@ import {
     TextOptions,
 } from './styles';
 import { useState } from 'react';
-import { InputGroup, InputRightElement } from '@chakra-ui/input';
-import { Button } from '@chakra-ui/button';
+import { InputGroup } from '@chakra-ui/input';
 import { BiHide, BiShowAlt } from 'react-icons/bi';
 
 export const LoginCard = () => {
