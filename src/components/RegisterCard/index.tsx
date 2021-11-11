@@ -51,8 +51,7 @@ export const RegisterCard = () => {
             .matches(
                 /(?=.*?[#?!@$%^&*-])/,
                 'Senha deve ter pelo menos um caractere especial',
-            )
-            .matches(/.{6,}'/, 'Senha deve ter no mínimo seis caracteres'),
+            ),
         matchedPassword: yup
             .string()
             .required(emptyMessage)

@@ -2,6 +2,17 @@ import styled from 'styled-components';
 
 export const MainContainer = styled.div``;
 
+export const RegisterContainer = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+
+    margin: 2em 0;
+
+    img {
+        width: 55em;
+    }
+`;
+
 export const Container = styled.div`
     max-width: 100vw;
     max-height: 100vh;

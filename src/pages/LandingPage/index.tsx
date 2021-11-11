@@ -10,13 +10,20 @@ import Emanuel from '../../assets/image/emanuel.png';
 import Julia from '../../assets/image/julia.png';
 import Lucas from '../../assets/image/lucas.png';
 
+import clipGif from './../../assets/image/menInSite.gif';
+
 import { AiFillLinkedin, AiFillGithub } from 'react-icons/ai';
 import Header from '../../components/Header';
+import { RegisterCard } from '../../components/RegisterCard';
 
 const LandingPage = () => {
     return (
         <C.MainContainer>
             <Header />
+            <C.RegisterContainer>
+                <RegisterCard />
+                <img src={clipGif} alt="" />
+            </C.RegisterContainer>
             <C.Container>
                 <h1>Sobre</h1>
                 <C.About>
