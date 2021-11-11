@@ -27,7 +27,6 @@ export const ClipArtBox = styled.section`
         flex-direction: column;
         justify-content: center;
         align-items: center;
-
-        max-width: 50vw;
+        width: 500px;
     }
 `;

@@ -22,7 +22,9 @@ const LandingPage = () => {
             <Header />
             <C.RegisterContainer>
                 <RegisterCard />
-                <img src={clipGif} alt="" />
+                <div>
+                    <img src={clipGif} alt="" />
+                </div>
             </C.RegisterContainer>
             <C.Container>
                 <h1>Sobre</h1>

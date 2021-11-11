@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { Divider } from '@chakra-ui/layout';
 
 export const LoginContainer = styled.div``;
+
 export const LoginHeader = styled.div`
     text-align: center;
 `;
@@ -13,9 +14,9 @@ export const LoginHeader = styled.div`
 export const LoginForm = styled.form``;
 
 export const TextField = styled(Input)`
-    margin-top: 2em !important;
+    margin-top: 1em !important;
     width: 85vw !important;
-    height: 80px !important;
+    height: 60px !important;
     background-color: var(--input-background) !important;
 
     ::placeholder {
@@ -46,15 +47,13 @@ export const Error = styled(FormErrorMessage)`
 `;
 export const LoginButton = styled(Button)`
     width: 85vw !important;
-
-    margin-top: 2em !important;
-    height: 80px !important;
+    margin-top: 1em !important;
+    height: 60px !important;
     background: var(--green-linear) !important;
     color: var(--font-color) !important;
 
     @media (min-width: 1024px) {
         display: block !important;
-
         width: 480px !important;
     }
 `;
@@ -64,7 +63,7 @@ export const DividerBlock = styled.div`
     justify-content: center;
     max-width: 90vw !important;
     margin-top: 1em;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
 `;
 
 export const Hr = styled(Divider)`

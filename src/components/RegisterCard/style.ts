@@ -10,6 +10,10 @@ export const RegisterContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 90%;
+    max-height: 100vh;
+    padding: 10px;
+    margin: 5px;
 `;
 
 export const RegisterHeader = styled.header`
@@ -40,9 +44,9 @@ export const RegisterForm = styled.form`
 `;
 
 export const TextField = styled(Input)`
-    margin-top: 2em !important;
+    margin-top: 1em !important;
     width: 85vw !important;
-    height: 80px !important;
+    height: 60px !important;
     background-color: var(--input-background) !important;
 
     ::placeholder {
@@ -76,8 +80,8 @@ export const Error = styled(FormErrorMessage)`
 export const RegisterButton = styled(Button)`
     width: 85vw !important;
 
-    margin-top: 2em !important;
-    height: 80px !important;
+    margin-top: 1em !important;
+    height: 60px !important;
     background: var(--green-linear) !important;
     color: var(--font-color) !important;
 
@@ -94,7 +98,7 @@ export const DividerBlock = styled.div`
 
     max-width: 90vw !important;
     margin-top: 1em;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
 `;
 
 export const Hr = styled(Divider)`

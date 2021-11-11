@@ -3,7 +3,7 @@ import { LoginCard } from '../../components/LoginCard';
 import clipArt from './../../assets/image/GreenMan.png';
 import { CardBox, ClipArtBox, MainContainer } from './styles';
 
-const Register = () => {
+const Login = () => {
     return (
         <MainContainer>
             <CardBox>
@@ -18,4 +18,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default Login;

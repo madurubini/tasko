@@ -9,7 +9,14 @@ export const RegisterContainer = styled.div`
     margin: 2em 0;
 
     img {
-        width: 55em;
+        display: none;
+        width: 500px;
+    }
+
+    @media (min-width: 1024px) {
+        img {
+            display: block;
+        }
     }
 `;
 
