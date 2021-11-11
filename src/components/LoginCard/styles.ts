@@ -9,6 +9,22 @@ export const LoginContainer = styled.div``;
 
 export const LoginHeader = styled.div`
     text-align: center;
+
+    h1 {
+        font-family: Inter;
+        font-weight: normal;
+        font-size: 32px;
+        line-height: 58px;
+        color: var(--font-color);
+    }
+
+    p {
+        font-family: Inter;
+        opacity: 0.5;
+        font-size: 18px;
+        line-height: 29px;
+        color: var(--font-color);
+    }
 `;
 
 export const LoginForm = styled.form``;
@@ -39,12 +55,14 @@ export const TextField = styled(Input)`
         width: 480px !important;
     }
 `;
+
 export const Error = styled(FormErrorMessage)`
     text-align: left;
     color: var(--redToast);
     font-size: 14px;
     opacity: 0.5;
 `;
+
 export const LoginButton = styled(Button)`
     width: 85vw !important;
     margin-top: 1em !important;

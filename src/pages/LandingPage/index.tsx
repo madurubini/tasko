@@ -10,21 +10,84 @@ import Emanuel from '../../assets/image/emanuel.png';
 import Julia from '../../assets/image/julia.png';
 import Lucas from '../../assets/image/lucas.png';
 
-import clipGif from './../../assets/image/menInSite.gif';
+import animationData from './../../assets/json/72259-team.json';
+import cellphone from './../../assets/json/72842-icon-2-chat.json';
+import community from './../../assets/json/4580-community.json';
+import achivement from './../../assets/json/72470-right-sign.json';
+import counter from './../../assets/json/80253-count43.json';
 
 import { AiFillLinkedin, AiFillGithub } from 'react-icons/ai';
 import Header from '../../components/Header';
 import { RegisterCard } from '../../components/RegisterCard';
+import Lottie from 'react-lottie';
+import { useState } from 'react';
 
 const LandingPage = () => {
+    const [animationState] = useState({
+        isStopped: false,
+        isPaused: false,
+    });
+
+    const defaultOptions = {
+        loop: true,
+        autoplay: true,
+        animationData: animationData,
+        rendererSettings: {
+            preserveAspectRatio: 'xMidYMid slice',
+        },
+    };
+
+    const achivementOptions = {
+        loop: true,
+        autoplay: true,
+        animationData: achivement,
+        rendererSettings: {
+            preserveAspectRatio: 'xMidYMid slice',
+        },
+    };
+
+    const cellphoneOptions = {
+        loop: true,
+        autoplay: true,
+        animationData: cellphone,
+        rendererSettings: {
+            preserveAspectRatio: 'xMidYMid slice',
+        },
+    };
+
+    const communityOptions = {
+        loop: true,
+        autoplay: true,
+        animationData: community,
+        rendererSettings: {
+            preserveAspectRatio: 'xMidYMid slice',
+        },
+    };
+
+    const counterOptions = {
+        loop: true,
+        autoplay: true,
+        animationData: counter,
+        rendererSettings: {
+            preserveAspectRatio: 'xMidYMid slice',
+        },
+    };
+
     return (
         <C.MainContainer>
             <Header />
             <C.RegisterContainer>
                 <RegisterCard />
-                <div>
-                    <img src={clipGif} alt="" />
-                </div>
+                <C.ClipGif>
+                    <Lottie
+                        options={defaultOptions}
+                        height={300}
+                        width={300}
+                        speed={0.5}
+                        isStopped={animationState.isStopped}
+                        isPaused={animationState.isPaused}
+                    />
+                </C.ClipGif>
             </C.RegisterContainer>
             <C.Container>
                 <h1>Sobre</h1>
@@ -36,7 +99,14 @@ const LandingPage = () => {
                             tarefas e se sentir motivado à cumpri-lás, pois será
                             recompensado no caminho.
                         </p>
-                        <img src={Phone} alt="" />
+                        <Lottie
+                            options={cellphoneOptions}
+                            height={300}
+                            width={300}
+                            speed={0.5}
+                            isStopped={animationState.isStopped}
+                            isPaused={animationState.isPaused}
+                        />
                     </C.Info>
 
                     <C.Info>
@@ -44,7 +114,14 @@ const LandingPage = () => {
                             Colecione conquistas, com elas você poderá deixar
                             seu perfil cada vez mais completo!
                         </p>
-                        <img src={Moon} alt="" />
+                        <Lottie
+                            options={achivementOptions}
+                            height={300}
+                            width={300}
+                            speed={0.5}
+                            isStopped={animationState.isStopped}
+                            isPaused={animationState.isPaused}
+                        />
                     </C.Info>
 
                     <C.Info>
@@ -52,7 +129,14 @@ const LandingPage = () => {
                             Ganhe pontos para cada tarefa concluída, com ele
                             você pode conseguir as conquistas da plataforma!
                         </p>
-                        <img src={Chat} alt="" />
+                        <Lottie
+                            options={communityOptions}
+                            height={300}
+                            width={300}
+                            speed={0.5}
+                            isStopped={animationState.isStopped}
+                            isPaused={animationState.isPaused}
+                        />
                     </C.Info>
 
                     <C.Info>
@@ -61,7 +145,14 @@ const LandingPage = () => {
                             suas dúvidas sobre os mais diversos assuntos. Como
                             também ajudar outras pessoas!
                         </p>
-                        <img src={Zero} alt="" />
+                        <Lottie
+                            options={counterOptions}
+                            height={300}
+                            width={300}
+                            speed={0.5}
+                            isStopped={animationState.isStopped}
+                            isPaused={animationState.isPaused}
+                        />
                     </C.Info>
                 </C.About>
 

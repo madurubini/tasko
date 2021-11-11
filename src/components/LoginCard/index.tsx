@@ -19,7 +19,6 @@ import {
     TextField,
     TextOptions,
 } from './styles';
-import { SubTitle, Title } from '../RegisterCard/style';
 
 export const LoginCard = () => {
     const emptyMessage = 'Este campo não pode estar vazio!';
@@ -45,8 +44,8 @@ export const LoginCard = () => {
     return (
         <LoginContainer>
             <LoginHeader>
-                <Title>Entre com a sua conta</Title>
-                <SubTitle>Planeje seu dia</SubTitle>
+                <h1>Entre com a sua conta</h1>
+                <p>Planeje seu dia</p>
             </LoginHeader>
             <LoginForm onSubmit={handleSubmit(handleCLick)}>
                 <FormControl isInvalid={!!errors?.email}>

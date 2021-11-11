@@ -14,6 +14,18 @@ export const RegisterContainer = styled.div`
     max-height: 100vh;
     padding: 10px;
     margin: 5px;
+
+    @media (min-width: 1024px) {
+        width: 46%;
+    }
+
+    @media (min-width: 1440px) {
+        width: 33%;
+    }
+
+    @media (min-width: 2560px) {
+        width: 26%;
+    }
 `;
 
 export const RegisterHeader = styled.header`
@@ -26,6 +38,8 @@ export const Title = styled.h1`
     font-size: 32px;
     line-height: 58px;
     color: var(--font-color);
+    margin: 0 auto;
+    width: 6em;
 `;
 
 export const SubTitle = styled.p`
@@ -34,6 +48,7 @@ export const SubTitle = styled.p`
     font-size: 18px;
     line-height: 29px;
     color: var(--font-color);
+    width: 12em;
 `;
 
 export const RegisterForm = styled.form`
@@ -63,10 +78,14 @@ export const TextField = styled(Input)`
         margin-top: none !important;
     }
 
+    @media (min-width: 768px) {
+        width: 65vw !important;
+    }
+
     @media (min-width: 1024px) {
         display: block !important;
 
-        width: 480px !important;
+        width: 420px !important;
     }
 `;
 
@@ -85,10 +104,14 @@ export const RegisterButton = styled(Button)`
     background: var(--green-linear) !important;
     color: var(--font-color) !important;
 
+    @media (min-width: 768px) {
+        width: 65vw !important;
+    }
+
     @media (min-width: 1024px) {
         display: block !important;
 
-        width: 480px !important;
+        width: 420px !important;
     }
 `;
 
@@ -104,8 +127,12 @@ export const DividerBlock = styled.div`
 export const Hr = styled(Divider)`
     width: 144px !important;
 
+    @media (max-width: 412px) {
+        width: 7rem !important;
+    }
+
     @media (min-width: 1024px) {
-        width: 210px !important;
+        width: 11rem !important;
     }
 `;
 
@@ -121,6 +148,7 @@ export const RegisterOption = styled.pre`
 
 export const TextOptions = styled.p`
     margin-bottom: 0.5em;
+    width: 15em;
 `;
 
 export const RedirectTo = styled(Link)`

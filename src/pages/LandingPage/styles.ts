@@ -7,16 +7,15 @@ export const RegisterContainer = styled.div`
     justify-content: space-evenly;
 
     margin: 2em 0;
+`;
 
-    img {
-        display: none;
-        width: 500px;
-    }
+export const ClipGif = styled.div`
+    display: none;
 
-    @media (min-width: 1024px) {
-        img {
-            display: block;
-        }
+    @media screen and (min-width: 1024px) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 `;
 
@@ -68,6 +67,10 @@ export const Info = styled.div`
 
     img {
         width: 180px;
+    }
+
+    div {
+        margin: 0 !important;
     }
 
     @media (min-width: 1024px) {
