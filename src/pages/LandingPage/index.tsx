@@ -11,91 +11,95 @@ import Julia from '../../assets/image/julia.png';
 import Lucas from '../../assets/image/lucas.png';
 
 import { AiFillLinkedin, AiFillGithub } from 'react-icons/ai';
+import Header from '../../components/Header';
 
 const LandingPage = () => {
     return (
-        <C.Container>
-            <h1>Sobre</h1>
-            <C.About>
-                <C.Info>
-                    <p>
-                        Uma aplicação multiplataforma, disponível gratuítamente
-                        para o usuário administrar suas tarefas e se sentir
-                        motivado à cumpri-lás, pois será recompensado no
-                        caminho.
-                    </p>
-                    <img src={Phone} alt="" />
-                </C.Info>
+        <C.MainContainer>
+            <Header />
+            <C.Container>
+                <h1>Sobre</h1>
+                <C.About>
+                    <C.Info>
+                        <p>
+                            Uma aplicação multiplataforma, disponível
+                            gratuítamente para o usuário administrar suas
+                            tarefas e se sentir motivado à cumpri-lás, pois será
+                            recompensado no caminho.
+                        </p>
+                        <img src={Phone} alt="" />
+                    </C.Info>
 
-                <C.Info>
-                    <p>
-                        Colecione conquistas, com elas você poderá deixar seu
-                        perfil cada vez mais completo!
-                    </p>
-                    <img src={Moon} alt="" />
-                </C.Info>
+                    <C.Info>
+                        <p>
+                            Colecione conquistas, com elas você poderá deixar
+                            seu perfil cada vez mais completo!
+                        </p>
+                        <img src={Moon} alt="" />
+                    </C.Info>
 
-                <C.Info>
-                    <p>
-                        Ganhe pontos para cada tarefa concluída, com ele você
-                        pode conseguir as conquistas da plataforma!
-                    </p>
-                    <img src={Chat} alt="" />
-                </C.Info>
+                    <C.Info>
+                        <p>
+                            Ganhe pontos para cada tarefa concluída, com ele
+                            você pode conseguir as conquistas da plataforma!
+                        </p>
+                        <img src={Chat} alt="" />
+                    </C.Info>
 
-                <C.Info>
-                    <p>
-                        Participe da nossa comunidade! La você poderá tirar suas
-                        dúvidas sobre os mais diversos assuntos. Como também
-                        ajudar outras pessoas!
-                    </p>
-                    <img src={Zero} alt="" />
-                </C.Info>
-            </C.About>
+                    <C.Info>
+                        <p>
+                            Participe da nossa comunidade! La você poderá tirar
+                            suas dúvidas sobre os mais diversos assuntos. Como
+                            também ajudar outras pessoas!
+                        </p>
+                        <img src={Zero} alt="" />
+                    </C.Info>
+                </C.About>
 
-            <h1>Equipe</h1>
-            <C.Team>
-                <C.Members>
-                    <img src={Madu} alt="" />
-                    <div>
-                        <AiFillGithub />
-                        <AiFillLinkedin />
-                    </div>
-                </C.Members>
+                <h1>Equipe</h1>
+                <C.Team>
+                    <C.Members>
+                        <img src={Madu} alt="" />
+                        <div>
+                            <AiFillGithub />
+                            <AiFillLinkedin />
+                        </div>
+                    </C.Members>
 
-                <C.Members>
-                    <img src={Will} alt="" />
-                    <div>
-                        <AiFillGithub />
-                        <AiFillLinkedin />
-                    </div>
-                </C.Members>
+                    <C.Members>
+                        <img src={Will} alt="" />
+                        <div>
+                            <AiFillGithub />
+                            <AiFillLinkedin />
+                        </div>
+                    </C.Members>
 
-                <C.Members>
-                    <img src={Lucas} alt="" />
-                    <div>
-                        <AiFillGithub />
-                        <AiFillLinkedin />
-                    </div>
-                </C.Members>
+                    <C.Members>
+                        <img src={Lucas} alt="" />
+                        <div>
+                            <AiFillGithub />
+                            <AiFillLinkedin />
+                        </div>
+                    </C.Members>
 
-                <C.Members>
-                    <img src={Emanuel} alt="" />
-                    <div>
-                        <AiFillGithub />
-                        <AiFillLinkedin />
-                    </div>
-                </C.Members>
+                    <C.Members>
+                        <img src={Emanuel} alt="" />
+                        <div>
+                            <AiFillGithub />
+                            <AiFillLinkedin />
+                        </div>
+                    </C.Members>
 
-                <C.Members>
-                    <img src={Julia} alt="" />
-                    <div>
-                        <AiFillGithub />
-                        <AiFillLinkedin />
-                    </div>
-                </C.Members>
-            </C.Team>
-        </C.Container>
+                    <C.Members>
+                        <img src={Julia} alt="" />
+                        <div>
+                            <AiFillGithub />
+                            <AiFillLinkedin />
+                        </div>
+                    </C.Members>
+                </C.Team>
+            </C.Container>
+        </C.MainContainer>
     );
 };
 
