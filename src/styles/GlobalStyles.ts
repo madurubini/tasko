@@ -1,20 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
-*{    
-      margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        outline: 0;
-        list-style-type: none;
-}
-
-body {
-    max-width: 100vw;
-    min-height: 100vh;
-    font-family: 'Oxanium', cursive;
-}
-
 
 :root {
     --background: #050303;
@@ -30,6 +16,22 @@ body {
     --greenToast: #008000;
     --blueToast:#155BCB;
     --black-gradient: linear-gradient(309.43deg, #2C2F40 0.96%, #2C2F40 5.98%, #000000 89.08%, #050303 98.43%);
+}
+
+*{    
+      margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        outline: 0;
+        list-style-type: none;
+        background-color: var(--background) ;
+}
+
+body {
+    max-width: 100vw;
+    min-height: 100vh;
+    font-family: 'Oxanium', cursive;
+   
 }
 
 h1, h2, h3, h4, p{
