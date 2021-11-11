@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import { History } from 'history';
 
 export interface User {
     name: string;
@@ -18,6 +17,6 @@ export interface UserContextData {
     auth: string;
     userName: string;
     signup: (data: User) => void;
-    login: ({ email, password }: User, history: History) => void;
+    login: ({ email, password }: User) => void;
     logout: () => void;
 }

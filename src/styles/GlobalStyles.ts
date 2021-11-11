@@ -3,6 +3,10 @@ import { createGlobalStyle } from 'styled-components';
 export default createGlobalStyle`
 
 
+<<<<<<< HEAD
+*{    
+        margin: 0;
+=======
     :root {
         --background: #050303;
         --font-color: #ffffff;
@@ -22,6 +26,7 @@ export default createGlobalStyle`
     
     *{    
       margin: 0;
+>>>>>>> cc04938d5432601fb44b29ae7178c199c5872140
         padding: 0;
         box-sizing: border-box;
         outline: 0;
