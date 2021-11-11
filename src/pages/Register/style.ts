@@ -3,9 +3,8 @@ import styled from 'styled-components';
 export const MainContainer = styled.main`
     display: flex;
     justify-content: center;
-
     background-color: var(--background);
-    min-height: 100vh;
+    min-height: 80vh;
 
     @media (min-width: 1024px) {
         justify-content: space-evenly;

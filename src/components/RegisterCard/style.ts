@@ -11,20 +11,24 @@ export const RegisterContainer = styled.div`
     justify-content: center;
     align-items: center;
     width: 90%;
-    max-height: 100vh;
+    max-height: 80vh;
+    max-width: 1440px;
     padding: 10px;
-    margin: 5px;
+    margin: 5em auto;
 
     @media (min-width: 1024px) {
         width: 46%;
+        margin: 1em auto;
     }
 
     @media (min-width: 1440px) {
         width: 33%;
+        margin: 1em auto;
     }
 
     @media (min-width: 2560px) {
         width: 26%;
+        margin: 1em auto;
     }
 `;
 

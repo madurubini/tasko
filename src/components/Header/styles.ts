@@ -39,6 +39,7 @@ export const Menu = styled.div`
         padding: 60px;
         top: -5px;
         width: 100%;
+        z-index: 1;
     }
 
     @media (min-width: 1024px) {

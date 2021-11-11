@@ -5,7 +5,9 @@ import { Button } from '@chakra-ui/button';
 import { Link } from 'react-router-dom';
 import { Divider } from '@chakra-ui/layout';
 
-export const LoginContainer = styled.div``;
+export const LoginContainer = styled.div`
+    text-align: center;
+`;
 
 export const LoginHeader = styled.div`
     text-align: center;
@@ -80,8 +82,7 @@ export const DividerBlock = styled.div`
     align-items: center;
     justify-content: center;
     max-width: 90vw !important;
-    margin-top: 1em;
-    margin-bottom: 1em;
+    margin: 1em auto;
 `;
 
 export const Hr = styled(Divider)`
