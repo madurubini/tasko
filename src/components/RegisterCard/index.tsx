@@ -38,11 +38,21 @@ export const RegisterCard = () => {
         password: yup
             .string()
             .required(emptyMessage)
+            .min(6, 'A senha deve ter pelo menos 6 caracteres')
             .matches(
-                /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#!%])[0-9a-zA-Z$*&@#]{6,}$/,
-                `Senha deve ter ter letras maiúsculas e minúsculas,
-             um destes simbolos ($*&@#!%) e no mínimo 6 caracteres`,
-            ),
+                /(?=.*?[A-Z])/,
+                'Senha deve ter pelo menos uma letra maiúscula',
+            )
+            .matches(
+                /(?=.*?[a-z])/,
+                'Senha deve ter pelo menos uma letra minúscula',
+            )
+            .matches(/(?=.*?[0-9])/, 'Senha deve ter pelo menos um número')
+            .matches(
+                /(?=.*?[#?!@$%^&*-])/,
+                'Senha deve ter pelo menos um caractere especial',
+            )
+            .matches(/.{6,}/, 'Senha deve ter no mínimo seis caracteres'),
         matchedPassword: yup
             .string()
             .required(emptyMessage)
