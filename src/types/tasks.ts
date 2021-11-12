@@ -3,5 +3,6 @@ export interface TasksProps {
     difficulty: string;
     xp: number;
     finished: boolean;
-    userId: boolean;
+    userId: string;
+    id?: number;
 }
