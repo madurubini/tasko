@@ -25,6 +25,7 @@ interface TaskContextProps {
     updateTask: (taskId: number, update: EditTaskProps) => void;
     deleteTask: (taskId: number) => void;
     getUserTasks: (userId: string) => void;
+    tasks: any;
 }
 
 export const TasksContext = createContext<TaskContextProps>(
@@ -105,6 +106,7 @@ export const TasksProvider = ({ children }: ChildrenProps) => {
                 updateTask,
                 getUserTasks,
                 completeTask,
+                tasks,
             }}
         >
             {children}
