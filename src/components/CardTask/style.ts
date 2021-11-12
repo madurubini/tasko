@@ -43,6 +43,7 @@ export const SubMenu = styled.div`
 
     svg {
         font-size: 25px;
+        cursor: pointer;
     }
 `;
 
