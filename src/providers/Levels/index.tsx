@@ -96,13 +96,12 @@ export const LevelsProvider = ({ children }: ChildrenProps) => {
 
     const nextLevel = useCallback(() => {
         setNextLevel(
-            levels.find((elo) => elo.LevelId === userLevel.LevelId + 1),
+            levels.find((elo) => elo.LevelId === userLevel?.LevelId + 1),
         );
-
         if (xp >= nextlevel?.reqXp) {
             patchLevel(nextlevel);
         }
-    }, [userLevel.LevelId, levels, xp, patchLevel, nextlevel]);
+    }, [userLevel?.LevelId, levels, xp, patchLevel, nextlevel]);
 
     useEffect(() => {
         nextLevel();
