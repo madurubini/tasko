@@ -18,17 +18,17 @@ export const RegisterContainer = styled.div`
 
     @media (min-width: 1024px) {
         width: 46%;
-        margin: 1em auto;
+        margin: 1em 0;
     }
 
     @media (min-width: 1440px) {
         width: 33%;
-        margin: 1em auto;
+        margin: 1em 0;
     }
 
     @media (min-width: 2560px) {
         width: 26%;
-        margin: 1em auto;
+        margin: 1em 0;
     }
 `;
 
