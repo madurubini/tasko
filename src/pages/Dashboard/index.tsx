@@ -1,5 +1,11 @@
+import MenuMobile from '../../components/MenuMobile';
+
 const Dashboard = () => {
-    return <>Dashboard</>;
+    return (
+        <>
+            <MenuMobile />
+        </>
+    );
 };
 
 export default Dashboard;

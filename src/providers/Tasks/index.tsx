@@ -37,7 +37,13 @@ export const TasksProvider = ({ children }: ChildrenProps) => {
     const [tasks, setTasks] = useState<TasksProps[]>([] as TasksProps[]);
 
     const createNewTask = (title: TitleProps, userId: number) => {
-        const data = { ...title, xp: 1, finished: false, userId: userId };
+        const data = {
+            ...title,
+            xp: 1,
+            difficulty: 'Fácil',
+            finished: false,
+            userId: userId,
+        };
 
         api.post('/task', data, {
             headers: {
