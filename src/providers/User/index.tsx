@@ -43,7 +43,9 @@ export const UserProvider = ({ children }: UserProps) => {
     };
 
     return (
-        <UserContext.Provider value={{ auth, userName, signup, login, logout,id,xp }}>
+        <UserContext.Provider
+            value={{ auth, userName, signup, login, logout, id, xp }}
+        >
             {children}
         </UserContext.Provider>
     );
