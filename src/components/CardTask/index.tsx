@@ -1,9 +1,14 @@
+import { TasksProps } from '../../types/tasks';
 import { TaskCard } from './style';
 
-const CardTask = () => {
+interface TasksInterface {
+    item: TasksProps;
+}
+
+const CardTask = ({ item }: TasksInterface) => {
     return (
         <TaskCard>
-            <h1>oi</h1>
+            <p>{item.title}</p>
         </TaskCard>
     );
 };

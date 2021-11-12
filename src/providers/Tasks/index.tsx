@@ -25,7 +25,7 @@ interface TaskContextProps {
     updateTask: (taskId: number, update: EditTaskProps) => void;
     deleteTask: (taskId: number) => void;
     getUserTasks: (userId: string) => void;
-    tasks: any;
+    tasks: TasksProps[];
 }
 
 export const TasksContext = createContext<TaskContextProps>(
