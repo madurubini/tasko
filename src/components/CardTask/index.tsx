@@ -1,4 +1,3 @@
-import { Button } from '@chakra-ui/button';
 import { TasksProps } from '../../types/tasks';
 import {
     EasyDifficulty,
@@ -18,7 +17,7 @@ interface TasksInterface {
 }
 
 const CardTask = ({ item }: TasksInterface) => {
-    const { tasks, deleteTask, completeTask, getUserTasks } = useTasks();
+    const { deleteTask, completeTask } = useTasks();
 
     return (
         <TaskCard>
