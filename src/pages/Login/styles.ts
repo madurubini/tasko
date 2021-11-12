@@ -46,8 +46,12 @@ export const LogoBox = styled.div`
 export const LogoHeader = styled.div`
     display: flex;
     margin: 1em;
-    justify-content: flex-end;
+    justify-content: center;
     img {
         width: 180px;
+    }
+
+    @media (min-width: 1024px) {
+        justify-content: flex-end;
     }
 `;

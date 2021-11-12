@@ -5,7 +5,7 @@ export const DifficultyBox = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     height: 50px;
 
     svg {
@@ -15,4 +15,10 @@ export const DifficultyBox = styled.div`
 
 export const LightningBox = styled.div`
     display: flex;
+`;
+
+export const Title = styled.h3`
+    font-size: 18px;
+    font-weight: bold;
+    max-width: 180px;
 `;

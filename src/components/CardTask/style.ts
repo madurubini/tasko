@@ -1,3 +1,4 @@
+import { Button } from '@chakra-ui/button';
 import styled from 'styled-components';
 
 export const TaskCard = styled.li`
@@ -23,13 +24,16 @@ export const TaskCard = styled.li`
 
 export const ScrollTasks = styled.div`
     width: 95%;
-    min-height: 40vw;
+    min-height: 240px;
+    max-height: 30vw;
     background: var(--black-gradient);
     overflow: auto;
-    border: 1px solid red;
     display: flex;
     margin: 5px auto;
     padding: 5px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
 `;
 
 export const SubMenu = styled.div`
@@ -40,4 +44,11 @@ export const SubMenu = styled.div`
     svg {
         font-size: 25px;
     }
+`;
+
+export const TaskButton = styled(Button)`
+    width: 70% !important;
+    background: var(--button-black) !important;
+    color: var(--font-color) !important;
+    margin-bottom: 5px;
 `;

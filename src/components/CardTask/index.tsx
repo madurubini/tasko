@@ -1,4 +1,3 @@
-import { Button } from '@chakra-ui/button';
 import { TasksProps } from '../../types/tasks';
 import {
     EasyDifficulty,
@@ -9,15 +8,16 @@ import {
     MdOutlineDeleteForever,
     MdOutlineModeEditOutline,
 } from 'react-icons/md';
-import { SubMenu, TaskCard } from './style';
+import { SubMenu, TaskButton, TaskCard } from './style';
 import { useTasks } from '../../providers/Tasks';
+import { Title } from '../DifficultyCards/styles';
 
 interface TasksInterface {
     item: TasksProps;
 }
 
 const CardTask = ({ item }: TasksInterface) => {
-    const { tasks, deleteTask, completeTask, getUserTasks } = useTasks();
+    const { deleteTask, completeTask } = useTasks();
 
     return (
         <TaskCard>
@@ -30,17 +30,23 @@ const CardTask = ({ item }: TasksInterface) => {
                 />
             </SubMenu>
 
-            <p>{item.title}</p>
-            <HardDifficulty />
+            <Title>{item.title}</Title>
+            {item.xp === 1 ? (
+                <EasyDifficulty />
+            ) : item.xp === 3 ? (
+                <MediumDifficulty />
+            ) : (
+                <HardDifficulty />
+            )}
 
-            <Button
+            <TaskButton
                 onClick={() => {
                     completeTask(Number(item.id));
                     console.log(item.finished);
                 }}
             >
                 Completar
-            </Button>
+            </TaskButton>
         </TaskCard>
     );
 };
