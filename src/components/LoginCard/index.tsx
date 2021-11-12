@@ -15,10 +15,15 @@ import {
     LoginForm,
     LoginHeader,
     LoginOption,
+    PasswordButton,
     RedirectTo,
+    ShowButton,
     TextField,
     TextOptions,
 } from './styles';
+import { useState } from 'react';
+import { InputGroup } from '@chakra-ui/input';
+import { BiHide, BiShowAlt } from 'react-icons/bi';
 
 export const LoginCard = () => {
     const emptyMessage = 'Este campo não pode estar vazio!';
@@ -36,11 +41,14 @@ export const LoginCard = () => {
     });
     const history = useHistory();
     const { login } = useUser();
+    const [showPassword, setShowPassword] = useState(false);
+    const handleClick = () => setShowPassword(!showPassword);
 
     const handleCLick = (data: User) => {
         login(data);
         history.push(`/dashboard`);
     };
+
     return (
         <LoginContainer>
             <LoginHeader>
@@ -57,15 +65,26 @@ export const LoginCard = () => {
                     />
                     <Error>{errors.email?.message}</Error>
                 </FormControl>
-                <FormControl isInvalid={!!errors?.password}>
-                    <TextField
-                        variant="filled"
-                        type="password"
-                        placeholder="Senha"
-                        {...register('password')}
-                    />
-                    <Error>{errors.password?.message}</Error>
-                </FormControl>
+                <InputGroup>
+                    <FormControl isInvalid={!!errors?.password}>
+                        <TextField
+                            variant="filled"
+                            type={showPassword ? 'text' : 'password'}
+                            placeholder="Senha"
+                            {...register('password')}
+                        />
+                        <ShowButton width="4.5rem">
+                            <PasswordButton
+                                h="2rem"
+                                size="sm"
+                                onClick={handleClick}
+                            >
+                                {showPassword ? <BiShowAlt /> : <BiHide />}
+                            </PasswordButton>
+                        </ShowButton>
+                        <Error>{errors.password?.message}</Error>
+                    </FormControl>
+                </InputGroup>
                 <LoginButton type="submit">Entrar</LoginButton>
             </LoginForm>
             <DividerBlock>

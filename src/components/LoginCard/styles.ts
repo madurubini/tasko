@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { Input } from '@chakra-ui/input';
+import { Input, InputRightElement } from '@chakra-ui/input';
 import { FormErrorMessage } from '@chakra-ui/form-control';
-import { Button } from '@chakra-ui/button';
 import { Link } from 'react-router-dom';
 import { Divider } from '@chakra-ui/layout';
+import { Button } from '@chakra-ui/button';
 
 export const LoginContainer = styled.div`
     text-align: center;
@@ -55,6 +55,23 @@ export const TextField = styled(Input)`
         display: block !important;
 
         width: 480px !important;
+    }
+`;
+
+export const ShowButton = styled(InputRightElement)`
+    top: 30px !important;
+    right: 15px !important;
+    background: none !important;
+`;
+
+export const PasswordButton = styled(Button)`
+    background-color: transparent !important;
+
+    svg,
+    svg path {
+        background-color: transparent !important;
+        font-size: 24px;
+        transition: all 0.3s;
     }
 `;
 

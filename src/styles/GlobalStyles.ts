@@ -20,14 +20,13 @@ export default createGlobalStyle`
         --black-gradient: linear-gradient(309.43deg, #2C2F40 0.96%, #2C2F40 5.98%, #000000 89.08%, #050303 98.43%);
     }
     
-    *{    
+    * {    
       margin: 0;
         padding: 0;
         box-sizing: border-box;
         outline: 0;
         list-style-type: none;
-           background-color: var(--background) ;
-
+           background-color: var(--background);
     }
 
     body {
