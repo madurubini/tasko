@@ -1,15 +1,19 @@
+
 import { Button } from '@chakra-ui/button';
 import CardTask from '../../components/CardTask';
 import { ScrollTasks, TaskCard } from '../../components/CardTask/style';
 import { useTasks } from '../../providers/Tasks';
 import { TasksProps } from '../../types/tasks';
+ import MenuMobile from '../../components/MenuMobile';
 
 const Dashboard = () => {
     const { tasks } = useTasks();
 
     console.log(tasks);
 
-    return (
+    return (<>
+      
+            <MenuMobile />
         <ScrollTasks>
             {tasks.map((item: TasksProps, index: number) => {
                 return (
@@ -21,6 +25,8 @@ const Dashboard = () => {
                 );
             })}
         </ScrollTasks>
+        </>
+
     );
 };
 
