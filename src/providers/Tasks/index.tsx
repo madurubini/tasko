@@ -83,7 +83,10 @@ export const TasksProvider = ({ children }: ChildrenProps) => {
                 Authorization: `Bearer ${auth}`,
             },
         })
-            .then((res) => console.log(res))
+            .then((res) => {
+                console.log(res);
+                getUserTasks(id);
+            })
             .catch((err) => console.log(err));
     };
 
@@ -94,7 +97,9 @@ export const TasksProvider = ({ children }: ChildrenProps) => {
                     Authorization: `Bearer ${auth}`,
                 },
             })
-                .then((res) => setTasks(res.data))
+                .then((res) => {
+                    setTasks(res.data);
+                })
                 .catch((err) => console.log(err));
         },
         [auth],

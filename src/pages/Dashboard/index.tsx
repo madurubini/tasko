@@ -14,12 +14,13 @@ const Dashboard = () => {
             <LogoHeader>
                 <img src={Logo} alt="logo"></img>
             </LogoHeader>
-
+            <h2>Quests</h2>
             <ScrollTasks>
                 {tasks.map((item, index) => {
                     return <CardTask key={index} item={item}></CardTask>;
                 })}
             </ScrollTasks>
+
             <MenuMobile />
         </>
     );
