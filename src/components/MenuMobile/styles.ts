@@ -7,7 +7,7 @@ export const Container = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 30px;
-    background: (--green-linear);
+    background: var(--green-linear);
 
     div {
         display: flex;

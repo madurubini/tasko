@@ -1,32 +1,27 @@
+import Logo from '../../assets/image/logo.png';
 
-import { Button } from '@chakra-ui/button';
 import CardTask from '../../components/CardTask';
-import { ScrollTasks, TaskCard } from '../../components/CardTask/style';
+import { ScrollTasks } from '../../components/CardTask/style';
 import { useTasks } from '../../providers/Tasks';
-import { TasksProps } from '../../types/tasks';
- import MenuMobile from '../../components/MenuMobile';
+import MenuMobile from '../../components/MenuMobile';
+import { LogoHeader } from '../Login/styles';
 
 const Dashboard = () => {
     const { tasks } = useTasks();
 
-    console.log(tasks);
+    return (
+        <>
+            <LogoHeader>
+                <img src={Logo} alt="logo"></img>
+            </LogoHeader>
 
-    return (<>
-      
+            <ScrollTasks>
+                {tasks.map((item, index) => {
+                    return <CardTask key={index} item={item}></CardTask>;
+                })}
+            </ScrollTasks>
             <MenuMobile />
-        <ScrollTasks>
-            {tasks.map((item: TasksProps, index: number) => {
-                return (
-                    <TaskCard key={index}>
-                        <h3>{item.title}</h3>
-                        <p>{item.difficulty}</p>
-                        <button>Completar</button>
-                    </TaskCard>
-                );
-            })}
-        </ScrollTasks>
         </>
-
     );
 };
 
