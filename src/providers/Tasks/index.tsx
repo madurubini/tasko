@@ -20,7 +20,7 @@ interface EditTaskProps {
 }
 
 interface TaskContextProps {
-    createNewTask: (title: TitleProps, userId: number) => void;
+    createNewTask: (title: TitleProps, userId: string) => void;
     completeTask: (taskId: number) => void;
     updateTask: (taskId: number, update: EditTaskProps) => void;
     deleteTask: (taskId: number) => void;
@@ -37,21 +37,24 @@ export const TasksProvider = ({ children }: ChildrenProps) => {
 
     const [tasks, setTasks] = useState<TasksProps[]>([] as TasksProps[]);
 
-    const createNewTask = (title: TitleProps, userId: number) => {
+    const createNewTask = (title: TitleProps, userId: string) => {
         const data = {
-            ...title,
+            title: title,
             xp: 1,
-            difficulty: 'Fácil',
+            difficulty: 'Easy',
             finished: false,
             userId: userId,
         };
 
-        api.post('/task', data, {
+        api.post('/tasks', data, {
             headers: {
                 Authorization: `Bearer ${auth}`,
             },
         })
-            .then((res) => console.log(res))
+            .then((res) => {
+                console.log(res);
+                getUserTasks(id);
+            })
             .catch((err) => console.log(err));
     };
 
