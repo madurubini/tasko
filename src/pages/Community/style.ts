@@ -12,6 +12,17 @@ export const Header = styled.header`
     }
 `;
 
+export const LogoHeader = styled.picture`
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 1em;
+
+    img {
+        width: 180px;
+    }
+`;
+
 export const Image = styled.img`
     width: 40px;
 `;
@@ -92,6 +103,8 @@ export const QuestCard = styled.div`
 `;
 
 export const HeaderSection = styled.header`
+    display: flex;
+    align-items: center;
     margin-bottom: 1em;
 `;
 
@@ -155,12 +168,17 @@ export const MakeQuestButtonTop = styled(Button)`
 `;
 
 export const MakeQuestButtonCenter = styled(Button)`
-    width: 200px;
-    height: 40px;
+    display: none !important;
 
-    background: var(--green-linear) !important;
-    color: white !important;
-    border-radius: 8px;
+    @media (min-width: 1024px) {
+        display: inline-block !important;
+        width: 200px;
+        height: 40px;
+
+        background: var(--green-linear) !important;
+        color: white !important;
+        border-radius: 8px;
+    }
 `;
 
 export const MyQuestionsTab = styled.div`

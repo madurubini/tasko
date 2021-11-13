@@ -8,6 +8,8 @@ import {
     Header,
     HeaderSection,
     Image,
+    LogoHeader,
+    MakeQuestButtonCenter,
     MakeQuestButtonTop,
     MyQuestCard,
     MyQuestionsTab,
@@ -36,9 +38,9 @@ const Community = () => {
     return (
         <main>
             <Header>
-                <picture>
+                <LogoHeader>
                     <img src={logo} alt="Tasko" />
-                </picture>
+                </LogoHeader>
             </Header>
             <section>
                 <InputCommunity />
@@ -67,6 +69,9 @@ const Community = () => {
                 <section>
                     <HeaderSection>
                         <MyQuestTitle>Minhas perguntas</MyQuestTitle>
+                        <MakeQuestButtonCenter onClick={() => 0}>
+                            Perguntar
+                        </MakeQuestButtonCenter>
                     </HeaderSection>
                     <MyQuestionsTab>
                         {userQuests.map(({ body, likes }, index) => (

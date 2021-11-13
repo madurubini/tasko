@@ -41,6 +41,22 @@ export const QuestionsProvider = ({ children }: ChildrenProps) => {
         [id],
     );
 
+    const getQuestionsByTitle = useCallback(
+        (questionTitle: string) => {
+            request
+                .get(`/quests?body_like=${questionTitle}`, {
+                    headers: {
+                        Authorization: `Bearer ${auth}`,
+                    },
+                })
+                .then(({ data }) => setAllQuestions([...data]))
+                .catch((error) =>
+                    console.error('Pergunta não encontrada: ', error),
+                );
+        },
+        [auth],
+    );
+
     useEffect(() => {
         getUserQuestions(parseInt(id));
     }, [getUserQuestions, id]);
