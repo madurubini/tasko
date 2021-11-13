@@ -10,8 +10,8 @@ export default createGlobalStyle`
         --button-green:  linear-gradient(117.51deg, #94FF96 0%, rgba(61, 194, 75, 0.83) 68.22%);
         --button-black:linear-gradient(122.01deg, #585F73 0.96%, #2C2F40 86.54%);
         --green-linear: linear-gradient(132.9deg, #63F7A1 1.3%, #27AE60 98.06%), linear-gradient(143.36deg, #94FF96 3.66%, #3DC24B 103.19%);
-        --title: font-family: 'Inter', sans-serif;
-        --subTitle: font-family: 'Press Start 2P', cursive;
+        --title: 'Inter', sans-serif;
+        --subTitle: 'Press Start 2P', cursive;
         --placeholder: #C4B6BB;
         --redToast :#FF0000;
         --yellowToast: #FFD700;
@@ -29,7 +29,7 @@ export default createGlobalStyle`
          
     }
 
-    body {
+    html, body {
         max-width: 100vw;
         min-height: 100vh;
         font-family: 'Oxanium', cursive;
