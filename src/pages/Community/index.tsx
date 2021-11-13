@@ -8,6 +8,8 @@ import {
     Header,
     HeaderSection,
     Image,
+    LogoHeader,
+    MakeQuestButtonCenter,
     MakeQuestButtonTop,
     MyQuestCard,
     MyQuestionsTab,
@@ -19,6 +21,7 @@ import {
     TitleBlock,
 } from './style';
 import { MdAddCircle } from 'react-icons/md';
+import { InputCommunity } from '../../components/InputCommunity';
 
 const Community = () => {
     const { auth } = useUser();
@@ -35,12 +38,12 @@ const Community = () => {
     return (
         <main>
             <Header>
-                <picture>
+                <LogoHeader>
                     <img src={logo} alt="Tasko" />
-                </picture>
+                </LogoHeader>
             </Header>
             <section>
-                <div></div>
+                <InputCommunity />
             </section>
             <GlobalSection>
                 <section>
@@ -66,6 +69,9 @@ const Community = () => {
                 <section>
                     <HeaderSection>
                         <MyQuestTitle>Minhas perguntas</MyQuestTitle>
+                        <MakeQuestButtonCenter onClick={() => 0}>
+                            Perguntar
+                        </MakeQuestButtonCenter>
                     </HeaderSection>
                     <MyQuestionsTab>
                         {userQuests.map(({ body, likes }, index) => (
