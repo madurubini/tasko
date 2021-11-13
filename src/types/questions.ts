@@ -9,4 +9,5 @@ export interface QuestionsContextData {
     userQuests: Quest[] | [];
     getAllQuestions: () => void;
     getUserQuestions: (userId: number) => void;
+    getAllQuestsByTitle: (title: string) => void;
 }

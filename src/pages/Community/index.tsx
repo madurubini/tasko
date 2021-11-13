@@ -19,7 +19,7 @@ import {
     TitleBlock,
 } from './style';
 import { MdAddCircle } from 'react-icons/md';
-import { InputCommunit } from '../../components/InputCommunit';
+import { InputCommunity } from '../../components/InputCommunity';
 
 const Community = () => {
     const { auth } = useUser();
@@ -41,7 +41,7 @@ const Community = () => {
                 </picture>
             </Header>
             <section>
-                <InputCommunit />
+                <InputCommunity />
             </section>
             <GlobalSection>
                 <section>

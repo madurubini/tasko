@@ -16,7 +16,7 @@ export const QuestionsContext = createContext<QuestionsContextData>(
 );
 
 export const QuestionsProvider = ({ children }: ChildrenProps) => {
-    const { id } = useUser();
+    const { auth, id } = useUser();
     const [allQuestions, setAllQuestions] = useState<Quest[]>([] as Quest[]);
     const [userQuests, setUserQuests] = useState<Quest[]>([] as Quest[]);
 
@@ -26,6 +26,10 @@ export const QuestionsProvider = ({ children }: ChildrenProps) => {
             .then(({ data }) => setAllQuestions([...data]))
             .catch((error) => console.error(error));
     }, []);
+
+    useEffect(() => {
+        getAllQuestions();
+    }, [getAllQuestions]);
 
     const getUserQuestions = useCallback(
         (userId: number) => {
@@ -38,12 +42,24 @@ export const QuestionsProvider = ({ children }: ChildrenProps) => {
     );
 
     useEffect(() => {
-        getAllQuestions();
-    }, [getAllQuestions]);
-
-    useEffect(() => {
         getUserQuestions(parseInt(id));
     }, [getUserQuestions, id]);
+
+    const getAllQuestsByTitle = useCallback(
+        (questionTitle: string) => {
+            request
+                .get(`/quests?body_like=${questionTitle}`, {
+                    headers: {
+                        Authorization: `Bearer ${auth}`,
+                    },
+                })
+                .then(({ data }) => setAllQuestions([...data]))
+                .catch((error) =>
+                    console.error('Pergunta não encontrada: ', error),
+                );
+        },
+        [auth],
+    );
 
     return (
         <QuestionsContext.Provider
@@ -52,6 +68,7 @@ export const QuestionsProvider = ({ children }: ChildrenProps) => {
                 userQuests,
                 getAllQuestions,
                 getUserQuestions,
+                getAllQuestsByTitle,
             }}
         >
             {children}
