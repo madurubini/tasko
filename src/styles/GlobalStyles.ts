@@ -26,13 +26,14 @@ export default createGlobalStyle`
         box-sizing: border-box;
         outline: 0;
         list-style-type: none;
-           background-color: var(--background);
+         
     }
 
     body {
         max-width: 100vw;
         min-height: 100vh;
         font-family: 'Oxanium', cursive;
+       
     }
 
     input, button {
