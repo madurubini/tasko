@@ -1,6 +1,5 @@
 import { Input } from '@chakra-ui/input';
 import React, { Dispatch, SetStateAction, useState } from 'react';
-import { Title } from '../DifficultyCards/styles';
 import { MenuButton } from '../MenuDesktop/styles';
 import { useTasks } from '../../providers/Tasks';
 
@@ -9,6 +8,7 @@ import {
     ContainerBoxModal,
     FormContainer,
     InputBox,
+    TitleModal,
 } from './styles';
 import { useUser } from '../../providers/User';
 
@@ -27,8 +27,8 @@ const AddTaskModal = ({ setShowAddModal }: AddTaskModalProps) => {
         <ContainerBoxModal>
             <FormContainer>
                 <CloseModal onClick={() => setShowAddModal(false)} />
+                <TitleModal>Adicione uma nova Quest!</TitleModal>
                 <InputBox>
-                    <Title>Titulo da Tarefa</Title>
                     <Input
                         placeholder={'Tirar o lixo...'}
                         type="text"

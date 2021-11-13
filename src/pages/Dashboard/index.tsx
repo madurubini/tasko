@@ -3,10 +3,10 @@ import Sword from '../../assets/image/sword.png';
 import Grail from '../../assets/image/grail.png';
 import CardTask from '../../components/CardTask';
 import {
-    AddButtonContainer,
     AddIcon,
     ScrollBadge,
     ScrollTasks,
+    TasksContainer,
 } from '../../components/CardTask/style';
 import { useTasks } from '../../providers/Tasks';
 import MenuMobile from '../../components/MenuMobile';
@@ -17,12 +17,18 @@ import CardBadge from '../../components/CardBadge';
 import MenuDesktop from '../../components/MenuDesktop';
 import AddTaskModal from '../../components/AddTaskModal';
 import { useState } from 'react';
+import EditTaskModal from '../../components/EditTaskModal';
+import {
+    AddButtonBox,
+    AddTaskButtonBox,
+} from '../../components/AddTaskModal/styles';
 
 const Dashboard = () => {
     const { tasks } = useTasks();
     const { userBadges } = useBadges();
 
     const [showAddModal, setShowAddModal] = useState<Boolean>(false);
+    const [showEditModal, setShowEditModal] = useState<Boolean>(false);
 
     return (
         <>
@@ -36,21 +42,28 @@ const Dashboard = () => {
                         Quests <img src={Sword} alt="" />
                     </SubTitle>
                     <ScrollTasks>
-                        <AddIcon onClick={() => setShowAddModal(true)} />
-                        {showAddModal && (
-                            <AddTaskModal setShowAddModal={setShowAddModal} />
-                        )}
+                        <AddTaskButtonBox>
+                            <AddIcon onClick={() => setShowAddModal(true)} />
+                        </AddTaskButtonBox>
+                        <AddButtonBox>
+                            {showAddModal && (
+                                <AddTaskModal
+                                    setShowAddModal={setShowAddModal}
+                                />
+                            )}
+                            {showEditModal && <EditTaskModal />}
 
-                        <AddButtonContainer>
-                            {tasks.map((item, index) => {
-                                return (
-                                    <CardTask
-                                        key={index}
-                                        item={item}
-                                    ></CardTask>
-                                );
-                            })}
-                        </AddButtonContainer>
+                            <TasksContainer>
+                                {tasks.map((item, index) => {
+                                    return (
+                                        <CardTask
+                                            key={index}
+                                            item={item}
+                                        ></CardTask>
+                                    );
+                                })}
+                            </TasksContainer>
+                        </AddButtonBox>
                     </ScrollTasks>
                     <SubTitle>
                         Minhas Conquistas <img src={Grail} alt="" />

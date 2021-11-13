@@ -16,13 +16,18 @@ interface TasksInterface {
     item: TasksProps;
 }
 
-const CardTask = ({ item }: TasksInterface) => {
+const CardTask = (
+    { item }: TasksInterface,
+    setShowEditModal: (x: boolean) => () => void,
+) => {
     const { deleteTask, completeTask } = useTasks();
 
     return (
         <TaskCard>
             <SubMenu>
-                <MdOutlineModeEditOutline />
+                <MdOutlineModeEditOutline
+                    onClick={() => setShowEditModal(true)}
+                />
                 <MdOutlineDeleteForever
                     onClick={() => {
                         deleteTask(Number(item.id));
