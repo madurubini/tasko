@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { MdClose } from 'react-icons/md';
 import { SubTitle } from '../../pages/Dashboard/styles';
+import { MenuButton } from '../MenuDesktop/styles';
 
 export const ContainerBoxModal = styled.div`
     min-width: 100vw;
@@ -50,11 +51,15 @@ export const CloseModal = styled(MdClose)`
 
 export const InputBox = styled.div`
     width: 70%;
-
     margin: 1em;
-    padding: 1em;
     color: white;
-    padding: 2px;
+    padding: 5px;
+`;
+
+export const EditInputBox = styled(InputBox)`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 `;
 
 export const TitleModal = styled(SubTitle)`
@@ -72,4 +77,28 @@ export const AddTaskButtonBox = styled(AddButtonBox)`
     flex-direction: row;
     justify-content: flex-end;
     width: 100%;
+`;
+
+export const BoxInputEdit = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 30vh;
+    justify-content: center;
+    margin: 1em;
+`;
+
+export const EditButton = styled(MenuButton)`
+    width: 100%;
+    display: flex;
+`;
+
+export const SelectEdit = styled.select`
+    background: var(--background);
+    width: 100px;
+    margin: 1em;
+    color: white;
+    height: 30px;
+    border-radius: 5px;
+    padding: 5px;
 `;

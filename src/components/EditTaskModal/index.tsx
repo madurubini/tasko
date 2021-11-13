@@ -3,9 +3,14 @@ import { useState } from 'react';
 import { useTasks } from '../../providers/Tasks';
 import { TasksProps } from '../../types/tasks';
 import {
+    BoxInputEdit,
     CloseModal,
     ContainerBoxModal,
+    EditButton,
+    EditInputBox,
     FormContainer,
+    InputBox,
+    SelectEdit,
     TitleModal,
 } from '../AddTaskModal/styles';
 import { MenuButton } from '../MenuDesktop/styles';
@@ -28,18 +33,21 @@ const EditTaskModal = ({ setShowEditModal, item }: EditTaskModalProps) => {
             <FormContainer>
                 <CloseModal onClick={() => setShowEditModal(false)} />
                 <TitleModal>Edite sua Quest</TitleModal>
-                <Input
-                    placeholder={'Seu novo título vai aqui...'}
-                    value={updateTaskData.title}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                        setUpdateTaskData({
-                            ...updateTaskData,
-                            title: e.target.value,
-                        })
-                    }
-                />
+                <EditInputBox>
+                    <Input
+                        placeholder={'Seu novo título vai aqui...'}
+                        value={updateTaskData.title}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                            setUpdateTaskData({
+                                ...updateTaskData,
+                                title: e.target.value,
+                            })
+                        }
+                    />
+                </EditInputBox>
+
                 <p>Selecione a dificuldade:</p>
-                <select
+                <SelectEdit
                     value={updateTaskData.xp}
                     onChange={(e) =>
                         setUpdateTaskData({
@@ -51,15 +59,15 @@ const EditTaskModal = ({ setShowEditModal, item }: EditTaskModalProps) => {
                     <option value="1">Fácil</option>
                     <option value="3">Médio</option>
                     <option value="5">Difícil</option>
-                </select>
-                <MenuButton
+                </SelectEdit>
+                <EditButton
                     onClick={() => {
                         updateTask(Number(item.id), updateTaskData);
                         setShowEditModal(false);
                     }}
                 >
                     Salvar Atualizações
-                </MenuButton>
+                </EditButton>
             </FormContainer>
         </ContainerBoxModal>
     );
