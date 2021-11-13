@@ -4,6 +4,7 @@ import {
     InputButton,
     InputContent,
     InputHeader,
+    InputTitle,
     InputTypes,
     TextField,
 } from './styles';
@@ -17,7 +18,7 @@ export const InputCommunity = () => {
     return (
         <InputContent>
             <InputHeader>
-                <h1>Comunidade</h1>
+                <InputTitle>Comunidade</InputTitle>
             </InputHeader>
             <InputTypes>
                 <TextField
