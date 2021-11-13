@@ -38,6 +38,7 @@ export const ClipArtBox = styled.section`
 
 export const LogoBox = styled.div`
     display: inline;
+
     img {
         width: 180px;
     }
@@ -45,13 +46,15 @@ export const LogoBox = styled.div`
 
 export const LogoHeader = styled.div`
     display: flex;
-    margin: 1em;
     justify-content: center;
+    align-items: flex-end;
+    margin-top: 1em;
     img {
         width: 180px;
     }
 
     @media (min-width: 1024px) {
-        justify-content: flex-end;
+        position: fixed;
+        right: 10px;
     }
 `;

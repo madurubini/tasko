@@ -2,9 +2,10 @@ import styled from 'styled-components';
 import { Button } from '@chakra-ui/button';
 
 export const Container = styled.aside`
-    min-height: 100%;
+    min-height: 100vh;
     background: var(--black-gradient);
     width: 200px;
+    padding: 1em;
 
     h3 {
         font-weight: bold;
