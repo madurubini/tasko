@@ -1,4 +1,5 @@
 import { Button } from '@chakra-ui/button';
+import { MdAdd } from 'react-icons/md';
 import styled from 'styled-components';
 
 export const TaskCard = styled.li`
@@ -23,17 +24,38 @@ export const TaskCard = styled.li`
 `;
 
 export const ScrollTasks = styled.div`
-    width: 95%;
-    min-height: 240px;
+    width: 90%;
+    min-height: 270px;
     max-height: 30vw;
     background: var(--black-gradient);
     overflow: auto;
-    display: flex;
     margin: 5px auto;
     padding: 5px;
     border-radius: 10px;
     display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    position: relative;
+`;
+
+export const ScrollBadge = styled(ScrollTasks)`
     align-items: center;
+    min-height: 230px;
+`;
+
+export const AddIcon = styled(MdAdd)`
+    color: white;
+    font-size: 30px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border-radius: 100%;
+    cursor: pointer;
+    background: var(--green-linear);
+
+    :hover {
+        filter: brightness(0.8);
+    }
 `;
 
 export const SubMenu = styled.div`
@@ -52,4 +74,10 @@ export const TaskButton = styled(Button)`
     background: var(--button-black) !important;
     color: var(--font-color) !important;
     margin-bottom: 5px;
+`;
+
+export const AddButtonContainer = styled.div`
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
 `;

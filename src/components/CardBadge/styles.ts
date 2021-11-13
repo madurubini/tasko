@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const BadgeCard = styled.div`
     min-width: 150px;
     width: 150px;
-    height: 180px;
+    height: 200px;
     border: 2px solid var(--background);
     border-radius: 5px;
     text-align: center;
