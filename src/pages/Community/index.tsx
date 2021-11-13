@@ -1,75 +1,82 @@
-import {
-    AskIcon,
-    AskSection,
-    Header,
-    HeaderSection,
-    Image,
-    MakeQuestButton,
-    MyQuestionsTab,
-    Mytest,
-    QuestContent,
-    QuestionsTab,
-    QuestionsTitle,
-    Test,
-    TitleBlock,
-} from './style';
 import logo from './../../assets/image/logo.png';
 import diceQuestion from './../../assets/image/perspective-dice-six-faces-random.png';
 import { useQuestions } from '../../providers/Questions';
 import { useUser } from '../../providers/User';
 import { useHistory } from 'react-router-dom';
+import {
+    GlobalSection,
+    Header,
+    HeaderSection,
+    Image,
+    MakeQuestButtonTop,
+    MyQuestCard,
+    MyQuestionsTab,
+    MyQuestTitle,
+    QuestCard,
+    QuestHeader,
+    QuestionsTab,
+    QuestionsTitle,
+    TitleBlock,
+} from './style';
+import { MdAddCircle } from 'react-icons/md';
 
 const Community = () => {
     const { auth } = useUser();
     const { allQuestions, userQuests } = useQuestions();
     const history = useHistory();
+    const { log } = console;
 
     if (!auth) {
         history.push('/login');
     }
 
+    log(userQuests);
+
     return (
         <main>
             <Header>
                 <picture>
-                    <Image src={logo} alt="Tasko" />
+                    <img src={logo} alt="Tasko" />
                 </picture>
             </Header>
-            <AskSection>
-                <div></div>
-            </AskSection>
             <section>
-                <TitleBlock>
-                    <QuestionsTitle>Perguntas</QuestionsTitle>{' '}
-                    <AskIcon src={diceQuestion} alt="Perguntas" />
-                    <HeaderSection>
-                        <h2>Minhas perguntas</h2>
-                        <MakeQuestButton onClick={() => 0}>
-                            Perguntar
-                        </MakeQuestButton>
-                    </HeaderSection>
-                </TitleBlock>
-                <QuestContent>
+                <div></div>
+            </section>
+            <GlobalSection>
+                <section>
+                    <QuestHeader>
+                        <TitleBlock>
+                            <QuestionsTitle>Perguntas</QuestionsTitle>{' '}
+                            <Image src={diceQuestion} alt="Perguntas" />
+                        </TitleBlock>
+                        <MakeQuestButtonTop onClick={() => 0}>
+                            <MdAddCircle />
+                            <span>Perguntar</span>
+                        </MakeQuestButtonTop>
+                    </QuestHeader>
                     <QuestionsTab>
                         {allQuestions.map(({ body, likes }, index) => (
-                            <Test key={index}>
+                            <QuestCard key={index}>
                                 <span>{body}</span>
                                 <span>{likes}</span>
-                            </Test>
+                            </QuestCard>
                         ))}
                     </QuestionsTab>
-                    <section>
-                        <MyQuestionsTab>
-                            {userQuests.map(({ body, likes }, index) => (
-                                <Mytest key={index}>
-                                    <span>{body}</span>
-                                    <span>{likes}</span>
-                                </Mytest>
-                            ))}
-                        </MyQuestionsTab>
-                    </section>
-                </QuestContent>
-            </section>
+                </section>
+                <section>
+                    <HeaderSection>
+                        <MyQuestTitle>Minhas perguntas</MyQuestTitle>
+                    </HeaderSection>
+                    <MyQuestionsTab>
+                        {userQuests.map(({ body, likes }, index) => (
+                            <MyQuestCard key={index}>
+                                <span>{body}</span>
+                                <span>{likes}</span>
+                            </MyQuestCard>
+                        ))}
+                    </MyQuestionsTab>
+                </section>
+            </GlobalSection>
         </main>
     );
 };
