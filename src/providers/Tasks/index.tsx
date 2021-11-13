@@ -16,7 +16,7 @@ interface TitleProps {
 
 interface EditTaskProps {
     title?: string;
-    difficulty?: string;
+    xp?: number;
 }
 
 interface TaskContextProps {
@@ -26,6 +26,8 @@ interface TaskContextProps {
     deleteTask: (taskId: number) => void;
     getUserTasks: (userId: string) => void;
     tasks: TasksProps[];
+    showEditModal: Boolean;
+    setShowEditModal: React.Dispatch<React.SetStateAction<Boolean>>;
 }
 
 export const TasksContext = createContext<TaskContextProps>(
@@ -36,6 +38,7 @@ export const TasksProvider = ({ children }: ChildrenProps) => {
     const { auth, id } = useUser();
 
     const [tasks, setTasks] = useState<TasksProps[]>([] as TasksProps[]);
+    const [showEditModal, setShowEditModal] = useState<Boolean>(false);
 
     const createNewTask = (title: TitleProps, userId: string) => {
         const data = {
@@ -76,7 +79,10 @@ export const TasksProvider = ({ children }: ChildrenProps) => {
                 Authorization: `Bearer ${auth}`,
             },
         })
-            .then((res) => console.log(res))
+            .then((res) => {
+                console.log(res);
+                getUserTasks(id);
+            })
             .catch((err) => console.log(err));
     };
 
@@ -121,6 +127,8 @@ export const TasksProvider = ({ children }: ChildrenProps) => {
                 getUserTasks,
                 completeTask,
                 tasks,
+                showEditModal,
+                setShowEditModal,
             }}
         >
             {children}
