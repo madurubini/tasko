@@ -24,11 +24,10 @@ import {
 } from '../../components/AddTaskModal/styles';
 
 const Dashboard = () => {
-    const { tasks } = useTasks();
+    const { tasks, setShowEditModal, showEditModal } = useTasks();
     const { userBadges } = useBadges();
 
     const [showAddModal, setShowAddModal] = useState<Boolean>(false);
-    const [showEditModal, setShowEditModal] = useState<Boolean>(false);
 
     return (
         <>
@@ -51,7 +50,6 @@ const Dashboard = () => {
                                     setShowAddModal={setShowAddModal}
                                 />
                             )}
-                            {showEditModal && <EditTaskModal />}
 
                             <TasksContainer>
                                 {tasks.map((item, index) => {
@@ -59,6 +57,8 @@ const Dashboard = () => {
                                         <CardTask
                                             key={index}
                                             item={item}
+                                            setShowEditModal={setShowEditModal}
+                                            showEditModal={showEditModal}
                                         ></CardTask>
                                     );
                                 })}

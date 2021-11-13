@@ -11,48 +11,60 @@ import {
 import { SubMenu, TaskButton, TaskCard } from './style';
 import { useTasks } from '../../providers/Tasks';
 import { Title } from '../DifficultyCards/styles';
+import EditTaskModal from '../EditTaskModal';
 
 interface TasksInterface {
     item: TasksProps;
+    setShowEditModal: React.Dispatch<React.SetStateAction<Boolean>>;
+    showEditModal: Boolean;
 }
 
-const CardTask = (
-    { item }: TasksInterface,
-    setShowEditModal: (x: boolean) => () => void,
-) => {
+const CardTask = ({
+    item,
+    setShowEditModal,
+    showEditModal,
+}: TasksInterface) => {
     const { deleteTask, completeTask } = useTasks();
 
     return (
-        <TaskCard>
-            <SubMenu>
-                <MdOutlineModeEditOutline
-                    onClick={() => setShowEditModal(true)}
+        <>
+            {showEditModal && (
+                <EditTaskModal
+                    setShowEditModal={setShowEditModal}
+                    item={item}
                 />
-                <MdOutlineDeleteForever
-                    onClick={() => {
-                        deleteTask(Number(item.id));
-                    }}
-                />
-            </SubMenu>
-
-            <Title>{item.title}</Title>
-            {item.xp === 1 ? (
-                <EasyDifficulty />
-            ) : item.xp === 3 ? (
-                <MediumDifficulty />
-            ) : (
-                <HardDifficulty />
             )}
+            <TaskCard>
+                <SubMenu>
+                    <MdOutlineModeEditOutline
+                        onClick={() => setShowEditModal(true)}
+                    />
+                    <MdOutlineDeleteForever
+                        onClick={() => {
+                            deleteTask(Number(item.id));
+                        }}
+                    />
+                </SubMenu>
 
-            <TaskButton
-                onClick={() => {
-                    completeTask(Number(item.id));
-                    console.log(item.finished);
-                }}
-            >
-                Completar
-            </TaskButton>
-        </TaskCard>
+                <Title>{item.title}</Title>
+                {item.xp === 1 ? (
+                    <EasyDifficulty />
+                ) : item.xp === 3 ? (
+                    <MediumDifficulty />
+                ) : (
+                    <HardDifficulty />
+                )}
+
+                <TaskButton
+                    onClick={() => {
+                        completeTask(Number(item.id));
+                        console.log(item.finished);
+                    }}
+                >
+                    Completar
+                </TaskButton>
+            </TaskCard>
+        </>
     );
 };
 
