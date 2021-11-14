@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { History } from 'history';
 
 export interface User {
     name: string;

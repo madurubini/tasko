@@ -1,6 +1,8 @@
 import { createContext, useContext, useState } from 'react';
+import toast from 'react-hot-toast';
 import request from './../../services/api';
 import { User, UserContextData, UserProps } from './../../types/user';
+import { History } from 'history';
 
 export const UserContext = createContext<UserContextData>(
     {} as UserContextData,
@@ -25,8 +27,33 @@ export const UserProvider = ({ children }: UserProps) => {
                 localStorage.setItem('@id', data.user.id);
                 setId(data.user.id);
                 setUserName(data.user.firstName);
+
+                toast('Bem vindo!', {
+                    icon: '🐍',
+                    style: {
+                        border: '2px groove #008000',
+                        borderRadius: '10px',
+                        background: '#333',
+                        color: '#008000',
+                        fontFamily: 'Press Start 2P',
+                        fontWeight: 'bold',
+                    },
+                });
             })
-            .catch((error) => console.error('Miss', error));
+            .catch((error) => {
+                console.error('Miss', error);
+                toast('Email ou senha incorretos!', {
+                    icon: '🐍',
+                    style: {
+                        border: '2px groove #FF0000',
+                        borderRadius: '10px',
+                        background: '#333',
+                        color: '#FF0000',
+                        fontFamily: 'Press Start 2P',
+                        fontWeight: 'bold',
+                    },
+                });
+            });
     };
 
     const logout = () => {

@@ -9,6 +9,11 @@ import { ChildrenProps } from '../../types/children';
 import api from '../../services/api';
 import { TasksProps } from '../../types/tasks';
 import { useUser } from '../User';
+import toast from 'react-hot-toast';
+import useSound from 'use-sound';
+
+// @ts-ignore
+import NewTask from '../../assets/audio/new-task.wav';
 
 interface TitleProps {
     title: string;
@@ -36,6 +41,7 @@ export const TasksContext = createContext<TaskContextProps>(
 
 export const TasksProvider = ({ children }: ChildrenProps) => {
     const { auth, id } = useUser();
+    const [addTask] = useSound(NewTask, { volume: 0.3 });
 
     const [tasks, setTasks] = useState<TasksProps[]>([] as TasksProps[]);
     const [showEditModal, setShowEditModal] = useState<Boolean>(false);
@@ -57,6 +63,20 @@ export const TasksProvider = ({ children }: ChildrenProps) => {
             .then((res) => {
                 console.log(res);
                 getUserTasks(id);
+
+                toast('Nova quest criada!', {
+                    icon: '🐍',
+                    style: {
+                        border: '2px groove #008000',
+                        borderRadius: '10px',
+                        background: '#333',
+                        color: '#008000',
+                        fontFamily: 'Press Start 2P',
+                        fontWeight: 'bold',
+                    },
+                });
+
+                addTask();
             })
             .catch((err) => console.log(err));
     };
@@ -69,7 +89,19 @@ export const TasksProvider = ({ children }: ChildrenProps) => {
                 Authorization: `Bearer ${auth}`,
             },
         })
-            .then((res) => console.log(res))
+            .then((_) =>
+                toast('Quest finalizada!', {
+                    icon: '🐍',
+                    style: {
+                        border: '2px groove #008000',
+                        borderRadius: '10px',
+                        background: '#333',
+                        color: '#008000',
+                        fontFamily: 'Press Start 2P',
+                        fontWeight: 'bold',
+                    },
+                }),
+            )
             .catch((err) => console.log(err));
     };
 
@@ -82,6 +114,17 @@ export const TasksProvider = ({ children }: ChildrenProps) => {
             .then((res) => {
                 console.log(res);
                 getUserTasks(id);
+                toast('Quest atualizada!', {
+                    icon: '🐍',
+                    style: {
+                        border: '2px groove #FFD700',
+                        borderRadius: '10px',
+                        background: '#333',
+                        color: '#FFD700',
+                        fontFamily: 'Press Start 2P',
+                        fontWeight: 'bold',
+                    },
+                });
             })
             .catch((err) => console.log(err));
     };
@@ -95,6 +138,17 @@ export const TasksProvider = ({ children }: ChildrenProps) => {
             .then((res) => {
                 console.log(res);
                 getUserTasks(id);
+                toast('Quest excluída!', {
+                    icon: '🐍',
+                    style: {
+                        border: '2px groove #FF0000',
+                        borderRadius: '10px',
+                        background: '#333',
+                        color: '#FF0000',
+                        fontFamily: 'Press Start 2P',
+                        fontWeight: 'bold',
+                    },
+                });
             })
             .catch((err) => console.log(err));
     };

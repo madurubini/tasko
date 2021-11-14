@@ -10,6 +10,7 @@ import {
 import { ChildrenProps } from '../../types/children';
 import { Quest, QuestionsContextData } from '../../types/questions';
 import { useUser } from '../User';
+import toast from 'react-hot-toast';
 
 export const QuestionsContext = createContext<QuestionsContextData>(
     {} as QuestionsContextData,
@@ -70,9 +71,20 @@ export const QuestionsProvider = ({ children }: ChildrenProps) => {
                     },
                 })
                 .then(({ data }) => setAllQuestions([...data]))
-                .catch((error) =>
-                    console.error('Pergunta não encontrada: ', error),
-                );
+                .catch((error) => {
+                    console.error('Pergunta não encontrada: ', error);
+                    toast('Pergunta não encontrada!', {
+                        icon: '🐍',
+                        style: {
+                            border: '2px groove #FFD700',
+                            borderRadius: '10px',
+                            background: '#333',
+                            color: '#FFD700',
+                            fontFamily: 'Press Start 2P',
+                            fontWeight: 'bold',
+                        },
+                    });
+                });
         },
         [auth],
     );
