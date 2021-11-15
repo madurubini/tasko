@@ -8,7 +8,7 @@ import {
     useCallback,
 } from 'react';
 import { ChildrenProps } from '../../types/children';
-import { Quest, QuestionsContextData } from '../../types/questions';
+import { Quest, QuestBody, QuestionsContextData } from '../../types/questions';
 import { useUser } from '../User';
 import toast from 'react-hot-toast';
 
@@ -20,6 +20,18 @@ export const QuestionsProvider = ({ children }: ChildrenProps) => {
     const { auth, id } = useUser();
     const [allQuestions, setAllQuestions] = useState<Quest[]>([] as Quest[]);
     const [userQuests, setUserQuests] = useState<Quest[]>([] as Quest[]);
+
+    const postQuestion = (quest: QuestBody) => {
+        request
+            .post(`/quests`, quest, {
+                headers: {
+                    Authorization: `Bearer ${auth}`,
+                },
+            })
+            .then((_) => console.log('Nova pergunta postada!'))
+            .catch((_) => console.error('Falha ao postar nova pergunta'));
+        console.log('quest', quest);
+    };
 
     const getAllQuestions = useCallback(() => {
         request
@@ -90,6 +102,7 @@ export const QuestionsProvider = ({ children }: ChildrenProps) => {
             value={{
                 allQuestions,
                 userQuests,
+                postQuestion,
                 getAllQuestions,
                 getUserQuestions,
                 getAllQuestsByTitle,

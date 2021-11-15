@@ -22,14 +22,14 @@ import { MdAddCircle } from 'react-icons/md';
 import { InputCommunity } from '../../components/InputCommunity';
 import QuestCard from '../../components/QuestCard';
 import MyQuestCard from '../../components/MyQuestCard';
-import LikeButton from '../../components/LikeButton';
+import { useState } from 'react';
+import AddQuestModal from '../../components/AddQuestModal';
 
 const Community = () => {
+    const [openModal, setOpenModal] = useState<boolean>(false);
     const { auth } = useUser();
     const { allQuestions, userQuests } = useQuestions();
     const history = useHistory();
-
-    console.log(allQuestions);
 
     if (!auth) {
         history.push('/login');
@@ -47,12 +47,17 @@ const Community = () => {
             </section>
             <GlobalSection>
                 <section>
+                    {openModal && (
+                        <AddQuestModal setShowAddModal={setOpenModal} />
+                    )}
                     <QuestHeader>
                         <TitleBlock>
                             <QuestionsTitle>Perguntas</QuestionsTitle>{' '}
                             <Image src={diceQuestion} alt="Perguntas" />
                         </TitleBlock>
-                        <MakeQuestButtonTop onClick={() => 0}>
+                        <MakeQuestButtonTop
+                            onClick={() => setOpenModal(!openModal)}
+                        >
                             <MdAddCircle />
                             <span>Perguntar</span>
                         </MakeQuestButtonTop>
@@ -74,7 +79,9 @@ const Community = () => {
                 <section>
                     <HeaderSection>
                         <MyQuestTitle>Minhas perguntas</MyQuestTitle>
-                        <MakeQuestButtonCenter onClick={() => 0}>
+                        <MakeQuestButtonCenter
+                            onClick={() => setOpenModal(!openModal)}
+                        >
                             Perguntar
                         </MakeQuestButtonCenter>
                     </HeaderSection>

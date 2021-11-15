@@ -5,9 +5,16 @@ export interface Quest {
     userId: number | boolean;
 }
 
+export interface QuestBody {
+    body: string;
+    likes: number;
+    userId: number;
+}
+
 export interface QuestionsContextData {
     allQuestions: Quest[] | [];
     userQuests: Quest[] | [];
+    postQuestion: (quest: QuestBody) => void;
     getAllQuestions: () => void;
     getUserQuestions: (userId: number) => void;
     getAllQuestsByTitle: (title: string) => void;
