@@ -1,4 +1,4 @@
-import Logo from '../../assets/image/logo.png';
+import logo from '../../assets/image/logo.png';
 import Sword from '../../assets/image/sword.png';
 import Grail from '../../assets/image/grail.png';
 import CardTask from '../../components/CardTask';
@@ -11,7 +11,7 @@ import {
 import { useTasks } from '../../providers/Tasks';
 import MenuMobile from '../../components/MenuMobile';
 import { LogoHeader } from '../Login/styles';
-import { Container, Main, SubTitle } from './styles';
+import { Container, LogoBox, Main, SubTitle } from './styles';
 import { useBadges } from '../../providers/Badges';
 import CardBadge from '../../components/CardBadge';
 import MenuDesktop from '../../components/MenuDesktop';
@@ -33,7 +33,7 @@ const Dashboard = () => {
     return (
         <>
             <LogoHeader>
-                <img src={Logo} alt="logo"></img>
+                <img src={logo} alt="logo"></img>
             </LogoHeader>
             <Container>
                 <MenuDesktop />

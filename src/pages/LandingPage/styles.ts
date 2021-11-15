@@ -58,7 +58,6 @@ export const Info = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
 
     p {
         width: 300px;
@@ -87,6 +86,7 @@ export const Team = styled.section`
     flex-wrap: wrap;
     gap: 60px;
     margin-top: 20px;
+    padding: 20px;
 
     @media (min-width: 1024px) {
         flex-direction: row;

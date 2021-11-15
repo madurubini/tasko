@@ -44,9 +44,10 @@ export const TextField = styled(Input)`
     width: 60vw !important;
     height: 50px !important;
     background: var(--font-color) !important;
+    color: #050303;
 
     ::placeholder {
-        color: var(--placeholder) !important;
+        color: #050303 !important;
     }
 
     :focus::placeholder {

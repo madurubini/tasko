@@ -76,6 +76,7 @@ export const AddButtonBox = styled.div`
 export const ButtonBox = styled(AddButtonBox)`
     flex-direction: row;
     justify-content: flex-start;
+    align-items: center;
     width: 90%;
     margin: 0 auto;
     gap: 15px;
