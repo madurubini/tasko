@@ -55,17 +55,3 @@ export const TextField = styled(Input)`
         transition: 0.3s;
     }
 `;
-
-export const InputButton = styled(Button)`
-    max-width: 256px !important;
-    min-height: 50px !important;
-
-    margin-inline: auto;
-
-    background: var(--button-black) !important;
-    color: var(--font-color);
-
-    font-family: var(--title);
-    font-weight: 600;
-    font-size: 20px;
-`;

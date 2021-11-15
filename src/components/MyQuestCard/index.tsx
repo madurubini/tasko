@@ -1,4 +1,5 @@
-import { Body, Card } from './styles';
+import { GiHearts } from 'react-icons/gi';
+import { Body, Card, MyLikes } from './styles';
 
 interface MyQuestCardProps {
     id?: number | boolean;
@@ -10,7 +11,9 @@ const MyQuestCard = ({ id, body, likes }: MyQuestCardProps) => {
     return (
         <Card>
             <Body>{body}</Body>
-            <span>{likes}</span>
+            <MyLikes>
+                <GiHearts /> {likes}
+            </MyLikes>
         </Card>
     );
 };

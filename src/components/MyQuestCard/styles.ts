@@ -24,3 +24,16 @@ export const Card = styled.div`
 export const Body = styled.p`
     padding: 10px;
 `;
+
+export const MyLikes = styled.span`
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 10px;
+
+    svg,
+    svg path {
+        margin: 0 10px;
+        color: var(--redToast);
+    }
+`;

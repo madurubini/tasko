@@ -120,15 +120,17 @@ export const MyQuestTitle = styled.h2`
 `;
 
 export const MakeQuestButtonTop = styled(Button)`
-    background-color: transparent !important;
+    background-color: var(--green-linear) !important;
     color: white;
 
     svg,
     svg path {
-        color: #63f7a1;
-        font-size: 35px;
-        border-radius: 8px;
-        padding: 0;
+        color: var(--background);
+        cursor: pointer;
+        border-radius: 100%;
+        background: var(--green-linear);
+        width: 30px;
+        height: 30px;
 
         :hover {
             color: #27ae60;
