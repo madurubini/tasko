@@ -73,6 +73,18 @@ export const QuestionsProvider = ({ children }: ChildrenProps) => {
         [auth],
     );
 
+    const like = (questId: number, update: number) => {
+        const data = { likes: update };
+        request
+            .patch(`/quests/${questId}`, data, {
+                headers: {
+                    Authorization: `Bearer ${auth}`,
+                },
+            })
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err));
+    };
+
     return (
         <QuestionsContext.Provider
             value={{
@@ -81,6 +93,7 @@ export const QuestionsProvider = ({ children }: ChildrenProps) => {
                 getAllQuestions,
                 getUserQuestions,
                 getAllQuestsByTitle,
+                like,
             }}
         >
             {children}

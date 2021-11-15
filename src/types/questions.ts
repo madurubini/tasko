@@ -11,4 +11,5 @@ export interface QuestionsContextData {
     getAllQuestions: () => void;
     getUserQuestions: (userId: number) => void;
     getAllQuestsByTitle: (title: string) => void;
+    like: (questId: number, update: number) => void;
 }
