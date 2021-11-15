@@ -14,7 +14,7 @@ export const Container = styled.div`
         color: #ff0000;
         font-size: 18px;
     }
-
+    
     span {
         color: white;
     }
