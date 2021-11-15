@@ -88,13 +88,16 @@ export const QuestionsProvider = ({ children }: ChildrenProps) => {
     const like = (questId: number, update: number) => {
         const data = { likes: update };
         request
-            .patch(`/quests/${questId}`, data, {
+            .patch(`/quests/${questId}/`, data, {
                 headers: {
                     Authorization: `Bearer ${auth}`,
                 },
             })
-            .then((res) => console.log(res))
-            .catch((err) => console.log(err));
+            .then((res) => {
+                getAllQuestions();
+                getUserQuestions(parseInt(id));
+            })
+            .catch((err) => console.error(err));
     };
 
     return (

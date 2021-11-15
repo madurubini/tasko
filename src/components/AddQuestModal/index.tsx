@@ -16,7 +16,7 @@ interface AddQuestModalProps {
 
 const AddQuestModal = ({ setShowAddModal }: AddQuestModalProps) => {
     const [quest, setQuest] = useState<QuestBody>({} as QuestBody);
-    const { postQuestion } = useQuestions();
+    const { postQuestion, getAllQuestions } = useQuestions();
     const { id } = useUser();
 
     const handleClick = () => {
@@ -44,6 +44,7 @@ const AddQuestModal = ({ setShowAddModal }: AddQuestModalProps) => {
                     onClick={() => {
                         handleClick();
                         setShowAddModal(false);
+                        getAllQuestions();
                     }}
                 >
                     Perguntar

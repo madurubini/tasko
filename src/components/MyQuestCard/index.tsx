@@ -1,4 +1,3 @@
-import LikeButton from '../LikeButton';
 import { Body, Card } from './styles';
 
 interface MyQuestCardProps {
@@ -8,11 +7,10 @@ interface MyQuestCardProps {
 }
 
 const MyQuestCard = ({ id, body, likes }: MyQuestCardProps) => {
-    console.log(likes);
     return (
         <Card>
             <Body>{body}</Body>
-            <LikeButton id={Number(id)} likes={Number(likes)} />
+            <span>{likes}</span>
         </Card>
     );
 };

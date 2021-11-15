@@ -6,7 +6,7 @@ const QuestCard = ({ id, body, likes, userId }: QuestCardProps) => {
     return (
         <Card>
             <Quest>{body}</Quest>
-            <LikeButton id={Number(id)} likes={Number(likes)} />
+            <LikeButton id={Number(id)} likes={likes} />
         </Card>
     );
 };
