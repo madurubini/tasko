@@ -13,3 +13,15 @@ export interface QuestionsContextData {
     getAllQuestsByTitle: (title: string) => void;
     like: (questId: number, update: number) => void;
 }
+
+export interface QuestCardProps {
+    id: number | boolean;
+    userId: number | boolean;
+    body: string;
+    likes: number;
+}
+
+export interface LikeProps {
+    id: number;
+    likes: number;
+}

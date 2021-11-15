@@ -22,6 +22,7 @@ import { MdAddCircle } from 'react-icons/md';
 import { InputCommunity } from '../../components/InputCommunity';
 import QuestCard from '../../components/QuestCard';
 import MyQuestCard from '../../components/MyQuestCard';
+import LikeButton from '../../components/LikeButton';
 
 const Community = () => {
     const { auth } = useUser();

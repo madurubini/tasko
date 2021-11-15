@@ -1,17 +1,12 @@
+import { QuestCardProps } from '../../types/questions';
+import LikeButton from '../LikeButton';
 import { Card, Quest } from './styles';
-
-interface QuestCardProps {
-    id: number | boolean;
-    userId: number | boolean;
-    body: string;
-    likes: string | number;
-}
 
 const QuestCard = ({ id, body, likes, userId }: QuestCardProps) => {
     return (
         <Card>
             <Quest>{body}</Quest>
-            <div>{likes}</div>
+            <LikeButton id={Number(id)} likes={Number(likes)} />
         </Card>
     );
 };
