@@ -18,4 +18,5 @@ export interface LevelsContextData {
     levels: LevelsProps[];
     userLevelId: number;
     getLevels: () => void;
+    userLevel: UserLevelProps | any;
 }

@@ -9,6 +9,9 @@ export interface User {
     matchedPassword?: string;
     xp?: number;
 }
+export interface Xp {
+    xp: number;
+}
 
 export interface UserProps {
     children: ReactNode;
@@ -22,4 +25,5 @@ export interface UserContextData {
     logout: () => void;
     id: string;
     xp: number;
+    patchXp: (xpPoints: Xp) => void;
 }
