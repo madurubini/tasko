@@ -11,10 +11,8 @@ import {
     LogoHeader,
     MakeQuestButtonCenter,
     MakeQuestButtonTop,
-    MyQuestCard,
     MyQuestionsTab,
     MyQuestTitle,
-    QuestCard,
     QuestHeader,
     QuestionsTab,
     QuestionsTitle,
@@ -22,18 +20,19 @@ import {
 } from './style';
 import { MdAddCircle } from 'react-icons/md';
 import { InputCommunity } from '../../components/InputCommunity';
+import QuestCard from '../../components/QuestCard';
+import MyQuestCard from '../../components/MyQuestCard';
 
 const Community = () => {
     const { auth } = useUser();
     const { allQuestions, userQuests } = useQuestions();
     const history = useHistory();
-    const { log } = console;
+
+    console.log(allQuestions);
 
     if (!auth) {
         history.push('/login');
     }
-
-    log(userQuests);
 
     return (
         <main>
@@ -58,12 +57,17 @@ const Community = () => {
                         </MakeQuestButtonTop>
                     </QuestHeader>
                     <QuestionsTab>
-                        {allQuestions.map(({ body, likes }, index) => (
-                            <QuestCard key={index}>
-                                <span>{body}</span>
-                                <span>{likes}</span>
-                            </QuestCard>
-                        ))}
+                        {allQuestions.map(
+                            ({ body, id, likes, userId }, index) => (
+                                <QuestCard
+                                    key={index}
+                                    id={id}
+                                    userId={userId}
+                                    body={body}
+                                    likes={likes}
+                                />
+                            ),
+                        )}
                     </QuestionsTab>
                 </section>
                 <section>
@@ -75,10 +79,11 @@ const Community = () => {
                     </HeaderSection>
                     <MyQuestionsTab>
                         {userQuests.map(({ body, likes }, index) => (
-                            <MyQuestCard key={index}>
-                                <span>{body}</span>
-                                <span>{likes}</span>
-                            </MyQuestCard>
+                            <MyQuestCard
+                                key={index}
+                                body={body}
+                                likes={likes}
+                            />
                         ))}
                     </MyQuestionsTab>
                 </section>

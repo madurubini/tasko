@@ -1,4 +1,5 @@
 export interface Quest {
+    id: number | boolean;
     body: string;
     likes: number;
     userId: number | boolean;

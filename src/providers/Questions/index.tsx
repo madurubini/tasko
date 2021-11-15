@@ -42,22 +42,6 @@ export const QuestionsProvider = ({ children }: ChildrenProps) => {
         [id],
     );
 
-    const getQuestionsByTitle = useCallback(
-        (questionTitle: string) => {
-            request
-                .get(`/quests?body_like=${questionTitle}`, {
-                    headers: {
-                        Authorization: `Bearer ${auth}`,
-                    },
-                })
-                .then(({ data }) => setAllQuestions([...data]))
-                .catch((error) =>
-                    console.error('Pergunta não encontrada: ', error),
-                );
-        },
-        [auth],
-    );
-
     useEffect(() => {
         getUserQuestions(parseInt(id));
     }, [getUserQuestions, id]);
@@ -105,9 +89,3 @@ export const QuestionsProvider = ({ children }: ChildrenProps) => {
 };
 
 export const useQuestions = () => useContext(QuestionsContext);
-
-/* 
-
-tu precisa fazer um get pra pegar as questions e a lógica pra encontrar um titulo parecido no array de acordo com o user id
-
-*/
