@@ -17,17 +17,18 @@ import CardBadge from '../../components/CardBadge';
 import MenuDesktop from '../../components/MenuDesktop';
 import AddTaskModal from '../../components/AddTaskModal';
 import { useState } from 'react';
-import EditTaskModal from '../../components/EditTaskModal';
-import {
-    AddButtonBox,
-    AddTaskButtonBox,
-} from '../../components/AddTaskModal/styles';
+import { AddButtonBox, ButtonBox } from '../../components/AddTaskModal/styles';
+import { useUser } from '../../providers/User';
+import { Button } from '@chakra-ui/button';
 
 const Dashboard = () => {
-    const { tasks, setShowEditModal, showEditModal } = useTasks();
+    const { tasks, setShowEditModal, showEditModal, getUserTasks } = useTasks();
     const { userBadges } = useBadges();
+    const { id } = useUser();
 
     const [showAddModal, setShowAddModal] = useState<Boolean>(false);
+    const [showCompletedTasks, setShowCompletedTasks] =
+        useState<Boolean>(false);
 
     return (
         <>
@@ -40,10 +41,27 @@ const Dashboard = () => {
                     <SubTitle>
                         Quests <img src={Sword} alt="" />
                     </SubTitle>
+                    <ButtonBox>
+                        <AddIcon onClick={() => setShowAddModal(true)} />
+                        <Button
+                            onClick={() => {
+                                setShowCompletedTasks(true);
+                                getUserTasks(id);
+                            }}
+                        >
+                            Finalizadas
+                        </Button>
+                        <Button
+                            onClick={() => {
+                                setShowCompletedTasks(false);
+                                getUserTasks(id);
+                            }}
+                        >
+                            Pendentes
+                        </Button>
+                    </ButtonBox>
+
                     <ScrollTasks>
-                        <AddTaskButtonBox>
-                            <AddIcon onClick={() => setShowAddModal(true)} />
-                        </AddTaskButtonBox>
                         <AddButtonBox>
                             {showAddModal && (
                                 <AddTaskModal
@@ -52,16 +70,35 @@ const Dashboard = () => {
                             )}
 
                             <TasksContainer>
-                                {tasks.map((item, index) => {
-                                    return (
-                                        <CardTask
-                                            key={index}
-                                            item={item}
-                                            setShowEditModal={setShowEditModal}
-                                            showEditModal={showEditModal}
-                                        ></CardTask>
-                                    );
-                                })}
+                                {showCompletedTasks
+                                    ? tasks
+                                          .filter(
+                                              (item) => item.finished === true,
+                                          )
+                                          .map((item, index) => (
+                                              <CardTask
+                                                  key={index}
+                                                  item={item}
+                                                  setShowEditModal={
+                                                      setShowEditModal
+                                                  }
+                                                  showEditModal={showEditModal}
+                                              ></CardTask>
+                                          ))
+                                    : tasks
+                                          .filter(
+                                              (item) => item.finished === false,
+                                          )
+                                          .map((item, index) => (
+                                              <CardTask
+                                                  key={index}
+                                                  item={item}
+                                                  setShowEditModal={
+                                                      setShowEditModal
+                                                  }
+                                                  showEditModal={showEditModal}
+                                              ></CardTask>
+                                          ))}
                             </TasksContainer>
                         </AddButtonBox>
                     </ScrollTasks>

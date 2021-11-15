@@ -24,7 +24,7 @@ const CardTask = ({
     setShowEditModal,
     showEditModal,
 }: TasksInterface) => {
-    const { deleteTask, completeTask } = useTasks();
+    const { deleteTask, completeTask, getUserTasks } = useTasks();
 
     return (
         <>
@@ -36,9 +36,13 @@ const CardTask = ({
             )}
             <TaskCard>
                 <SubMenu>
-                    <MdOutlineModeEditOutline
-                        onClick={() => setShowEditModal(true)}
-                    />
+                    {item.finished === true ? (
+                        <p></p>
+                    ) : (
+                        <MdOutlineModeEditOutline
+                            onClick={() => setShowEditModal(true)}
+                        />
+                    )}
                     <MdOutlineDeleteForever
                         onClick={() => {
                             deleteTask(Number(item.id));
@@ -54,15 +58,19 @@ const CardTask = ({
                 ) : (
                     <HardDifficulty />
                 )}
-
-                <TaskButton
-                    onClick={() => {
-                        completeTask(Number(item.id));
-                        console.log(item.finished);
-                    }}
-                >
-                    Completar
-                </TaskButton>
+                {item.finished === true ? (
+                    <Title>XP: {item.xp}</Title>
+                ) : (
+                    <TaskButton
+                        onClick={() => {
+                            getUserTasks(item.userId);
+                            completeTask(Number(item.id));
+                            getUserTasks(item.userId);
+                        }}
+                    >
+                        Completar
+                    </TaskButton>
+                )}
             </TaskCard>
         </>
     );
