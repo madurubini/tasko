@@ -28,7 +28,11 @@ export const QuestionsProvider = ({ children }: ChildrenProps) => {
                     Authorization: `Bearer ${auth}`,
                 },
             })
-            .then((_) => console.log('Nova pergunta postada!'))
+            .then((_) => {
+                console.log('Nova pergunta postada!');
+                getAllQuestions();
+                getUserQuestions(parseInt(id));
+            })
             .catch((_) => console.error('Falha ao postar nova pergunta'));
         console.log('quest', quest);
     };
