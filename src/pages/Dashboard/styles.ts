@@ -31,7 +31,8 @@ export const Container = styled.div`
         align-items: flex-start;
 
         aside {
-            display: block;
+            display: flex;
+            flex-direction: column;
         }
 
         nav {
@@ -44,6 +45,16 @@ export const Container = styled.div`
     }
 `;
 
-export const Main = styled.div`
+export const LogoBox = styled.div`
+    display: flex;
     width: 100%;
+    margin-bottom: 20px;
+`;
+
+export const Main = styled.div`
+    width: 80%;
+
+    @media (min-width: 1024px) {
+        width: 85%;
+    }
 `;

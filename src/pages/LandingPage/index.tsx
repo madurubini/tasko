@@ -21,6 +21,7 @@ import Header from '../../components/Header';
 import { RegisterCard } from '../../components/RegisterCard';
 import Lottie from 'react-lottie';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const LandingPage = () => {
     const [animationState] = useState({
@@ -72,6 +73,8 @@ const LandingPage = () => {
             preserveAspectRatio: 'xMidYMid slice',
         },
     };
+
+    const sendTo = (path: string) => <Link to={path} />;
 
     return (
         <C.MainContainer>
@@ -161,40 +164,109 @@ const LandingPage = () => {
                     <C.Members>
                         <img src={Madu} alt="" />
                         <div>
-                            <AiFillGithub />
-                            <AiFillLinkedin />
+                            <a
+                                href="https://github.com/madurubini"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                <AiFillGithub />
+                            </a>
+
+                            <a
+                                href="https://www.linkedin.com/in/madurubini/"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                <AiFillLinkedin />
+                            </a>
                         </div>
                     </C.Members>
 
                     <C.Members>
                         <img src={Will} alt="" />
                         <div>
-                            <AiFillGithub />
-                            <AiFillLinkedin />
+                            <a
+                                href="https://github.com/WillianSantosC"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                <AiFillGithub />
+                            </a>
+
+                            <a
+                                href="https://www.linkedin.com/in/willian-santos-089a35213/
+                                "
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                <AiFillLinkedin />
+                            </a>
                         </div>
                     </C.Members>
 
                     <C.Members>
                         <img src={Lucas} alt="" />
                         <div>
-                            <AiFillGithub />
-                            <AiFillLinkedin />
+                            <a
+                                href="https://github.com/lucaselias99
+                                "
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                <AiFillGithub />
+                            </a>
+
+                            <a
+                                href="https://www.linkedin.com/in/lucas-elias-fideles-bas%C3%ADlio-a0b509206/"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                <AiFillLinkedin />
+                            </a>
                         </div>
                     </C.Members>
 
                     <C.Members>
                         <img src={Emanuel} alt="" />
                         <div>
-                            <AiFillGithub />
-                            <AiFillLinkedin />
+                            <a
+                                href="https://github.com/emanuelz-martins"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                <AiFillGithub />
+                            </a>
+
+                            <a
+                                href="https://www.linkedin.com/in/emanuelzmartins/
+                                "
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                <AiFillLinkedin />
+                            </a>
                         </div>
                     </C.Members>
 
                     <C.Members>
                         <img src={Julia} alt="" />
                         <div>
-                            <AiFillGithub />
-                            <AiFillLinkedin />
+                            <a
+                                href="https://github.com/juliagamaol"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                <AiFillGithub />
+                            </a>
+
+                            <a
+                                href="https://www.linkedin.com/in/julia-gama-730566213/
+                                "
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                <AiFillLinkedin />
+                            </a>
                         </div>
                     </C.Members>
                 </C.Team>
