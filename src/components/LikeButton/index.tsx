@@ -15,7 +15,7 @@ const LikeButton = ({ id, likes }: LikeProps) => {
                 <GiHeartMinus
                     onClick={() => {
                         setLiked(!liked);
-                        setCount(likes - 1);
+                        setCount(likes--);
                         like(id, likes - 1);
                     }}
                 />
@@ -23,12 +23,12 @@ const LikeButton = ({ id, likes }: LikeProps) => {
                 <GiHeartPlus
                     onClick={() => {
                         setLiked(!liked);
-                        setCount(likes + 1);
+                        setCount(likes++);
                         like(id, likes + 1);
                     }}
                 />
             )}
-            <span>{count}</span>
+            <span>{likes}</span>
         </Container>
     );
 };

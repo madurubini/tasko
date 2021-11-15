@@ -25,7 +25,7 @@ export const Card = styled.div`
     @media (min-width: 1024px) {
         width: 90%;
         height: 100px;
-        margin: 0 auto;
+        margin: 1em auto;
     }
 `;
 

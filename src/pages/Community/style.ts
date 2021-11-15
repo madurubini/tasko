@@ -38,6 +38,10 @@ export const QuestHeader = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media (min-width: 1024px) {
+        justify-content: center;
+    }
 `;
 
 export const TitleBlock = styled.div`
@@ -50,6 +54,11 @@ export const TitleBlock = styled.div`
     @media (min-width: 768px) {
         justify-content: flex-start;
     }
+
+    @media (min-width: 1024px) {
+        justify-content: space-between;
+        width: 60%;
+    }
 `;
 
 export const QuestionsTitle = styled.h2`
@@ -58,6 +67,10 @@ export const QuestionsTitle = styled.h2`
     font-weight: normal;
     font-size: 18px;
     line-height: 30px;
+
+    @media (min-width: 1024px) {
+        font-size: 20px;
+    }
 `;
 
 export const AskIcon = styled.img`
@@ -84,6 +97,11 @@ export const HeaderSection = styled.header`
     display: flex;
     align-items: center;
     margin-bottom: 1em;
+
+    @media (min-width: 1024px) {
+        margin-bottom: 0;
+        justify-content: center;
+    }
 `;
 
 export const MyQuestTitle = styled.h2`
@@ -97,7 +115,7 @@ export const MyQuestTitle = styled.h2`
 
     @media (min-width: 1024px) {
         font-size: 20px;
-        margin: 1.5em 1em;
+        margin: 1.5em 1em 1em 1em;
     }
 `;
 
@@ -169,6 +187,5 @@ export const MyQuestionsTab = styled.div`
 
     @media (min-width: 1024px) {
         width: 35vw;
-        margin-inline: none;
     }
 `;
