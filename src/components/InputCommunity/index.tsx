@@ -1,7 +1,6 @@
 import { ChangeEvent } from 'react';
 import { useQuestions } from '../../providers/Questions';
 import {
-    InputButton,
     InputContent,
     InputHeader,
     InputTitle,
@@ -27,7 +26,6 @@ export const InputCommunity = () => {
                     type="text"
                     placeholder="e.g. Como arrumar a cama..."
                 />
-                <InputButton>Pesquisar</InputButton>
             </InputTypes>
         </InputContent>
     );

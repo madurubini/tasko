@@ -8,7 +8,7 @@ import {
     useCallback,
 } from 'react';
 import { ChildrenProps } from '../../types/children';
-import { Quest, QuestionsContextData } from '../../types/questions';
+import { Quest, QuestBody, QuestionsContextData } from '../../types/questions';
 import { useUser } from '../User';
 import toast from 'react-hot-toast';
 
@@ -20,6 +20,22 @@ export const QuestionsProvider = ({ children }: ChildrenProps) => {
     const { auth, id } = useUser();
     const [allQuestions, setAllQuestions] = useState<Quest[]>([] as Quest[]);
     const [userQuests, setUserQuests] = useState<Quest[]>([] as Quest[]);
+
+    const postQuestion = (quest: QuestBody) => {
+        request
+            .post(`/quests`, quest, {
+                headers: {
+                    Authorization: `Bearer ${auth}`,
+                },
+            })
+            .then((_) => {
+                console.log('Nova pergunta postada!');
+                getAllQuestions();
+                getUserQuestions(parseInt(id));
+            })
+            .catch((_) => console.error('Falha ao postar nova pergunta'));
+        console.log('quest', quest);
+    };
 
     const getAllQuestions = useCallback(() => {
         request
@@ -40,22 +56,6 @@ export const QuestionsProvider = ({ children }: ChildrenProps) => {
                 .catch((error) => console.error(error));
         },
         [id],
-    );
-
-    const getQuestionsByTitle = useCallback(
-        (questionTitle: string) => {
-            request
-                .get(`/quests?body_like=${questionTitle}`, {
-                    headers: {
-                        Authorization: `Bearer ${auth}`,
-                    },
-                })
-                .then(({ data }) => setAllQuestions([...data]))
-                .catch((error) =>
-                    console.error('Pergunta não encontrada: ', error),
-                );
-        },
-        [auth],
     );
 
     useEffect(() => {
@@ -92,13 +92,16 @@ export const QuestionsProvider = ({ children }: ChildrenProps) => {
     const like = (questId: number, update: number) => {
         const data = { likes: update };
         request
-            .patch(`/quests/${questId}`, data, {
+            .patch(`/quests/${questId}/`, data, {
                 headers: {
                     Authorization: `Bearer ${auth}`,
                 },
             })
-            .then((res) => console.log(res))
-            .catch((err) => console.log(err));
+            .then((res) => {
+                getAllQuestions();
+                getUserQuestions(parseInt(id));
+            })
+            .catch((err) => console.error(err));
     };
 
     return (
@@ -106,6 +109,7 @@ export const QuestionsProvider = ({ children }: ChildrenProps) => {
             value={{
                 allQuestions,
                 userQuests,
+                postQuestion,
                 getAllQuestions,
                 getUserQuestions,
                 getAllQuestsByTitle,
@@ -118,9 +122,3 @@ export const QuestionsProvider = ({ children }: ChildrenProps) => {
 };
 
 export const useQuestions = () => useContext(QuestionsContext);
-
-/* 
-
-tu precisa fazer um get pra pegar as questions e a lógica pra encontrar um titulo parecido no array de acordo com o user id
-
-*/

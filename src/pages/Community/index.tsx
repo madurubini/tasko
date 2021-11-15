@@ -11,10 +11,8 @@ import {
     LogoHeader,
     MakeQuestButtonCenter,
     MakeQuestButtonTop,
-    MyQuestCard,
     MyQuestionsTab,
     MyQuestTitle,
-    QuestCard,
     QuestHeader,
     QuestionsTab,
     QuestionsTitle,
@@ -22,18 +20,20 @@ import {
 } from './style';
 import { MdAddCircle } from 'react-icons/md';
 import { InputCommunity } from '../../components/InputCommunity';
+import QuestCard from '../../components/QuestCard';
+import MyQuestCard from '../../components/MyQuestCard';
+import { useState } from 'react';
+import AddQuestModal from '../../components/AddQuestModal';
 
 const Community = () => {
+    const [openModal, setOpenModal] = useState<boolean>(false);
     const { auth } = useUser();
     const { allQuestions, userQuests } = useQuestions();
     const history = useHistory();
-    const { log } = console;
 
     if (!auth) {
         history.push('/login');
     }
-
-    log(userQuests);
 
     return (
         <main>
@@ -47,38 +47,51 @@ const Community = () => {
             </section>
             <GlobalSection>
                 <section>
+                    {openModal && (
+                        <AddQuestModal setShowAddModal={setOpenModal} />
+                    )}
                     <QuestHeader>
                         <TitleBlock>
                             <QuestionsTitle>Perguntas</QuestionsTitle>{' '}
                             <Image src={diceQuestion} alt="Perguntas" />
                         </TitleBlock>
-                        <MakeQuestButtonTop onClick={() => 0}>
+                        <MakeQuestButtonTop
+                            onClick={() => setOpenModal(!openModal)}
+                        >
                             <MdAddCircle />
                             <span>Perguntar</span>
                         </MakeQuestButtonTop>
                     </QuestHeader>
                     <QuestionsTab>
-                        {allQuestions.map(({ body, likes }, index) => (
-                            <QuestCard key={index}>
-                                <span>{body}</span>
-                                <span>{likes}</span>
-                            </QuestCard>
-                        ))}
+                        {allQuestions.map(
+                            ({ body, id, likes, userId }, index) => (
+                                <QuestCard
+                                    key={index}
+                                    id={id}
+                                    userId={userId}
+                                    body={body}
+                                    likes={likes}
+                                />
+                            ),
+                        )}
                     </QuestionsTab>
                 </section>
                 <section>
                     <HeaderSection>
                         <MyQuestTitle>Minhas perguntas</MyQuestTitle>
-                        <MakeQuestButtonCenter onClick={() => 0}>
+                        <MakeQuestButtonCenter
+                            onClick={() => setOpenModal(!openModal)}
+                        >
                             Perguntar
                         </MakeQuestButtonCenter>
                     </HeaderSection>
                     <MyQuestionsTab>
                         {userQuests.map(({ body, likes }, index) => (
-                            <MyQuestCard key={index}>
-                                <span>{body}</span>
-                                <span>{likes}</span>
-                            </MyQuestCard>
+                            <MyQuestCard
+                                key={index}
+                                body={body}
+                                likes={likes}
+                            />
                         ))}
                     </MyQuestionsTab>
                 </section>

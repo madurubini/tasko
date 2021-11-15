@@ -38,6 +38,10 @@ export const QuestHeader = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media (min-width: 1024px) {
+        justify-content: center;
+    }
 `;
 
 export const TitleBlock = styled.div`
@@ -50,6 +54,11 @@ export const TitleBlock = styled.div`
     @media (min-width: 768px) {
         justify-content: flex-start;
     }
+
+    @media (min-width: 1024px) {
+        justify-content: space-between;
+        width: 60%;
+    }
 `;
 
 export const QuestionsTitle = styled.h2`
@@ -58,6 +67,10 @@ export const QuestionsTitle = styled.h2`
     font-weight: normal;
     font-size: 18px;
     line-height: 30px;
+
+    @media (min-width: 1024px) {
+        font-size: 20px;
+    }
 `;
 
 export const AskIcon = styled.img`
@@ -80,32 +93,15 @@ export const QuestionsTab = styled.section`
     }
 `;
 
-export const QuestCard = styled.div`
-    padding: 10px;
-    margin: 1em 0;
-    margin-inline: auto;
-    width: 95%;
-    height: 80px;
-
-    text-align: center;
-
-    background: #ffffff;
-    border: 1px solid #eaeaea;
-    box-sizing: border-box;
-    box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.15);
-    border-radius: 5px;
-
-    @media (min-width: 1024px) {
-        width: 90%;
-        height: 100px;
-        margin: 0 auto;
-    }
-`;
-
 export const HeaderSection = styled.header`
     display: flex;
     align-items: center;
     margin-bottom: 1em;
+
+    @media (min-width: 1024px) {
+        margin-bottom: 0;
+        justify-content: center;
+    }
 `;
 
 export const MyQuestTitle = styled.h2`
@@ -119,20 +115,22 @@ export const MyQuestTitle = styled.h2`
 
     @media (min-width: 1024px) {
         font-size: 20px;
-        margin: 1.5em 1em;
+        margin: 1.5em 1em 1em 1em;
     }
 `;
 
 export const MakeQuestButtonTop = styled(Button)`
-    background-color: transparent !important;
+    background-color: var(--green-linear) !important;
     color: white;
 
     svg,
     svg path {
-        color: #63f7a1;
-        font-size: 35px;
-        border-radius: 8px;
-        padding: 0;
+        color: var(--background);
+        cursor: pointer;
+        border-radius: 100%;
+        background: var(--green-linear);
+        width: 30px;
+        height: 30px;
 
         :hover {
             color: #27ae60;
@@ -191,27 +189,5 @@ export const MyQuestionsTab = styled.div`
 
     @media (min-width: 1024px) {
         width: 35vw;
-        margin-inline: none;
-    }
-`;
-
-export const MyQuestCard = styled.div`
-    width: 80vw;
-    height: 90px;
-    margin: 1em 0;
-    margin-inline: auto;
-
-    background: #131826;
-    opacity: 0.64;
-    backdrop-filter: blur(16px);
-
-    border-radius: 8px;
-
-    span {
-        color: #ffffff;
-    }
-
-    @media (min-width: 1024px) {
-        width: 32vw;
     }
 `;
