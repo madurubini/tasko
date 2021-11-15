@@ -98,6 +98,7 @@ export const LevelsProvider = ({ children }: ChildrenProps) => {
         setNextLevel(
             levels.find((elo) => elo.LevelId === userLevel?.LevelId + 1),
         );
+
         if (xp >= nextlevel?.reqXp) {
             patchLevel(nextlevel);
         }
@@ -108,7 +109,9 @@ export const LevelsProvider = ({ children }: ChildrenProps) => {
     }, [nextLevel]);
 
     return (
-        <LevelsContext.Provider value={{ levels, userLevelId, getLevels }}>
+        <LevelsContext.Provider
+            value={{ levels, userLevelId, getLevels, userLevel }}
+        >
             {children}
         </LevelsContext.Provider>
     );

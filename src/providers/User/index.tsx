@@ -1,7 +1,13 @@
-import { createContext, useContext, useState } from 'react';
+import {
+    createContext,
+    useCallback,
+    useContext,
+    useEffect,
+    useState,
+} from 'react';
 import toast from 'react-hot-toast';
 import request from './../../services/api';
-import { User, UserContextData, UserProps } from './../../types/user';
+import { User, UserContextData, UserProps, Xp } from './../../types/user';
 import { History } from 'history';
 
 export const UserContext = createContext<UserContextData>(
@@ -69,9 +75,39 @@ export const UserProvider = ({ children }: UserProps) => {
             .catch((_) => console.error('Miss'));
     };
 
+    const patchXp = (xpPoints: Xp) => {
+        request
+            .patch(`/users/${id}`, xpPoints, {
+                headers: {
+                    Authorization: `Bearer ${auth}`,
+                },
+            })
+            .then((res) => {
+                setXp(res.data.xp);
+                // getUserXp(localStorage.getItem('@id'));
+            })
+            .catch((err) => console.error(err));
+    };
+    const getUserXp = useCallback(
+        (id: any) => {
+            request
+                .get(`/users/${id}`, {
+                    headers: {
+                        Authorization: `Bearer ${auth}`,
+                    },
+                })
+                .then((res) => setXp(res.data.xp))
+                .catch((err) => console.error(err));
+        },
+        [auth],
+    );
+    useEffect(() => {
+        getUserXp(id);
+    }, [getUserXp, id]);
+
     return (
         <UserContext.Provider
-            value={{ auth, userName, signup, login, logout, id, xp }}
+            value={{ auth, userName, signup, login, logout, id, xp, patchXp }}
         >
             {children}
         </UserContext.Provider>

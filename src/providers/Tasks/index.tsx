@@ -40,7 +40,7 @@ export const TasksContext = createContext<TaskContextProps>(
 );
 
 export const TasksProvider = ({ children }: ChildrenProps) => {
-    const { auth, id } = useUser();
+    const { xp, auth, id, patchXp } = useUser();
     const [addTask] = useSound(NewTask, { volume: 0.3 });
 
     const [tasks, setTasks] = useState<TasksProps[]>([] as TasksProps[]);
@@ -89,7 +89,10 @@ export const TasksProvider = ({ children }: ChildrenProps) => {
                 Authorization: `Bearer ${auth}`,
             },
         })
-            .then((_) =>
+            .then((res) => {
+                const xpPoints = { xp: xp + res.data.xp };
+                patchXp(xpPoints);
+
                 toast('Quest finalizada!', {
                     icon: '🐍',
                     style: {
@@ -100,8 +103,8 @@ export const TasksProvider = ({ children }: ChildrenProps) => {
                         fontFamily: 'Press Start 2P',
                         fontWeight: 'bold',
                     },
-                }),
-            )
+                });
+            })
             .catch((err) => console.log(err));
     };
 
