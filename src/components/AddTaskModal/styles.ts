@@ -73,10 +73,16 @@ export const AddButtonBox = styled.div`
     flex-direction: column;
 `;
 
-export const AddTaskButtonBox = styled(AddButtonBox)`
+export const ButtonBox = styled(AddButtonBox)`
     flex-direction: row;
-    justify-content: flex-end;
-    width: 100%;
+    justify-content: flex-start;
+    width: 90%;
+    margin: 0 auto;
+    gap: 15px;
+
+    button {
+        background: var(--green-linear);
+    }
 `;
 
 export const BoxInputEdit = styled.div`

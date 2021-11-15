@@ -63,6 +63,7 @@ export const SubMenu = styled.div`
     width: 90%;
     display: flex;
     justify-content: space-between;
+    height: 20px;
 
     svg {
         font-size: 25px;
