@@ -28,6 +28,23 @@ export const BadgeProvider = ({ children }: ChildrenProps) => {
         [] as BadgeProps[],
     );
 
+    const getUserBadges = useCallback(() => {
+        api.get(`/users/${id}/allBadges`, {
+            headers: {
+                Authorization: `Bearer ${auth}`,
+            },
+        })
+            .then((res) => {
+                setUserBadges(res.data);
+                console.log(userBadges);
+            })
+            .catch((err) => console.log(err));
+    }, [auth, id]);
+
+    useEffect(() => {
+        getUserBadges();
+    }, [getUserBadges]);
+
     const getUserBadgeLevel = useCallback(() => {
         const badge1 = {
             title: 'Começo da trilha...',
@@ -56,7 +73,11 @@ export const BadgeProvider = ({ children }: ChildrenProps) => {
             userId: id,
         };
 
-        if (userLevel?.level === 1) {
+        if (
+            userLevel?.level === 1 &&
+            userBadges.filter((badge) => badge.BadgeId === badge1.BadgeId)
+                .length === 0
+        ) {
             api.post(`/allBadges`, badge1, {
                 headers: {
                     Authorization: `Bearer ${auth}`,
@@ -64,53 +85,153 @@ export const BadgeProvider = ({ children }: ChildrenProps) => {
             })
                 .then((res) => {
                     console.log(res.data);
+                    getUserBadges();
                     console.log(userBadges);
                 })
                 .catch((err) => console.log(err));
         }
-        if (userLevel?.level === 5) {
+        if (
+            userLevel?.level === 5 &&
+            userBadges.filter((badge) => badge.BadgeId === badge2.BadgeId)
+                .length === 0
+        ) {
             api.post(`/allBadges`, badge2, {
                 headers: {
                     Authorization: `Bearer ${auth}`,
                 },
             })
-                .then((res) => console.log(res.data))
+                .then((res) => {
+                    console.log(res.data);
+                    getUserBadges();
+                    console.log(userBadges);
+                })
                 .catch((err) => console.log(err));
         }
-        if (userLevel?.level === 10) {
+        if (
+            userLevel?.level === 10 &&
+            userBadges.filter((badge) => badge.BadgeId === badge3.BadgeId)
+                .length === 0
+        ) {
             api.post(`/allBadges`, badge3, {
                 headers: {
                     Authorization: `Bearer ${auth}`,
                 },
             })
-                .then((res) => console.log(res.data))
-                .catch((err) => console.log(err));
-        }
-    }, [userLevel?.level, auth]);
-
-    const getUserBadges = useCallback(
-        (userId: string) => {
-            api.get(`/users/${userId}/allBadges`, {
-                headers: {
-                    Authorization: `Bearer ${auth}`,
-                },
-            })
                 .then((res) => {
-                    setUserBadges(res.data);
+                    console.log(res.data);
+                    getUserBadges();
                     console.log(userBadges);
                 })
                 .catch((err) => console.log(err));
-        },
-        [auth],
-    );
-
-    useEffect(() => {
-        getUserBadges(id);
-    }, [getUserBadges, id]);
+        }
+    }, [userLevel?.level, auth, id, userBadges, getUserBadges]);
 
     useEffect(() => {
         getUserBadgeLevel();
     }, [getUserBadgeLevel]);
+
+    const getUserBadgesQuest = useCallback(() => {
+        api.get(`/users/${id}/quests`, {
+            headers: {
+                Authorization: `Bearer ${auth}`,
+            },
+        }).then((res) => {
+            const badge1 = {
+                title: 'Parceir@',
+                img: 'https://picsum.photos/200',
+                description:
+                    'Você fez seu primeiro comentário em uma pergunta!',
+                BadgeId: 3,
+                status: false,
+                userId: id,
+            };
+            const badge2 = {
+                title: 'Voz da Comunidade',
+                img: 'https://picsum.photos/200',
+                description: 'Você fez +5 perguntas na comunidade',
+                BadgeId: 7,
+                status: false,
+                userId: id,
+            };
+
+            if (
+                res.data.length === 1 &&
+                userBadges.filter((badge) => badge.BadgeId === badge1.BadgeId)
+                    .length === 0
+            ) {
+                api.post(`/allBadges`, badge1, {
+                    headers: {
+                        Authorization: `Bearer ${auth}`,
+                    },
+                })
+                    .then((res) => {
+                        console.log(res.data);
+                        getUserBadges();
+                        console.log(userBadges);
+                    })
+                    .catch((err) => console.log(err));
+            }
+            if (
+                res.data.length === 6 &&
+                userBadges.filter((badge) => badge.BadgeId === badge2.BadgeId)
+                    .length === 0
+            ) {
+                api.post(`/allBadges`, badge2, {
+                    headers: {
+                        Authorization: `Bearer ${auth}`,
+                    },
+                })
+                    .then((res) => {
+                        console.log(res.data);
+                        getUserBadges();
+                        console.log(userBadges);
+                    })
+                    .catch((err) => console.log(err));
+            }
+        });
+    }, [auth, id, getUserBadges, userBadges]);
+
+    useEffect(() => {
+        getUserBadgesQuest();
+    }, [getUserBadgesQuest]);
+
+    const getUserBadgesComments = useCallback(() => {
+        api.get(`/users/${id}/comments`, {
+            headers: {
+                Authorization: `Bearer ${auth}`,
+            },
+        }).then((res) => {
+            const badge1 = {
+                title: 'Fofoqueir@',
+                img: 'https://picsum.photos/200',
+                description: 'Você fez +5 comentários',
+                BadgeId: 8,
+                status: false,
+                userId: id,
+            };
+
+            if (
+                res.data.length === 6 &&
+                userBadges.filter((badge) => badge.BadgeId === badge1.BadgeId)
+                    .length === 0
+            ) {
+                api.post(`/allBadges`, badge1, {
+                    headers: {
+                        Authorization: `Bearer ${auth}`,
+                    },
+                })
+                    .then((res) => {
+                        console.log(res.data);
+                        getUserBadges();
+                        console.log(userBadges);
+                    })
+                    .catch((err) => console.log(err));
+            }
+        });
+    }, [auth, id, getUserBadges, userBadges]);
+    useEffect(() => {
+        getUserBadgesComments();
+    }, [getUserBadgesComments]);
 
     return (
         <BadgeContext.Provider value={{ getUserBadges, userBadges }}>
