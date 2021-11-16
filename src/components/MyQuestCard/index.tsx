@@ -1,12 +1,13 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
+import { MdDeleteForever } from 'react-icons/md';
 import { useComments } from '../../providers/Comments';
 import { useQuestions } from '../../providers/Questions';
 import { EditQuestion } from '../../types/questions';
-import EditQuestModal from '../EditQuestModal';
 import {
     Body,
     Card,
     CommentIcons,
+    DeleteButton,
     EditIcons,
     Likes,
     LineTop,
@@ -29,14 +30,12 @@ const MyQuestCard = ({
     editQuestion,
     setShowEditModal,
 }: MyQuestCardProps) => {
-    const [addComment, setAddComment] = useState<boolean>(false);
     const { comments } = useComments();
-    const { userQuests } = useQuestions();
-
+    const { userQuests, deleteQuestion } = useQuestions();
     const filteredComments = comments.filter(
         (comment) => comment?.questId === id,
     );
-    console.log('Dinglebell', userQuests);
+    const filteredQuestions = userQuests.find((quest) => quest?.id === id);
 
     return (
         <Card>
@@ -58,6 +57,11 @@ const MyQuestCard = ({
                 <SpanCommentsLength>
                     {filteredComments.length}
                 </SpanCommentsLength>
+                <DeleteButton
+                    onClick={() =>
+                        deleteQuestion(Number(filteredQuestions?.id))
+                    }
+                />
             </MyLikes>
         </Card>
     );

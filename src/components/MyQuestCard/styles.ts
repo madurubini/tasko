@@ -1,6 +1,6 @@
 import { BiCommentDetail } from 'react-icons/bi';
 import { GiHearts } from 'react-icons/gi';
-import { MdOutlineEditNote } from 'react-icons/md';
+import { MdDeleteForever, MdOutlineEditNote } from 'react-icons/md';
 import styled from 'styled-components';
 
 export const Card = styled.div`
@@ -65,5 +65,11 @@ export const EditIcons = styled(MdOutlineEditNote)`
 export const CommentIcons = styled(BiCommentDetail)`
     margin: 0 10px;
     color: var(--greenToast);
+    font-size: 20px;
+`;
+
+export const DeleteButton = styled(MdDeleteForever)`
+    margin: 0 10px;
+    color: var(--redToast);
     font-size: 20px;
 `;

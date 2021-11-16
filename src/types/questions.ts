@@ -1,5 +1,3 @@
-import { Dispatch, SetStateAction } from 'react';
-
 export interface Quest {
     id: number | boolean;
     body: string;
@@ -18,6 +16,7 @@ export interface QuestionsContextData {
     userQuests: Quest[] | [];
     postQuestion: (quest: QuestBody) => void;
     editQuestion: (questId: number, question: string | any) => void;
+    deleteQuestion: (questId: number) => void;
     getAllQuestions: () => void;
     getUserQuestions: (userId: number) => void;
     getAllQuestsByTitle: (title: string) => void;
