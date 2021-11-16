@@ -24,8 +24,9 @@ import { Redirect } from 'react-router';
 
 const Dashboard = () => {
     const { tasks, setShowEditModal, showEditModal, getUserTasks } = useTasks();
-    const { userBadges } = useBadges();
-    const { id, auth } = useUser();
+    const { controllBadges } = useBadges();
+    const { id , auth} = useUser();
+
 
     const [showAddModal, setShowAddModal] = useState<Boolean>(false);
     const [showCompletedTasks, setShowCompletedTasks] =
@@ -112,7 +113,7 @@ const Dashboard = () => {
                     </SubTitle>
 
                     <ScrollBadge>
-                        {userBadges.map((item, index) => {
+                        {controllBadges.map((item, index) => {
                             return <CardBadge item={item} key={index} />;
                         })}
                     </ScrollBadge>

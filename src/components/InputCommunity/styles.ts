@@ -1,14 +1,15 @@
 import { Button } from '@chakra-ui/button';
 import { Input } from '@chakra-ui/input';
 import styled from 'styled-components';
+import Diamond from '../../assets/diamond.svg';
 
 export const InputContent = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
-    background: var(--green-linear);
+    background: url(${Diamond}), var(--green-linear);
+    background-repeat: no-repeat;
     height: 250px;
     gap: 12px;
 `;
@@ -25,14 +26,13 @@ export const InputHeader = styled.header`
 export const InputTitle = styled.h2`
     font-family: var(--title);
     font-weight: 500;
-    font-size: 32px;
+    font-size: 40px;
     background: transparent;
 `;
 
 export const InputTypes = styled.div`
     display: flex;
     flex-direction: column;
-
     gap: 10px;
 
     @media screen and (min-width: 606px) {

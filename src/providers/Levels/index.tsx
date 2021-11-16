@@ -13,6 +13,7 @@ import {
     LevelsContextData,
     UserLevelProps,
 } from '../../types/levels';
+import { useBadges } from '../Badges';
 
 export const LevelsContext = createContext<LevelsContextData>(
     {} as LevelsContextData,
@@ -44,7 +45,7 @@ export const LevelsProvider = ({ children }: ChildrenProps) => {
                         level: 0,
                         LevelId: 1,
                         status: false,
-                        userId: id,
+                        userId: Number(id),
                     };
                     api.post('/allLevels', data, {
                         headers: {

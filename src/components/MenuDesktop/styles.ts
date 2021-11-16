@@ -28,7 +28,7 @@ export const Container = styled.aside`
 export const MenuButton = styled(Button)`
     width: 70% !important;
     background: var(--green-linear) !important;
-    color: var(--font-color) !important;
+    color: var(--background) !important;
 `;
 
 export const Logout = styled.footer`

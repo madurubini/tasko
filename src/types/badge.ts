@@ -5,5 +5,5 @@ export interface BadgeProps {
     BadgeId: number;
     status: boolean;
     userId: string;
-    id: number;
+    id?: number;
 }
