@@ -1,5 +1,17 @@
+import { IconButton } from '@chakra-ui/button';
+import { Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/menu';
+import { BsThreeDotsVertical } from 'react-icons/bs';
 import { GiHearts } from 'react-icons/gi';
-import { Body, Card, MyLikes } from './styles';
+import { MdAdd, MdOutlineEditNote } from 'react-icons/md';
+import {
+    Body,
+    Card,
+    CommentIcons,
+    EditIcons,
+    Likes,
+    LineTop,
+    MyLikes,
+} from './styles';
 
 interface MyQuestCardProps {
     id?: number | boolean;
@@ -10,9 +22,13 @@ interface MyQuestCardProps {
 const MyQuestCard = ({ id, body, likes }: MyQuestCardProps) => {
     return (
         <Card>
-            <Body>{body}</Body>
+            <LineTop>
+                <Body>{body}</Body>
+            </LineTop>
             <MyLikes>
-                <GiHearts /> {likes}
+                <Likes /> {likes}
+                <EditIcons />
+                <CommentIcons />
             </MyLikes>
         </Card>
     );
