@@ -1,3 +1,5 @@
+import { Divider } from '@chakra-ui/layout';
+import { BiCommentDetail } from 'react-icons/bi';
 import styled from 'styled-components';
 
 export const Card = styled.div`
@@ -29,6 +31,11 @@ export const Card = styled.div`
     }
 `;
 
+export const Option = styled.div`
+    display: flex;
+    justify-content: flex-end;
+`;
+
 export const Quest = styled.p`
     font-style: normal;
     font-weight: bold;
@@ -38,4 +45,10 @@ export const Quest = styled.p`
     align-items: center;
     letter-spacing: 0.05em;
     margin: 1em 0;
+`;
+
+export const CommentIcons = styled(BiCommentDetail)`
+    margin: 0 3px 0 10px;
+    color: var(--greenToast);
+    font-size: 20px;
 `;
