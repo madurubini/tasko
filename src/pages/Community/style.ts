@@ -121,11 +121,10 @@ export const MyQuestTitle = styled.h2`
 
 export const MakeQuestButtonTop = styled(Button)`
     background-color: var(--green-linear) !important;
-    color: white;
-
+    color: var(--background);
     svg,
     svg path {
-        color: var(--background);
+        color: var(--background) !important;
         cursor: pointer;
         border-radius: 100%;
         background: var(--green-linear);
@@ -174,7 +173,7 @@ export const MakeQuestButtonCenter = styled(Button)`
         height: 40px;
 
         background: var(--green-linear) !important;
-        color: white !important;
+        color: var(--background) !important;
         border-radius: 8px;
     }
 `;

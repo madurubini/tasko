@@ -77,12 +77,15 @@ export const ButtonBox = styled(AddButtonBox)`
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    width: 90%;
+    width: 95%;
     margin: 0 auto;
-    gap: 15px;
+    gap: 10px;
 
     button {
         background: var(--green-linear);
+        width: 40%;
+        font-size: 14px;
+        max-width: 150px;
     }
 `;
 

@@ -11,7 +11,7 @@ const MenuDesktop = () => {
             <div>
                 <img src={User} alt="" />
                 <h3>Usuário</h3>
-                <p>Level: {userLevel.LevelId}</p>
+                <p>Level: {userLevel?.level}</p>
             </div>
             <VStack spacing="5">
                 <MenuButton onClick={() => history.push('/comunidade')}>

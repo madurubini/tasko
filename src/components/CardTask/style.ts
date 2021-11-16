@@ -26,7 +26,7 @@ export const TaskCard = styled.li`
 `;
 
 export const ScrollTasks = styled.div`
-    width: 90%;
+    width: 95%;
     min-height: 300px;
     max-height: 30vw;
     background: var(--black-gradient);
@@ -42,7 +42,9 @@ export const ScrollTasks = styled.div`
 
 export const ScrollBadge = styled(ScrollTasks)`
     align-items: flex-start;
-    min-height: 230px;
+    min-height: 235px;
+    flex-direction: row;
+    justify-content: flex-start;
 `;
 
 export const AddIcon = styled(MdAdd)`
