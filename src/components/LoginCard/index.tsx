@@ -45,8 +45,7 @@ export const LoginCard = () => {
     const handleClick = () => setShowPassword(!showPassword);
 
     const handleCLick = (data: User) => {
-        login(data);
-        history.push(`/dashboard`);
+        login(data, history);
     };
 
     return (

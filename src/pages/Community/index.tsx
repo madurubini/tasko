@@ -1,8 +1,6 @@
 import logo from './../../assets/image/logo.png';
 import diceQuestion from './../../assets/image/perspective-dice-six-faces-random.png';
 import { useQuestions } from '../../providers/Questions';
-import { useUser } from '../../providers/User';
-import { useHistory } from 'react-router-dom';
 import {
     GlobalSection,
     Header,
@@ -28,13 +26,7 @@ import AddCommentModal from '../../components/AddCommentModal';
 
 const Community = () => {
     const [openModal, setOpenModal] = useState<boolean>(false);
-    const { auth } = useUser();
     const { allQuestions, userQuests } = useQuestions();
-    const history = useHistory();
-
-    if (!auth) {
-        history.push('/login');
-    }
 
     return (
         <main>

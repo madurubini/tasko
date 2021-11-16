@@ -1,11 +1,17 @@
-import { Container, MenuButton } from './styles';
+import { Container, Logout, MenuButton } from './styles';
 import User from '../../assets/image/user.png';
 import { VStack } from '@chakra-ui/layout';
 import { useHistory } from 'react-router';
 import { useLevels } from '../../providers/Levels';
+import { FaPowerOff } from 'react-icons/fa';
+import { useUser } from '../../providers/User';
+
 const MenuDesktop = () => {
     const history = useHistory();
     const { userLevel } = useLevels();
+
+    const { logout } = useUser();
+
     return (
         <Container>
             <div>
@@ -19,6 +25,11 @@ const MenuDesktop = () => {
                 </MenuButton>
                 <MenuButton>Status</MenuButton>
             </VStack>
+
+            <Logout onClick={logout}>
+                <FaPowerOff />
+                <p>Logout</p>
+            </Logout>
         </Container>
     );
 };
