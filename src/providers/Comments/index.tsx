@@ -1,4 +1,10 @@
-import { createContext, useState, useEffect, useContext } from 'react';
+import {
+    createContext,
+    useState,
+    useEffect,
+    useContext,
+    useCallback,
+} from 'react';
 import api from '../../services/api';
 import { ChildrenProps } from '../../types/children';
 import { CommentsProps } from '../../types/comments';
@@ -8,6 +14,7 @@ interface CommentsContextProps {
     comments: CommentsProps[];
     addComment: (comment: string, userId: number, questId: number) => void;
     editComment: (commentId: number, update: string) => void;
+    getAllComments: () => void;
     getQuestComments: (id: number) => void;
 }
 
@@ -30,7 +37,9 @@ export const CommentsProvider = ({ children }: ChildrenProps) => {
                 Authorization: `Bearer ${auth}`,
             },
         })
-            .then((res) => console.log(res))
+            .then((res) => {
+                getAllComments();
+            })
             .catch((err) => console.log(err));
     };
 
@@ -46,6 +55,16 @@ export const CommentsProvider = ({ children }: ChildrenProps) => {
             .catch((err) => console.log(err));
     };
 
+    const getAllComments = useCallback(() => {
+        api.get(`/comments`)
+            .then((res) => setComments(res.data))
+            .catch((err) => console.log(err));
+    }, []);
+
+    useEffect(() => {
+        getAllComments();
+    }, [getAllComments]);
+
     const getQuestComments = (id: number) => {
         api.get(`/quests/${id}/comments`)
             .then((res) => {
@@ -57,7 +76,13 @@ export const CommentsProvider = ({ children }: ChildrenProps) => {
 
     return (
         <CommentsContext.Provider
-            value={{ addComment, editComment, getQuestComments, comments }}
+            value={{
+                addComment,
+                editComment,
+                getQuestComments,
+                getAllComments,
+                comments,
+            }}
         >
             {children}
         </CommentsContext.Provider>
