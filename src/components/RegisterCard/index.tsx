@@ -83,8 +83,7 @@ export const RegisterCard = () => {
             ...data,
             xp: 0,
         };
-        signup(newUser);
-        history.push(`/dashboard`);
+        signup(newUser, history);
     };
 
     return (

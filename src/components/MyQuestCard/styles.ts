@@ -1,3 +1,6 @@
+import { BiCommentDetail } from 'react-icons/bi';
+import { GiHearts } from 'react-icons/gi';
+import { MdDeleteForever, MdOutlineEditNote } from 'react-icons/md';
 import styled from 'styled-components';
 
 export const Card = styled.div`
@@ -7,8 +10,9 @@ export const Card = styled.div`
     margin-inline: auto;
 
     background: #131826;
-    opacity: 0.64;
+    box-sizing: border-box;
     backdrop-filter: blur(16px);
+    opacity: 0.64;
 
     border-radius: 8px;
 
@@ -21,8 +25,22 @@ export const Card = styled.div`
     }
 `;
 
+export const LineTop = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
+
 export const Body = styled.p`
+    max-width: 100%;
     padding: 10px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+`;
+
+export const SpanCommentsLength = styled.span`
+    color: white;
 `;
 
 export const MyLikes = styled.span`
@@ -30,10 +48,28 @@ export const MyLikes = styled.span`
     justify-content: flex-end;
     align-items: center;
     padding: 0 10px;
+    margin-top: 1em;
+`;
 
-    svg,
-    svg path {
-        margin: 0 10px;
-        color: var(--redToast);
-    }
+export const Likes = styled(GiHearts)`
+    margin: 0 10px;
+    color: var(--redToast);
+`;
+
+export const EditIcons = styled(MdOutlineEditNote)`
+    margin: 0 10px;
+    color: var(--yellowToast);
+    font-size: 25px;
+`;
+
+export const CommentIcons = styled(BiCommentDetail)`
+    margin: 0 10px;
+    color: var(--greenToast);
+    font-size: 20px;
+`;
+
+export const DeleteButton = styled(MdDeleteForever)`
+    margin: 0 10px;
+    color: var(--redToast);
+    font-size: 20px;
 `;

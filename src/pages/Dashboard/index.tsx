@@ -20,15 +20,20 @@ import { useState } from 'react';
 import { AddButtonBox, ButtonBox } from '../../components/AddTaskModal/styles';
 import { useUser } from '../../providers/User';
 import { Button } from '@chakra-ui/button';
+import { Redirect } from 'react-router';
 
 const Dashboard = () => {
     const { tasks, setShowEditModal, showEditModal, getUserTasks } = useTasks();
     const { controllBadges } = useBadges();
-    const { id } = useUser();
+    const { id, auth } = useUser();
 
     const [showAddModal, setShowAddModal] = useState<Boolean>(false);
     const [showCompletedTasks, setShowCompletedTasks] =
         useState<Boolean>(false);
+
+    if (!auth) {
+        return <Redirect to="/" />;
+    }
 
     return (
         <>
