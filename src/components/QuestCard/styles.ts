@@ -1,4 +1,3 @@
-import { Divider } from '@chakra-ui/layout';
 import { BiCommentDetail } from 'react-icons/bi';
 import styled from 'styled-components';
 
