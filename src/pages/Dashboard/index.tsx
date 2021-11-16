@@ -23,7 +23,7 @@ import { Button } from '@chakra-ui/button';
 
 const Dashboard = () => {
     const { tasks, setShowEditModal, showEditModal, getUserTasks } = useTasks();
-    const { userBadges } = useBadges();
+    const { controllBadges } = useBadges();
     const { id } = useUser();
 
     const [showAddModal, setShowAddModal] = useState<Boolean>(false);
@@ -107,7 +107,7 @@ const Dashboard = () => {
                     </SubTitle>
 
                     <ScrollBadge>
-                        {userBadges.map((item, index) => {
+                        {controllBadges.map((item, index) => {
                             return <CardBadge item={item} key={index} />;
                         })}
                     </ScrollBadge>

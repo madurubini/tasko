@@ -13,6 +13,7 @@ import {
     LevelsContextData,
     UserLevelProps,
 } from '../../types/levels';
+import { useBadges } from '../Badges';
 
 export const LevelsContext = createContext<LevelsContextData>(
     {} as LevelsContextData,
@@ -44,7 +45,7 @@ export const LevelsProvider = ({ children }: ChildrenProps) => {
                         level: 0,
                         LevelId: 1,
                         status: false,
-                        userId: id,
+                        userId: Number(id),
                     };
                     api.post('/allLevels', data, {
                         headers: {
@@ -53,21 +54,6 @@ export const LevelsProvider = ({ children }: ChildrenProps) => {
                     }).then((res) => {
                         setUserLevel(res.data);
                         setUserLevelId(res.data.id);
-                        const badge = {
-                            title: 'Novo no pedaço',
-                            img: 'https://picsum.photos/200',
-                            description: 'Você fez seu primeiro login!',
-                            BadgeId: 1,
-                            status: false,
-                            userId: id,
-                        };
-                        api.post(`/allBadges`, badge, {
-                            headers: {
-                                Authorization: `Bearer ${auth}`,
-                            },
-                        })
-                            .then((res) => console.log(res.data))
-                            .catch((err) => console.log(err));
                     });
                 }
                 setUserLevel(res.data[0]);

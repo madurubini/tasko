@@ -12,8 +12,7 @@ import { useLevels } from '../Levels';
 import { useUser } from '../User';
 
 interface BadgeContextProps {
-    getUserBadges: (userId: string) => void;
-    userBadges: BadgeProps[];
+    controllBadges: BadgeProps[];
 }
 
 export const BadgeContext = createContext<BadgeContextProps>(
@@ -24,26 +23,44 @@ export const BadgeProvider = ({ children }: ChildrenProps) => {
     const { auth, id } = useUser();
     const { userLevel } = useLevels();
 
-    const [userBadges, setUserBadges] = useState<BadgeProps[]>(
-        [] as BadgeProps[],
+    const badge = {
+        title: 'Novo no pedaço',
+        img: 'https://picsum.photos/200',
+        description: 'Você fez seu primeiro login!',
+        BadgeId: 1,
+        status: false,
+        userId: id,
+    };
+
+    const [controllBadges, setControllBadges] = useState<BadgeProps[]>([
+        badge,
+    ] as BadgeProps[]);
+
+    const filteredBadge = useCallback(
+        (badge: BadgeProps) => {
+            return controllBadges.some(
+                (item) => item.BadgeId === badge.BadgeId,
+            );
+        },
+        [controllBadges],
     );
 
-    const getUserBadges = useCallback(() => {
-        api.get(`/users/${id}/allBadges`, {
-            headers: {
-                Authorization: `Bearer ${auth}`,
-            },
-        })
-            .then((res) => {
-                setUserBadges(res.data);
-                console.log(userBadges);
-            })
-            .catch((err) => console.log(err));
-    }, [auth, id]);
+    // const getUserBadges = useCallback(() => {
+    //     api.get(`/users/${id}/allBadges`, {
+    //         headers: {
+    //             Authorization: `Bearer ${auth}`,
+    //         },
+    //     })
+    //         .then((res) => {
+    //             setUserBadges(res.data);
+    //             console.log(userBadges);
+    //         })
+    //         .catch((err) => console.log(err));
+    // }, [auth, id]);
 
-    useEffect(() => {
-        getUserBadges();
-    }, [getUserBadges]);
+    // useEffect(() => {
+    //     getUserBadges();
+    // }, [getUserBadges]);
 
     const getUserBadgeLevel = useCallback(() => {
         const badge1 = {
@@ -73,58 +90,16 @@ export const BadgeProvider = ({ children }: ChildrenProps) => {
             userId: id,
         };
 
-        if (
-            userLevel?.level === 1 &&
-            userBadges.filter((badge) => badge.BadgeId === badge1.BadgeId)
-                .length === 0
-        ) {
-            api.post(`/allBadges`, badge1, {
-                headers: {
-                    Authorization: `Bearer ${auth}`,
-                },
-            })
-                .then((res) => {
-                    console.log(res.data);
-                    getUserBadges();
-                    console.log(userBadges);
-                })
-                .catch((err) => console.log(err));
+        if (userLevel?.level >= 1 && !filteredBadge(badge1)) {
+            setControllBadges([...controllBadges, badge1]);
         }
-        if (
-            userLevel?.level === 5 &&
-            userBadges.filter((badge) => badge.BadgeId === badge2.BadgeId)
-                .length === 0
-        ) {
-            api.post(`/allBadges`, badge2, {
-                headers: {
-                    Authorization: `Bearer ${auth}`,
-                },
-            })
-                .then((res) => {
-                    console.log(res.data);
-                    getUserBadges();
-                    console.log(userBadges);
-                })
-                .catch((err) => console.log(err));
+        if (userLevel?.level >= 5 && !filteredBadge(badge2)) {
+            setControllBadges([...controllBadges, badge2]);
         }
-        if (
-            userLevel?.level === 10 &&
-            userBadges.filter((badge) => badge.BadgeId === badge3.BadgeId)
-                .length === 0
-        ) {
-            api.post(`/allBadges`, badge3, {
-                headers: {
-                    Authorization: `Bearer ${auth}`,
-                },
-            })
-                .then((res) => {
-                    console.log(res.data);
-                    getUserBadges();
-                    console.log(userBadges);
-                })
-                .catch((err) => console.log(err));
+        if (userLevel?.level >= 10 && !filteredBadge(badge3)) {
+            setControllBadges([...controllBadges, badge3]);
         }
-    }, [userLevel?.level, auth, id, userBadges, getUserBadges]);
+    }, [userLevel?.level, controllBadges, filteredBadge, id]);
 
     useEffect(() => {
         getUserBadgeLevel();
@@ -154,42 +129,14 @@ export const BadgeProvider = ({ children }: ChildrenProps) => {
                 userId: id,
             };
 
-            if (
-                res.data.length === 1 &&
-                userBadges.filter((badge) => badge.BadgeId === badge1.BadgeId)
-                    .length === 0
-            ) {
-                api.post(`/allBadges`, badge1, {
-                    headers: {
-                        Authorization: `Bearer ${auth}`,
-                    },
-                })
-                    .then((res) => {
-                        console.log(res.data);
-                        getUserBadges();
-                        console.log(userBadges);
-                    })
-                    .catch((err) => console.log(err));
+            if (res.data.length >= 1 && !filteredBadge(badge1)) {
+                setControllBadges([...controllBadges, badge1]);
             }
-            if (
-                res.data.length === 6 &&
-                userBadges.filter((badge) => badge.BadgeId === badge2.BadgeId)
-                    .length === 0
-            ) {
-                api.post(`/allBadges`, badge2, {
-                    headers: {
-                        Authorization: `Bearer ${auth}`,
-                    },
-                })
-                    .then((res) => {
-                        console.log(res.data);
-                        getUserBadges();
-                        console.log(userBadges);
-                    })
-                    .catch((err) => console.log(err));
+            if (res.data.length >= 5 && !filteredBadge(badge2)) {
+                setControllBadges([...controllBadges, badge2]);
             }
         });
-    }, [auth, id, getUserBadges, userBadges]);
+    }, [auth, id, controllBadges, filteredBadge]);
 
     useEffect(() => {
         getUserBadgesQuest();
@@ -202,6 +149,15 @@ export const BadgeProvider = ({ children }: ChildrenProps) => {
             },
         }).then((res) => {
             const badge1 = {
+                title: 'Questionad@r',
+                img: 'https://picsum.photos/200',
+                description: 'Você fez sua primeira pergunta na comunidade!',
+                BadgeId: 2,
+                status: false,
+                userId: id,
+            };
+
+            const badge2 = {
                 title: 'Fofoqueir@',
                 img: 'https://picsum.photos/200',
                 description: 'Você fez +5 comentários',
@@ -210,31 +166,25 @@ export const BadgeProvider = ({ children }: ChildrenProps) => {
                 userId: id,
             };
 
-            if (
-                res.data.length === 6 &&
-                userBadges.filter((badge) => badge.BadgeId === badge1.BadgeId)
-                    .length === 0
-            ) {
-                api.post(`/allBadges`, badge1, {
-                    headers: {
-                        Authorization: `Bearer ${auth}`,
-                    },
-                })
-                    .then((res) => {
-                        console.log(res.data);
-                        getUserBadges();
-                        console.log(userBadges);
-                    })
-                    .catch((err) => console.log(err));
+            if (res.data.length >= 1 && !filteredBadge(badge1)) {
+                console.log(res.data);
+                setControllBadges([...controllBadges, badge1]);
+            }
+            if (res.data.length >= 5 && !filteredBadge(badge2)) {
+                setControllBadges([...controllBadges, badge2]);
             }
         });
-    }, [auth, id, getUserBadges, userBadges]);
+    }, [auth, id, controllBadges, filteredBadge]);
     useEffect(() => {
         getUserBadgesComments();
     }, [getUserBadgesComments]);
 
     return (
-        <BadgeContext.Provider value={{ getUserBadges, userBadges }}>
+        <BadgeContext.Provider
+            value={{
+                controllBadges,
+            }}
+        >
             {children}
         </BadgeContext.Provider>
     );
