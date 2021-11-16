@@ -23,7 +23,7 @@ export const UserProvider = ({ children }: UserProps) => {
     const [userName, setUserName] = useState<string>('');
     const [xp, setXp] = useState<number>(0);
 
-    const login = (data: User) => {
+    const login = (data: User, history: History) => {
         request
             .post('/login', data)
             .then(({ data }) => {
@@ -33,6 +33,7 @@ export const UserProvider = ({ children }: UserProps) => {
                 localStorage.setItem('@id', data.user.id);
                 setId(data.user.id);
                 setUserName(data.user.firstName);
+                history.push('/dashboard');
 
                 toast('Bem vindo!', {
                     icon: '🐍',
@@ -68,10 +69,23 @@ export const UserProvider = ({ children }: UserProps) => {
         setAuth('');
     };
 
-    const signup = (user: User) => {
+    const signup = (user: User, history: History) => {
         request
             .post(`/users`, user)
-            .then((_) => login(user))
+            .then((_) => {
+                toast('Cadastro realizado com sucesso!', {
+                    icon: '🐍',
+                    style: {
+                        border: '2px groove #008000',
+                        borderRadius: '10px',
+                        background: '#333',
+                        color: '#008000',
+                        fontFamily: 'Press Start 2P',
+                        fontWeight: 'bold',
+                    },
+                });
+                history.push('/login');
+            })
             .catch((_) => console.error('Miss'));
     };
 
@@ -107,7 +121,16 @@ export const UserProvider = ({ children }: UserProps) => {
 
     return (
         <UserContext.Provider
-            value={{ auth, userName, signup, login, logout, id, xp, patchXp }}
+            value={{
+                auth,
+                userName,
+                signup,
+                login,
+                logout,
+                id,
+                xp,
+                patchXp,
+            }}
         >
             {children}
         </UserContext.Provider>
