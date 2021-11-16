@@ -1,6 +1,5 @@
+import { Divider } from '@chakra-ui/layout';
 import { BiCommentDetail } from 'react-icons/bi';
-import { GiHearts } from 'react-icons/gi';
-import { MdOutlineEditNote } from 'react-icons/md';
 import styled from 'styled-components';
 
 export const Card = styled.div`
@@ -49,7 +48,7 @@ export const Quest = styled.p`
 `;
 
 export const CommentIcons = styled(BiCommentDetail)`
-    margin: 0 10px;
+    margin: 0 3px 0 10px;
     color: var(--greenToast);
     font-size: 20px;
 `;

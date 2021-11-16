@@ -24,6 +24,7 @@ import QuestCard from '../../components/QuestCard';
 import MyQuestCard from '../../components/MyQuestCard';
 import { useState } from 'react';
 import AddQuestModal from '../../components/AddQuestModal';
+import AddCommentModal from '../../components/AddCommentModal';
 
 const Community = () => {
     const [openModal, setOpenModal] = useState<boolean>(false);

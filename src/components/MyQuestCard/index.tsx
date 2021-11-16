@@ -1,8 +1,3 @@
-import { IconButton } from '@chakra-ui/button';
-import { Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/menu';
-import { BsThreeDotsVertical } from 'react-icons/bs';
-import { GiHearts } from 'react-icons/gi';
-import { MdAdd, MdOutlineEditNote } from 'react-icons/md';
 import {
     Body,
     Card,
