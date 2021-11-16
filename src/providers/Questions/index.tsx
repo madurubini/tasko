@@ -89,6 +89,24 @@ export const QuestionsProvider = ({ children }: ChildrenProps) => {
         [auth],
     );
 
+    const editQuestion = (questId: number, question: string | any) => {
+        request
+            .patch(
+                `/quests/${questId}`,
+                { body: question },
+                {
+                    headers: {
+                        Authorization: `Bearer ${auth}`,
+                    },
+                },
+            )
+            .then((res) => {
+                getAllQuestions();
+                getUserQuestions(parseInt(id));
+            })
+            .catch((error) => console.error(error));
+    };
+
     const like = (questId: number, update: number) => {
         const data = { likes: update };
         request
@@ -110,6 +128,7 @@ export const QuestionsProvider = ({ children }: ChildrenProps) => {
                 allQuestions,
                 userQuests,
                 postQuestion,
+                editQuestion,
                 getAllQuestions,
                 getUserQuestions,
                 getAllQuestsByTitle,

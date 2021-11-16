@@ -13,8 +13,6 @@ const QuestCard = ({ id, body, likes, userId }: QuestCardProps) => {
         (comment) => comment?.questId === id,
     );
 
-    console.log(filteredComments);
-
     return (
         <Card>
             <Quest>{body}</Quest>

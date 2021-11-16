@@ -24,9 +24,13 @@ import QuestCard from '../../components/QuestCard';
 import MyQuestCard from '../../components/MyQuestCard';
 import { useState } from 'react';
 import AddQuestModal from '../../components/AddQuestModal';
-import AddCommentModal from '../../components/AddCommentModal';
+import EditQuestModal from '../../components/EditQuestModal';
+import { EditQuestion } from '../../types/questions';
 
 const Community = () => {
+    const [editQuestion, setEditQuestion] = useState<EditQuestion>(
+        {} as EditQuestion,
+    );
     const [openModal, setOpenModal] = useState<boolean>(false);
     const { auth } = useUser();
     const { allQuestions, userQuests } = useQuestions();
@@ -86,12 +90,21 @@ const Community = () => {
                             Perguntar
                         </MakeQuestButtonCenter>
                     </HeaderSection>
+                    {editQuestion.isOpen && (
+                        <EditQuestModal
+                            editUserQuestion={editQuestion}
+                            setShowEditModal={setEditQuestion}
+                        />
+                    )}
                     <MyQuestionsTab>
-                        {userQuests.map(({ body, likes }, index) => (
+                        {userQuests.map(({ body, id, likes }, index) => (
                             <MyQuestCard
                                 key={index}
+                                id={id}
                                 body={body}
                                 likes={likes}
+                                editQuestion={editQuestion}
+                                setShowEditModal={setEditQuestion}
                             />
                         ))}
                     </MyQuestionsTab>

@@ -10,8 +10,9 @@ export const Card = styled.div`
     margin-inline: auto;
 
     background: #131826;
-    opacity: 0.64;
+    box-sizing: border-box;
     backdrop-filter: blur(16px);
+    opacity: 0.64;
 
     border-radius: 8px;
 
@@ -36,6 +37,10 @@ export const Body = styled.p`
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+`;
+
+export const SpanCommentsLength = styled.span`
+    color: white;
 `;
 
 export const MyLikes = styled.span`
