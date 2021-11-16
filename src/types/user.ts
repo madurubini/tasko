@@ -20,8 +20,8 @@ export interface UserProps {
 export interface UserContextData {
     auth: string;
     userName: string;
-    signup: (data: User) => void;
-    login: (data: User) => void;
+    signup: (data: User, history: History) => void;
+    login: (data: User, history: History) => void;
     logout: () => void;
     id: string;
     xp: number;

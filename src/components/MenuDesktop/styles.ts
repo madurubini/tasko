@@ -30,3 +30,23 @@ export const MenuButton = styled(Button)`
     background: var(--green-linear) !important;
     color: var(--background) !important;
 `;
+
+export const Logout = styled.footer`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin: 0;
+    color: #ff0000;
+    cursor: pointer;
+
+    p {
+        color: #ff0000;
+        font-weight: bold;
+    }
+
+    svg {
+        font-size: 20px;
+    }
+`;
