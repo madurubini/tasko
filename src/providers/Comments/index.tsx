@@ -5,6 +5,7 @@ import {
     useContext,
     useCallback,
 } from 'react';
+import toast from 'react-hot-toast';
 import api from '../../services/api';
 import { ChildrenProps } from '../../types/children';
 import { CommentsProps } from '../../types/comments';
@@ -46,7 +47,19 @@ export const CommentsProvider = ({ children }: ChildrenProps) => {
             .then((res) => {
                 getAllComments();
             })
-            .catch((err) => console.log(err));
+            .catch((err) =>
+                toast('É preciso estar logado para comentar!', {
+                    icon: '❌',
+                    style: {
+                        border: '2px groove #FF0000',
+                        borderRadius: '10px',
+                        background: '#333',
+                        color: '#FF0000',
+                        fontFamily: 'Press Start 2P',
+                        fontWeight: 'bold',
+                    },
+                }),
+            );
     };
 
     const editComment = (commentId: number, update: string) => {

@@ -46,7 +46,7 @@ export const LogoBox = styled.div`
 
 export const LogoHeader = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     margin-bottom: 10px;
 
@@ -55,8 +55,25 @@ export const LogoHeader = styled.div`
         cursor: pointer;
     }
 
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+
+        svg {
+            font-size: 40px;
+            color: #34d178;
+            cursor: pointer;
+        }
+    }
+
     @media (min-width: 1024px) {
         right: 10px;
         justify-content: flex-end;
+
+        div {
+            display: none;
+        }
     }
 `;

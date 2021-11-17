@@ -3,11 +3,14 @@ import Logo from '../../assets/image/logo.png';
 import clipArt from './../../assets/image/GreenMan.png';
 import { CardBox, ClipArtBox, LogoHeader, MainContainer } from './styles';
 import { motion } from 'framer-motion';
+import { useHistory } from 'react-router';
 
 const Login = () => {
+    const history = useHistory();
+
     return (
         <>
-            <LogoHeader>
+            <LogoHeader onClick={() => history.push('/dashboard')}>
                 <img src={Logo} alt="logo"></img>
             </LogoHeader>
             <MainContainer>

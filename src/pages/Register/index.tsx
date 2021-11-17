@@ -5,8 +5,11 @@ import Logo from '../../assets/image/logo.png';
 
 import clipArt from './../../assets/image/GreenMan.png';
 import { CardBox, ClipArtBox, MainContainer } from './style';
+import { useHistory } from 'react-router';
 
 const Register = () => {
+    const history = useHistory();
+
     return (
         <>
             <motion.div
@@ -16,7 +19,7 @@ const Register = () => {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 2 }}
             >
-                <LogoHeader>
+                <LogoHeader onClick={() => history.push('/dashboard')}>
                     {' '}
                     <img src={Logo} alt="logo"></img>
                 </LogoHeader>

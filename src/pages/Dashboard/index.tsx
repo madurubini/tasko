@@ -9,7 +9,6 @@ import {
     TasksContainer,
 } from '../../components/CardTask/style';
 import { useTasks } from '../../providers/Tasks';
-import MenuMobile from '../../components/MenuMobile';
 import { LogoHeader } from '../Login/styles';
 import { Container, Main, SubTitle } from './styles';
 import { useBadges } from '../../providers/Badges';
@@ -22,6 +21,8 @@ import { useUser } from '../../providers/User';
 import { Button } from '@chakra-ui/button';
 import { Redirect, useHistory } from 'react-router';
 import { FadeAnimation } from '../../components/FadeAnimation';
+import { BiUserCircle } from 'react-icons/bi';
+import { FaUsers } from 'react-icons/fa';
 
 const Dashboard = () => {
     const { tasks, setShowEditModal, showEditModal, getUserTasks } = useTasks();
@@ -46,6 +47,10 @@ const Dashboard = () => {
                     alt="logo"
                     onClick={() => history.push('/dashboard')}
                 ></img>
+                <div>
+                    <BiUserCircle />
+                    <FaUsers onClick={() => history.push('/comunidade')} />
+                </div>
             </LogoHeader>
             <Container>
                 <MenuDesktop />
@@ -123,7 +128,6 @@ const Dashboard = () => {
                             return <CardBadge item={item} key={index} />;
                         })}
                     </ScrollBadge>
-                    <MenuMobile />
                 </Main>
             </Container>
         </FadeAnimation>

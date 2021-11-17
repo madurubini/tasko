@@ -6,8 +6,11 @@ export const Container = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    margin-right: 80px;
     background-color: rgba(0, 0, 0, 0.7);
+
+    @media (min-width: 1024px) {
+        margin-right: 80px;
+    }
 `;
 
 export const Logo = styled.div`
