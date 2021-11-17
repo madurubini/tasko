@@ -2,6 +2,7 @@ import { LoginCard } from '../../components/LoginCard';
 import Logo from '../../assets/image/logo.png';
 import clipArt from './../../assets/image/GreenMan.png';
 import { CardBox, ClipArtBox, LogoHeader, MainContainer } from './styles';
+import { motion } from 'framer-motion';
 
 const Login = () => {
     return (
@@ -10,14 +11,28 @@ const Login = () => {
                 <img src={Logo} alt="logo"></img>
             </LogoHeader>
             <MainContainer>
-                <CardBox>
-                    <LoginCard />
-                </CardBox>
-                <ClipArtBox>
-                    <picture>
-                        <img src={clipArt} alt="" />
-                    </picture>
-                </ClipArtBox>
+                <motion.div
+                    initial={{ x: -400, y: '15vh' }}
+                    animate={{ x: 10 }}
+                    exit={{ x: -400 }}
+                    transition={{ duration: 1.5 }}
+                >
+                    <CardBox>
+                        <LoginCard />
+                    </CardBox>
+                </motion.div>
+                <motion.div
+                    initial={{ x: 400, y: '10vh' }}
+                    animate={{ x: '0vw' }}
+                    exit={{ x: 400 }}
+                    transition={{ duration: 1.5 }}
+                >
+                    <ClipArtBox>
+                        <picture>
+                            <img src={clipArt} alt="" />
+                        </picture>
+                    </ClipArtBox>
+                </motion.div>
             </MainContainer>
         </>
     );
