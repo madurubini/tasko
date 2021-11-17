@@ -3,6 +3,7 @@ import Logo from '../../assets/image/logo.png';
 import { BiMenu } from 'react-icons/bi';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const Header = () => {
     const [showLinks, setShowLinks] = useState(false);
@@ -21,7 +22,12 @@ const Header = () => {
                 <BiMenu onClick={handleClick} />
 
                 {showLinks && (
-                    <div>
+                    <motion.div
+                        initial={{ y: -15, x: '50vw' }}
+                        animate={{ y: 5 }}
+                        exit={{ y: -150 }}
+                        transition={{ duration: 1 }}
+                    >
                         <Link to="/comunidade">
                             <p>Comunidade</p>
                         </Link>
@@ -31,7 +37,8 @@ const Header = () => {
                         <Link to="/login">
                             <p>Login</p>
                         </Link>
-                    </div>
+                        <C.CloseMenu onClick={() => setShowLinks(false)} />
+                    </motion.div>
                 )}
 
                 <C.Links>

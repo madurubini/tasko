@@ -1,4 +1,3 @@
-import { Button } from '@chakra-ui/button';
 import { Input } from '@chakra-ui/input';
 import styled from 'styled-components';
 import Diamond from '../../assets/diamond.svg';

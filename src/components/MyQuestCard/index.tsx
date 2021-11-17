@@ -1,5 +1,4 @@
 import { Dispatch, SetStateAction } from 'react';
-import { MdDeleteForever } from 'react-icons/md';
 import { useComments } from '../../providers/Comments';
 import { useQuestions } from '../../providers/Questions';
 import { EditQuestion } from '../../types/questions';

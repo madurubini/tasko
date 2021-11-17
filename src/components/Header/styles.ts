@@ -1,3 +1,4 @@
+import { MdArrowDropUp } from 'react-icons/md';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -6,6 +7,7 @@ export const Container = styled.div`
     align-items: center;
     padding: 20px;
     margin-right: 80px;
+    background-color: rgba(0, 0, 0, 0.7);
 `;
 
 export const Logo = styled.div`
@@ -60,4 +62,8 @@ export const Links = styled.nav`
         display: flex;
         gap: 20px;
     }
+`;
+
+export const CloseMenu = styled(MdArrowDropUp)`
+    color: white;
 `;
