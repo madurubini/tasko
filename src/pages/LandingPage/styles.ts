@@ -25,6 +25,7 @@ export const Container = styled.div`
     h1 {
         font-size: 40px;
         text-align: center;
+        font-family: 'Inter';
     }
 
     @media (min-width: 1024px) {
@@ -75,7 +76,8 @@ export const Info = styled.div`
     @media (min-width: 1024px) {
         flex-direction: row;
         justify-content: space-around;
-        width: 100%;
+        width: 95%;
+        margin: 0 auto;
     }
 `;
 
@@ -95,16 +97,25 @@ export const Team = styled.section`
 `;
 
 export const Members = styled.div`
+    text-align: center;
+    font-family: 'Inter';
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    font-size: 14px;
+    align-items: center;
+    justify-content: center;
+
     img {
         width: 100px;
-        margin-bottom: 20px;
+        margin-bottom: 5px;
     }
 
     div {
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 15px;
+        gap: 10px;
         svg {
             font-size: 30px;
             cursor: pointer;

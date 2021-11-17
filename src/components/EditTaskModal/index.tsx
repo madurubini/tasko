@@ -3,17 +3,14 @@ import { useState } from 'react';
 import { useTasks } from '../../providers/Tasks';
 import { TasksProps } from '../../types/tasks';
 import {
-    BoxInputEdit,
     CloseModal,
     ContainerBoxModal,
     EditButton,
     EditInputBox,
     FormContainer,
-    InputBox,
     SelectEdit,
     TitleModal,
 } from '../AddTaskModal/styles';
-import { MenuButton } from '../MenuDesktop/styles';
 
 interface EditTaskModalProps {
     setShowEditModal: React.Dispatch<React.SetStateAction<Boolean>>;

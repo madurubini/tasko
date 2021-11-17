@@ -24,6 +24,7 @@ import { useState } from 'react';
 import AddQuestModal from '../../components/AddQuestModal';
 import EditQuestModal from '../../components/EditQuestModal';
 import { EditQuestion } from '../../types/questions';
+import { useHistory } from 'react-router';
 
 const Community = () => {
     const [editQuestion, setEditQuestion] = useState<EditQuestion>(
@@ -32,11 +33,17 @@ const Community = () => {
     const [openModal, setOpenModal] = useState<boolean>(false);
     const { allQuestions, userQuests } = useQuestions();
 
+    const history = useHistory();
+
     return (
         <main>
             <Header>
                 <LogoHeader>
-                    <img src={logo} alt="Tasko" />
+                    <img
+                        src={logo}
+                        alt="Tasko"
+                        onClick={() => history.push('/dashboard')}
+                    />
                 </LogoHeader>
             </Header>
             <section>

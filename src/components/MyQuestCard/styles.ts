@@ -60,16 +60,31 @@ export const EditIcons = styled(MdOutlineEditNote)`
     margin: 0 10px;
     color: var(--yellowToast);
     font-size: 25px;
+    cursor: pointer;
+
+    :hover {
+        filter: brightness(0.9);
+    }
 `;
 
 export const CommentIcons = styled(BiCommentDetail)`
     margin: 0 10px;
     color: var(--greenToast);
     font-size: 20px;
+    cursor: pointer;
+
+    :hover {
+        filter: brightness(0.9);
+    }
 `;
 
 export const DeleteButton = styled(MdDeleteForever)`
     margin: 0 10px;
     color: var(--redToast);
     font-size: 20px;
+    cursor: pointer;
+
+    :hover {
+        filter: brightness(0.9);
+    }
 `;

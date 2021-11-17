@@ -52,6 +52,7 @@ export const LogoHeader = styled.div`
 
     img {
         width: 180px;
+        cursor: pointer;
     }
 
     @media (min-width: 1024px) {

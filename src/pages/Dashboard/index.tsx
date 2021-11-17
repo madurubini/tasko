@@ -11,7 +11,7 @@ import {
 import { useTasks } from '../../providers/Tasks';
 import MenuMobile from '../../components/MenuMobile';
 import { LogoHeader } from '../Login/styles';
-import { Container, LogoBox, Main, SubTitle } from './styles';
+import { Container, Main, SubTitle } from './styles';
 import { useBadges } from '../../providers/Badges';
 import CardBadge from '../../components/CardBadge';
 import MenuDesktop from '../../components/MenuDesktop';
@@ -20,13 +20,14 @@ import { useState } from 'react';
 import { AddButtonBox, ButtonBox } from '../../components/AddTaskModal/styles';
 import { useUser } from '../../providers/User';
 import { Button } from '@chakra-ui/button';
-import { Redirect } from 'react-router';
+import { Redirect, useHistory } from 'react-router';
 
 const Dashboard = () => {
     const { tasks, setShowEditModal, showEditModal, getUserTasks } = useTasks();
     const { controllBadges } = useBadges();
-    const { id , auth} = useUser();
+    const { id, auth } = useUser();
 
+    const history = useHistory();
 
     const [showAddModal, setShowAddModal] = useState<Boolean>(false);
     const [showCompletedTasks, setShowCompletedTasks] =
@@ -39,7 +40,11 @@ const Dashboard = () => {
     return (
         <>
             <LogoHeader>
-                <img src={logo} alt="logo"></img>
+                <img
+                    src={logo}
+                    alt="logo"
+                    onClick={() => history.push('/dashboard')}
+                ></img>
             </LogoHeader>
             <Container>
                 <MenuDesktop />
@@ -51,19 +56,19 @@ const Dashboard = () => {
                         <AddIcon onClick={() => setShowAddModal(true)} />
                         <Button
                             onClick={() => {
-                                setShowCompletedTasks(true);
-                                getUserTasks(id);
-                            }}
-                        >
-                            Finalizadas
-                        </Button>
-                        <Button
-                            onClick={() => {
                                 setShowCompletedTasks(false);
                                 getUserTasks(id);
                             }}
                         >
                             Pendentes
+                        </Button>
+                        <Button
+                            onClick={() => {
+                                setShowCompletedTasks(true);
+                                getUserTasks(id);
+                            }}
+                        >
+                            Finalizadas
                         </Button>
                     </ButtonBox>
 

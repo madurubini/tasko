@@ -20,6 +20,7 @@ export const LogoHeader = styled.picture`
 
     img {
         width: 180px;
+        cursor: pointer;
     }
 `;
 

@@ -34,7 +34,7 @@ export default createGlobalStyle`
     html, body {
         max-width: 100vw;
         min-height: 100vh;
-        font-family: 'Oxanium', cursive;
+        font-family: 'Oxanium', cursive !important;
        
     }
 

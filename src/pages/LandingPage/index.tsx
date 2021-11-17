@@ -1,8 +1,4 @@
 import * as C from './styles';
-import Phone from '../../assets/image/phone.png';
-import Moon from '../../assets/image/moon.png';
-import Chat from '../../assets/image/chat.png';
-import Zero from '../../assets/image/zero.png';
 
 import Will from '../../assets/image/will.png';
 import Madu from '../../assets/image/madu.png';
@@ -21,7 +17,6 @@ import Header from '../../components/Header';
 import { RegisterCard } from '../../components/RegisterCard';
 import Lottie from 'react-lottie';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 const LandingPage = () => {
     const [animationState] = useState({
@@ -73,8 +68,6 @@ const LandingPage = () => {
             preserveAspectRatio: 'xMidYMid slice',
         },
     };
-
-    const sendTo = (path: string) => <Link to={path} />;
 
     return (
         <C.MainContainer>
@@ -129,8 +122,9 @@ const LandingPage = () => {
 
                     <C.Info>
                         <p>
-                            Ganhe pontos para cada tarefa concluída, com ele
-                            você pode conseguir as conquistas da plataforma!
+                            Ganhe pontos de experiência para cada tarefa
+                            concluída, desta forma você pode desbloquear as
+                            novas conquistas da plataforma!
                         </p>
                         <Lottie
                             options={communityOptions}
@@ -144,9 +138,9 @@ const LandingPage = () => {
 
                     <C.Info>
                         <p>
-                            Participe da nossa comunidade! La você poderá tirar
-                            suas dúvidas sobre os mais diversos assuntos. Como
-                            também ajudar outras pessoas!
+                            Participe da nossa comunidade! Lá é possível tirar
+                            suas dúvidas sobre os mais diversos assuntos. Além
+                            de contar com uma galera disposta à ajudar!
                         </p>
                         <Lottie
                             options={counterOptions}
@@ -163,6 +157,8 @@ const LandingPage = () => {
                 <C.Team>
                     <C.Members>
                         <img src={Madu} alt="" />
+                        <h3>Madu R.</h3>
+                        <p>Tech Leader</p>
                         <div>
                             <a
                                 href="https://github.com/madurubini"
@@ -184,6 +180,8 @@ const LandingPage = () => {
 
                     <C.Members>
                         <img src={Will} alt="" />
+                        <h3>Willian S.</h3>
+                        <p>Product Owner</p>
                         <div>
                             <a
                                 href="https://github.com/WillianSantosC"
@@ -206,6 +204,8 @@ const LandingPage = () => {
 
                     <C.Members>
                         <img src={Lucas} alt="" />
+                        <h3>Lucas B.</h3>
+                        <p>Scrum Master</p>
                         <div>
                             <a
                                 href="https://github.com/lucaselias99
@@ -228,6 +228,8 @@ const LandingPage = () => {
 
                     <C.Members>
                         <img src={Emanuel} alt="" />
+                        <h3>Emanuel M.</h3>
+                        <p>Quality Assurance</p>
                         <div>
                             <a
                                 href="https://github.com/emanuelz-martins"
@@ -250,6 +252,8 @@ const LandingPage = () => {
 
                     <C.Members>
                         <img src={Julia} alt="" />
+                        <h3>Julia O.</h3>
+                        <p>Quality Assurance</p>
                         <div>
                             <a
                                 href="https://github.com/juliagamaol"
