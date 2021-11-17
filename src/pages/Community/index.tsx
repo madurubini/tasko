@@ -25,6 +25,7 @@ import AddQuestModal from '../../components/AddQuestModal';
 import EditQuestModal from '../../components/EditQuestModal';
 import { EditQuestion } from '../../types/questions';
 import { useHistory } from 'react-router';
+import { FadeAnimation } from '../../components/FadeAnimation';
 
 const Community = () => {
     const [editQuestion, setEditQuestion] = useState<EditQuestion>(
@@ -36,7 +37,7 @@ const Community = () => {
     const history = useHistory();
 
     return (
-        <main>
+        <FadeAnimation>
             <Header>
                 <LogoHeader>
                     <img
@@ -109,7 +110,7 @@ const Community = () => {
                     </MyQuestionsTab>
                 </section>
             </GlobalSection>
-        </main>
+        </FadeAnimation>
     );
 };
 

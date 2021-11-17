@@ -21,6 +21,7 @@ import { AddButtonBox, ButtonBox } from '../../components/AddTaskModal/styles';
 import { useUser } from '../../providers/User';
 import { Button } from '@chakra-ui/button';
 import { Redirect, useHistory } from 'react-router';
+import { FadeAnimation } from '../../components/FadeAnimation';
 
 const Dashboard = () => {
     const { tasks, setShowEditModal, showEditModal, getUserTasks } = useTasks();
@@ -38,7 +39,7 @@ const Dashboard = () => {
     }
 
     return (
-        <>
+        <FadeAnimation>
             <LogoHeader>
                 <img
                     src={logo}
@@ -125,7 +126,7 @@ const Dashboard = () => {
                     <MenuMobile />
                 </Main>
             </Container>
-        </>
+        </FadeAnimation>
     );
 };
 
