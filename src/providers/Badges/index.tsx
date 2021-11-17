@@ -20,6 +20,11 @@ import Quest from '../../assets/uncertainty.svg';
 import { useQuestions } from '../Questions';
 import { useComments } from '../Comments';
 
+// @ts-ignore
+import Trophy from '../../assets/audio/Trophy.mp3';
+import useSound from 'use-sound';
+import toast from 'react-hot-toast';
+
 interface BadgeContextProps {
     controllBadges: BadgeProps[];
 }
@@ -33,6 +38,7 @@ export const BadgeProvider = ({ children }: ChildrenProps) => {
     const { userLevel } = useLevels();
     const { userQuests } = useQuestions();
     const { userComments } = useComments();
+    const [play] = useSound(Trophy, { volume: 0.5 });
 
     const badge = {
         title: 'Novo no pedaço',

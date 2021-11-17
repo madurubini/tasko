@@ -30,11 +30,33 @@ export const QuestionsProvider = ({ children }: ChildrenProps) => {
                 },
             })
             .then((_) => {
-                console.log('Nova pergunta postada!');
+                toast('Nova pergunta postada!', {
+                    icon: '❓',
+                    style: {
+                        border: '2px groove #008000',
+                        borderRadius: '10px',
+                        background: '#333',
+                        color: '#008000',
+                        fontFamily: 'Press Start 2P',
+                        fontWeight: 'bold',
+                    },
+                });
                 getAllQuestions();
                 getUserQuestions(parseInt(id));
             })
-            .catch((_) => console.error('Falha ao postar nova pergunta'));
+            .catch((_) =>
+                toast('É preciso estar logado para perguntar!', {
+                    icon: '❌',
+                    style: {
+                        border: '2px groove #FF0000',
+                        borderRadius: '10px',
+                        background: '#333',
+                        color: '#FF0000',
+                        fontFamily: 'Press Start 2P',
+                        fontWeight: 'bold',
+                    },
+                }),
+            );
         console.log('quest', quest);
     };
 
@@ -74,17 +96,6 @@ export const QuestionsProvider = ({ children }: ChildrenProps) => {
                 .then(({ data }) => setAllQuestions([...data]))
                 .catch((error) => {
                     console.error('Pergunta não encontrada: ', error);
-                    toast('Pergunta não encontrada!', {
-                        icon: '🐍',
-                        style: {
-                            border: '2px groove #FFD700',
-                            borderRadius: '10px',
-                            background: '#333',
-                            color: '#FFD700',
-                            fontFamily: 'Press Start 2P',
-                            fontWeight: 'bold',
-                        },
-                    });
                 });
         },
         [auth],

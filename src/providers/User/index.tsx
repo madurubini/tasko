@@ -9,6 +9,7 @@ import toast from 'react-hot-toast';
 import request from './../../services/api';
 import { User, UserContextData, UserProps, Xp } from './../../types/user';
 import { History } from 'history';
+import Snake from '../../assets/image/snake.png';
 
 export const UserContext = createContext<UserContextData>(
     {} as UserContextData,
@@ -36,7 +37,7 @@ export const UserProvider = ({ children }: UserProps) => {
                 history.push('/dashboard');
 
                 toast('Bem vindo!', {
-                    icon: '🐍',
+                    icon: <img src={Snake} alt="" style={{ width: '20px' }} />,
                     style: {
                         border: '2px groove #008000',
                         borderRadius: '10px',
@@ -50,7 +51,7 @@ export const UserProvider = ({ children }: UserProps) => {
             .catch((error) => {
                 console.error('Miss', error);
                 toast('Email ou senha incorretos!', {
-                    icon: '🐍',
+                    icon: <img src={Snake} alt="" style={{ width: '20px' }} />,
                     style: {
                         border: '2px groove #FF0000',
                         borderRadius: '10px',
@@ -74,7 +75,7 @@ export const UserProvider = ({ children }: UserProps) => {
             .post(`/users`, user)
             .then((_) => {
                 toast('Cadastro realizado com sucesso!', {
-                    icon: '🐍',
+                    icon: <img src={Snake} alt="" style={{ width: '20px' }} />,
                     style: {
                         border: '2px groove #008000',
                         borderRadius: '10px',

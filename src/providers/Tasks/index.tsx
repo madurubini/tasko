@@ -14,6 +14,7 @@ import useSound from 'use-sound';
 
 // @ts-ignore
 import NewTask from '../../assets/audio/new-task.wav';
+import Snake from '../../assets/image/snake.png';
 
 interface TitleProps {
     title: string;
@@ -65,7 +66,7 @@ export const TasksProvider = ({ children }: ChildrenProps) => {
                 getUserTasks(id);
 
                 toast('Nova quest criada!', {
-                    icon: '🐍',
+                    icon: <img src={Snake} alt="" style={{ width: '20px' }} />,
                     style: {
                         border: '2px groove #008000',
                         borderRadius: '10px',
@@ -94,7 +95,7 @@ export const TasksProvider = ({ children }: ChildrenProps) => {
                 patchXp(xpPoints);
 
                 toast('Quest finalizada!', {
-                    icon: '🐍',
+                    icon: <img src={Snake} alt="" style={{ width: '20px' }} />,
                     style: {
                         border: '2px groove #008000',
                         borderRadius: '10px',
@@ -118,7 +119,7 @@ export const TasksProvider = ({ children }: ChildrenProps) => {
                 console.log(res);
                 getUserTasks(id);
                 toast('Quest atualizada!', {
-                    icon: '🐍',
+                    icon: <img src={Snake} alt="" style={{ width: '20px' }} />,
                     style: {
                         border: '2px groove #FFD700',
                         borderRadius: '10px',
@@ -142,7 +143,7 @@ export const TasksProvider = ({ children }: ChildrenProps) => {
                 console.log(res);
                 getUserTasks(id);
                 toast('Quest excluída!', {
-                    icon: '🐍',
+                    icon: <img src={Snake} alt="" style={{ width: '20px' }} />,
                     style: {
                         border: '2px groove #FF0000',
                         borderRadius: '10px',
