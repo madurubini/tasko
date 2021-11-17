@@ -12,9 +12,9 @@ const Login = () => {
             </LogoHeader>
             <MainContainer>
                 <motion.div
-                    initial={{ x: -400, y: '15vh' }}
-                    animate={{ x: 10 }}
-                    exit={{ x: -400 }}
+                    initial={{ x: -300, y: '15vh' }}
+                    animate={{ x: 0 }}
+                    exit={{ x: -300 }}
                     transition={{ duration: 1.5 }}
                 >
                     <CardBox>
