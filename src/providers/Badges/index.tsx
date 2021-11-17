@@ -5,7 +5,6 @@ import {
     useEffect,
     useState,
 } from 'react';
-import api from '../../services/api';
 import { BadgeProps } from '../../types/badge';
 import { ChildrenProps } from '../../types/children';
 import { useLevels } from '../Levels';
@@ -18,6 +17,8 @@ import Nest from '../../assets/new-born.svg';
 import Community from '../../assets/comunidade.svg';
 import Bottle from '../../assets/water-bottle.svg';
 import Quest from '../../assets/uncertainty.svg';
+import { useQuestions } from '../Questions';
+import { useComments } from '../Comments';
 
 interface BadgeContextProps {
     controllBadges: BadgeProps[];
@@ -28,8 +29,10 @@ export const BadgeContext = createContext<BadgeContextProps>(
 );
 
 export const BadgeProvider = ({ children }: ChildrenProps) => {
-    const { auth, id } = useUser();
+    const { id } = useUser();
     const { userLevel } = useLevels();
+    const { userQuests } = useQuestions();
+    const { userComments } = useComments();
 
     const badge = {
         title: 'Novo no pedaço',
@@ -90,6 +93,10 @@ export const BadgeProvider = ({ children }: ChildrenProps) => {
         if (userLevel?.level >= 10 && !filteredBadge(badge3)) {
             setControllBadges([...controllBadges, badge3]);
         }
+
+        if (controllBadges.length >= 8) {
+            return controllBadges;
+        }
     }, [userLevel?.level, controllBadges, filteredBadge, id]);
 
     useEffect(() => {
@@ -97,74 +104,68 @@ export const BadgeProvider = ({ children }: ChildrenProps) => {
     }, [getUserBadgeLevel]);
 
     const getUserBadgesComments = useCallback(() => {
-        api.get(`/users/${id}/comments`, {
-            headers: {
-                Authorization: `Bearer ${auth}`,
-            },
-        }).then((res) => {
-            const badge1 = {
-                title: 'Questionad@r',
-                img: Quest,
-                description: 'Você fez sua primeira pergunta na comunidade!',
-                BadgeId: 2,
-                status: false,
-                userId: id,
-            };
+        const badge1 = {
+            title: 'Questionad@r',
+            img: Quest,
+            description: 'Você fez sua primeira pergunta na comunidade!',
+            BadgeId: 2,
+            status: false,
+            userId: id,
+        };
 
-            const badge2 = {
-                title: 'Fofoqueir@',
-                img: Gossip,
-                description: 'Você fez +5 comentários',
-                BadgeId: 8,
-                status: false,
-                userId: id,
-            };
+        const badge2 = {
+            title: 'Fofoqueir@',
+            img: Gossip,
+            description: 'Você fez +5 comentários',
+            BadgeId: 8,
+            status: false,
+            userId: id,
+        };
 
-            if (res.data.length >= 1 && !filteredBadge(badge1)) {
-                console.log(res.data);
-                setControllBadges([...controllBadges, badge1]);
-            }
-            if (res.data.length >= 5 && !filteredBadge(badge2)) {
-                setControllBadges([...controllBadges, badge2]);
-            }
-        });
-    }, [auth, id, controllBadges, filteredBadge]);
+        if (userComments.length >= 1 && !filteredBadge(badge1)) {
+            setControllBadges([...controllBadges, badge1]);
+        }
+        if (userComments.length >= 5 && !filteredBadge(badge2)) {
+            setControllBadges([...controllBadges, badge2]);
+        }
+
+        if (controllBadges.length >= 8) {
+            return controllBadges;
+        }
+    }, [id, controllBadges, filteredBadge, userComments]);
     useEffect(() => {
         getUserBadgesComments();
     }, [getUserBadgesComments]);
 
     const getUserBadgesQuest = useCallback(() => {
-        api.get(`/users/${id}/quests`, {
-            headers: {
-                Authorization: `Bearer ${auth}`,
-            },
-        }).then((res) => {
-            const badge1 = {
-                title: 'Parceir@',
-                img: Partner,
-                description:
-                    'Você fez seu primeiro comentário em uma pergunta!',
-                BadgeId: 3,
-                status: false,
-                userId: id,
-            };
-            const badge2 = {
-                title: 'Voz da Comunidade',
-                img: Community,
-                description: 'Você fez +5 perguntas na comunidade',
-                BadgeId: 7,
-                status: false,
-                userId: id,
-            };
+        const badge1 = {
+            title: 'Parceir@',
+            img: Partner,
+            description: 'Você fez seu primeiro comentário em uma pergunta!',
+            BadgeId: 3,
+            status: false,
+            userId: id,
+        };
+        const badge2 = {
+            title: 'Voz da Comunidade',
+            img: Community,
+            description: 'Você fez +5 perguntas na comunidade',
+            BadgeId: 7,
+            status: false,
+            userId: id,
+        };
 
-            if (res.data.length >= 1 && !filteredBadge(badge1)) {
-                setControllBadges([...controllBadges, badge1]);
-            }
-            if (res.data.length >= 5 && !filteredBadge(badge2)) {
-                setControllBadges([...controllBadges, badge2]);
-            }
-        });
-    }, [auth, id, controllBadges, filteredBadge]);
+        if (userQuests.length >= 1 && !filteredBadge(badge1)) {
+            setControllBadges([...controllBadges, badge1]);
+        }
+        if (userQuests.length >= 5 && !filteredBadge(badge2)) {
+            setControllBadges([...controllBadges, badge2]);
+        }
+
+        if (controllBadges.length >= 8) {
+            return controllBadges;
+        }
+    }, [id, controllBadges, filteredBadge, userQuests]);
 
     useEffect(() => {
         getUserBadgesQuest();
