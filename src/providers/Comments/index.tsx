@@ -16,6 +16,8 @@ interface CommentsContextProps {
     editComment: (commentId: number, update: string) => void;
     getAllComments: () => void;
     getQuestComments: (id: number) => void;
+    getUserComments: (id: number) => void;
+    userComments: CommentsProps[];
 }
 
 export const CommentsContext = createContext<CommentsContextProps>(
@@ -27,7 +29,11 @@ export const CommentsProvider = ({ children }: ChildrenProps) => {
         [] as CommentsProps[],
     );
 
-    const { auth } = useUser();
+    const [userComments, setUserComments] = useState<CommentsProps[]>(
+        [] as CommentsProps[],
+    );
+
+    const { auth, id } = useUser();
 
     const addComment = (comment: string, userId: number, questId: number) => {
         const data = { comment: comment, questId: questId, userId: userId };
@@ -74,6 +80,26 @@ export const CommentsProvider = ({ children }: ChildrenProps) => {
             .catch((err) => console.log(err));
     };
 
+    const getUserComments = useCallback(
+        (id: number) => {
+            api.get(`/users/${id}/comments`, {
+                headers: {
+                    Authorization: `Bearer ${auth}`,
+                },
+            })
+                .then((res) => {
+                    console.log(res);
+                    setUserComments(res.data);
+                })
+                .catch((err) => console.log(err));
+        },
+        [auth],
+    );
+
+    useEffect(() => {
+        getUserComments(Number(id));
+    }, [getUserComments, id]);
+
     return (
         <CommentsContext.Provider
             value={{
@@ -82,6 +108,8 @@ export const CommentsProvider = ({ children }: ChildrenProps) => {
                 getQuestComments,
                 getAllComments,
                 comments,
+                getUserComments,
+                userComments,
             }}
         >
             {children}
