@@ -111,4 +111,5 @@ export const SelectEdit = styled.select`
     height: 30px;
     border-radius: 5px;
     padding: 5px;
+    cursor: pointer;
 `;

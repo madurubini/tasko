@@ -8,13 +8,17 @@ export const Container = styled.div`
     text-align: center;
     gap: 5px;
 
+    :hover {
+        filter: brightness(0.9);
+    }
+
     svg,
     svg path {
         cursor: pointer;
         color: #ff0000;
         font-size: 18px;
     }
-    
+
     span {
         color: white;
     }

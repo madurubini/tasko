@@ -50,4 +50,9 @@ export const CommentIcons = styled(BiCommentDetail)`
     margin: 0 3px 0 10px;
     color: var(--greenToast);
     font-size: 20px;
+    cursor: pointer;
+
+    :hover {
+        filter: brightness(0.9);
+    }
 `;

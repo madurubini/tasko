@@ -13,7 +13,6 @@ import {
     LevelsContextData,
     UserLevelProps,
 } from '../../types/levels';
-import { useBadges } from '../Badges';
 
 export const LevelsContext = createContext<LevelsContextData>(
     {} as LevelsContextData,

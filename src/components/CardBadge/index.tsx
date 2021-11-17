@@ -9,7 +9,9 @@ const CardBadge = ({ item }: BadgeInterface) => {
     return (
         <BadgeCard>
             <BadgeTitle>{item.title}</BadgeTitle>
-            <img src={item.img} alt="badge"></img>
+            <div className={item.title[0]}>
+                <img src={item.img} alt="badge"></img>
+            </div>
             <BadgeText>{item.description}</BadgeText>
         </BadgeCard>
     );
