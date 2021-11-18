@@ -26,6 +26,7 @@ import EditQuestModal from '../../components/EditQuestModal';
 import { EditQuestion } from '../../types/questions';
 import { useHistory } from 'react-router';
 import { FadeAnimation } from '../../components/FadeAnimation';
+import { useBadges } from '../../providers/Badges';
 
 const Community = () => {
     const [editQuestion, setEditQuestion] = useState<EditQuestion>(
@@ -33,6 +34,7 @@ const Community = () => {
     );
     const [openModal, setOpenModal] = useState<boolean>(false);
     const { allQuestions, userQuests } = useQuestions();
+    const { getUserBadgesComments, getUserBadgesQuest } = useBadges();
 
     const history = useHistory();
 
@@ -43,7 +45,11 @@ const Community = () => {
                     <img
                         src={logo}
                         alt="Tasko"
-                        onClick={() => history.push('/dashboard')}
+                        onClick={() => {
+                            history.push('/dashboard');
+                            getUserBadgesComments();
+                            getUserBadgesQuest();
+                        }}
                     />
                 </LogoHeader>
             </Header>

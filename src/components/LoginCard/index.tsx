@@ -24,6 +24,7 @@ import {
 import { useState } from 'react';
 import { InputGroup } from '@chakra-ui/input';
 import { BiHide, BiShowAlt } from 'react-icons/bi';
+import { useBadges } from '../../providers/Badges';
 
 export const LoginCard = () => {
     const emptyMessage = 'Este campo não pode estar vazio!';
@@ -43,6 +44,9 @@ export const LoginCard = () => {
     const { login } = useUser();
     const [showPassword, setShowPassword] = useState(false);
     const handleClick = () => setShowPassword(!showPassword);
+
+    const { getUserBadgesQuest, getUserBadgeLevel, getUserBadgesComments } =
+        useBadges();
 
     const handleCLick = (data: User) => {
         login(data, history);
@@ -84,7 +88,16 @@ export const LoginCard = () => {
                         <Error>{errors.password?.message}</Error>
                     </FormControl>
                 </InputGroup>
-                <LoginButton type="submit">Entrar</LoginButton>
+                <LoginButton
+                    type="submit"
+                    onClick={() => {
+                        getUserBadgeLevel();
+                        getUserBadgesComments();
+                        getUserBadgesQuest();
+                    }}
+                >
+                    Entrar
+                </LoginButton>
             </LoginForm>
             <DividerBlock>
                 <Hr />
