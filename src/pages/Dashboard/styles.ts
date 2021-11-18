@@ -56,5 +56,8 @@ export const Main = styled.div`
 
     @media (min-width: 1024px) {
         width: 85%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 `;

@@ -49,5 +49,12 @@ export const Logout = styled.footer`
     svg {
         font-size: 20px;
     }
-`;
 
+    @media (min-width: 768px) {
+        margin-top: 2em;
+    }
+
+    @media (min-width: 1024px) {
+        margin-top: 3.5em;
+    }
+`;
