@@ -5,7 +5,6 @@ export const Card = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-
     padding: 10px;
     margin: 1em 0;
     margin-inline: auto;

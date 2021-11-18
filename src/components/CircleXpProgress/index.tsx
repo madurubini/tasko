@@ -11,7 +11,7 @@ const CircleProgress = ({ children }: ChildrenProps) => {
     const [max, setMax] = useState<number>(0);
 
     const patchPercent = useCallback(() => {
-        switch (userLevel.level) {
+        switch (userLevel?.level) {
             case 0:
                 setMax(10);
                 break;
@@ -57,7 +57,7 @@ const CircleProgress = ({ children }: ChildrenProps) => {
                 break;
         }
         setPercent((xp * 100) / max);
-    }, [xp, max, userLevel.level]);
+    }, [xp, max, userLevel?.level]);
 
     useEffect(() => {
         patchPercent();

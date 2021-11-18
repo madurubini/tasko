@@ -10,9 +10,7 @@ import CircleProgress from '../CircleXpProgress';
 const MenuDesktop = () => {
     const history = useHistory();
     const { userLevel } = useLevels();
-    const { userName } = useUser();
-
-    console.log(userName);
+    const userName = localStorage.getItem('@username') || '';
 
     const { logout } = useUser();
 
@@ -27,7 +25,7 @@ const MenuDesktop = () => {
                     />
                 </CircleProgress>
                 <h3>{userName}</h3>
-                <p>Título: {userLevel.title}</p>
+                <p>Título: {userLevel?.title}</p>
                 <p>Level: {userLevel?.level}</p>
             </div>
             <VStack spacing="5">

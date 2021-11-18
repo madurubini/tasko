@@ -19,7 +19,9 @@ interface UserStatusModalProps {
 const UserStatusModal = ({ setShowStatusModal }: UserStatusModalProps) => {
     const history = useHistory();
     const { userLevel } = useLevels();
-    const { logout, userName } = useUser();
+    const { logout } = useUser();
+
+    const userName = localStorage.getItem('@username') || '';
 
     return (
         <ContainerStatusModal>
@@ -38,7 +40,7 @@ const UserStatusModal = ({ setShowStatusModal }: UserStatusModalProps) => {
                         />
                     </CircleProgress>
                     <h3>{userName}</h3>
-                    <p>Título: {userLevel.title}</p>
+                    <p>Título: {userLevel?.title}</p>
                     <p>Level: {userLevel?.level}</p>
                 </div>
 

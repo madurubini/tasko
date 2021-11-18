@@ -22,7 +22,6 @@ const EditTaskModal = ({ setShowEditModal, item }: EditTaskModalProps) => {
         title: item.title,
         xp: 1,
     });
-    console.log(item);
 
     const { updateTask } = useTasks();
 
