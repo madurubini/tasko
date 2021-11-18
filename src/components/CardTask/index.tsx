@@ -35,18 +35,20 @@ const CardTask = ({
                     {item.finished === true ? (
                         <p></p>
                     ) : (
-                        <MdOutlineModeEditOutline
-                            onClick={() => {
-                                setShowEditModal(true);
-                                setItemToEdit(item);
-                            }}
-                        ></MdOutlineModeEditOutline>
+                        <>
+                            <MdOutlineModeEditOutline
+                                onClick={() => {
+                                    setShowEditModal(true);
+                                    setItemToEdit(item);
+                                }}
+                            ></MdOutlineModeEditOutline>
+                            <MdOutlineDeleteForever
+                                onClick={() => {
+                                    deleteTask(Number(item.id));
+                                }}
+                            />
+                        </>
                     )}
-                    <MdOutlineDeleteForever
-                        onClick={() => {
-                            deleteTask(Number(item.id));
-                        }}
-                    />
                 </SubMenu>
 
                 <Title>{item.title}</Title>

@@ -6,13 +6,29 @@ import { useLevels } from '../../providers/Levels';
 import { FaPowerOff } from 'react-icons/fa';
 import { useUser } from '../../providers/User';
 import CircleProgress from '../CircleXpProgress';
+import Headset from '../../assets/headset.svg';
+import { useQuestions } from '../../providers/Questions';
+import { useComments } from '../../providers/Comments';
+import { useBadges } from '../../providers/Badges';
 
 const MenuDesktop = () => {
     const history = useHistory();
     const { userLevel } = useLevels();
     const userName = localStorage.getItem('@username') || '';
 
-    const { logout } = useUser();
+    const { logout, id } = useUser();
+    const { getAllQuestions } = useQuestions();
+    const { getAllComments } = useComments();
+    const { setControllBadges } = useBadges();
+
+    const badge = {
+        title: 'Novo no pedaço',
+        img: Headset,
+        description: 'Você fez seu primeiro login!',
+        BadgeId: 1,
+        status: false,
+        userId: id,
+    };
 
     return (
         <Container>
@@ -29,13 +45,23 @@ const MenuDesktop = () => {
                 <p>Level: {userLevel?.level}</p>
             </div>
             <VStack spacing="5">
-                <MenuButton onClick={() => history.push('/comunidade')}>
+                <MenuButton
+                    onClick={() => {
+                        history.push('/comunidade');
+                        getAllQuestions();
+                        getAllComments();
+                    }}
+                >
                     Comunidade
                 </MenuButton>
-                <MenuButton>Status</MenuButton>
             </VStack>
 
-            <Logout onClick={logout}>
+            <Logout
+                onClick={() => {
+                    setControllBadges([badge]);
+                    logout();
+                }}
+            >
                 <FaPowerOff />
                 <p>Logout</p>
             </Logout>

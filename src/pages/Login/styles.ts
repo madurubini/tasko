@@ -4,7 +4,6 @@ export const MainContainer = styled.main`
     display: flex;
     justify-content: center;
     background-color: var(--background);
-    min-height: 80vh;
     max-width: 1440px;
     margin: 0 auto;
 
@@ -34,6 +33,11 @@ export const ClipArtBox = styled.section`
         align-items: center;
         width: 500px;
     }
+
+    img {
+        max-width: 85%;
+        margin: 0 auto;
+    }
 `;
 
 export const LogoBox = styled.div`
@@ -48,7 +52,6 @@ export const LogoHeader = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin-bottom: 10px;
 
     img {
         width: 180px;
@@ -71,8 +74,14 @@ export const LogoHeader = styled.div`
     @media (min-width: 1024px) {
         right: 10px;
         justify-content: flex-end;
-        position: fixed;
+               position: fixed;
 
+    }
+
+ 
+
+
+    @media (min-width: 768px) {
         div {
             display: none;
         }

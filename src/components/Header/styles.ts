@@ -7,10 +7,6 @@ export const Container = styled.div`
     align-items: center;
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.7);
-
-    @media (min-width: 1024px) {
-        margin-right: 80px;
-    }
 `;
 
 export const Logo = styled.div`
@@ -64,6 +60,7 @@ export const Links = styled.nav`
     @media (min-width: 1024px) {
         display: flex;
         gap: 20px;
+        margin-right: 100px;
     }
 `;
 

@@ -26,11 +26,16 @@ import { FaUsers } from 'react-icons/fa';
 import UserStatusModal from '../../components/UserStatusModal';
 import EditTaskModal from '../../components/EditTaskModal';
 import { TasksProps } from '../../types/tasks';
+import { useQuestions } from '../../providers/Questions';
+import { useComments } from '../../providers/Comments';
 
 const Dashboard = () => {
     const { tasks, setShowEditModal, showEditModal, getUserTasks } = useTasks();
     const { controllBadges } = useBadges();
     const { id, auth } = useUser();
+    const { getAllQuestions } = useQuestions();
+    const { getAllComments } = useComments();
+
     const [showStatusModal, setShowStatusModal] = useState<Boolean>(false);
     const history = useHistory();
 
@@ -54,7 +59,13 @@ const Dashboard = () => {
                 ></img>
                 <div>
                     <BiUserCircle onClick={() => setShowStatusModal(true)} />
-                    <FaUsers onClick={() => history.push('/comunidade')} />
+                    <FaUsers
+                        onClick={() => {
+                            history.push('/comunidade');
+                            getAllQuestions();
+                            getAllComments();
+                        }}
+                    />
                 </div>
             </LogoHeader>
             {showStatusModal && (

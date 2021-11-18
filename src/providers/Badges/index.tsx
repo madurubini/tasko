@@ -22,6 +22,10 @@ import { useComments } from '../Comments';
 
 interface BadgeContextProps {
     controllBadges: BadgeProps[];
+    setControllBadges: React.Dispatch<React.SetStateAction<BadgeProps[]>>;
+    getUserBadgesQuest: () => void;
+    getUserBadgesComments: () => void;
+    getUserBadgeLevel: () => void;
 }
 
 export const BadgeContext = createContext<BadgeContextProps>(
@@ -105,10 +109,10 @@ export const BadgeProvider = ({ children }: ChildrenProps) => {
 
     const getUserBadgesComments = useCallback(() => {
         const badge1 = {
-            title: 'Questionad@r',
-            img: Quest,
-            description: 'Você fez sua primeira pergunta na comunidade!',
-            BadgeId: 2,
+            title: 'Parceir@',
+            img: Partner,
+            description: 'Você fez seu primeiro comentário em uma pergunta!',
+            BadgeId: 3,
             status: false,
             userId: id,
         };
@@ -139,13 +143,14 @@ export const BadgeProvider = ({ children }: ChildrenProps) => {
 
     const getUserBadgesQuest = useCallback(() => {
         const badge1 = {
-            title: 'Parceir@',
-            img: Partner,
-            description: 'Você fez seu primeiro comentário em uma pergunta!',
-            BadgeId: 3,
+            title: 'Questionad@r',
+            img: Quest,
+            description: 'Você fez sua primeira pergunta na comunidade!',
+            BadgeId: 2,
             status: false,
             userId: id,
         };
+
         const badge2 = {
             title: 'Voz da Comunidade',
             img: Community,
@@ -175,6 +180,10 @@ export const BadgeProvider = ({ children }: ChildrenProps) => {
         <BadgeContext.Provider
             value={{
                 controllBadges,
+                getUserBadgesComments,
+                getUserBadgesQuest,
+                getUserBadgeLevel,
+                setControllBadges,
             }}
         >
             {children}
