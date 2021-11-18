@@ -23,17 +23,13 @@ import { Redirect, useHistory } from 'react-router';
 import { FadeAnimation } from '../../components/FadeAnimation';
 import { BiUserCircle } from 'react-icons/bi';
 import { FaUsers } from 'react-icons/fa';
+import UserStatusModal from '../../components/UserStatusModal';
 
 const Dashboard = () => {
     const { tasks, setShowEditModal, showEditModal, getUserTasks } = useTasks();
     const { controllBadges } = useBadges();
     const { id, auth } = useUser();
-    const [objTask, setObjTask] = useState();
-
-    const handleClick = (t: any) => {
-        setObjTask(t);
-    };
-
+    const [showStatusModal, setShowStatusModal] = useState<Boolean>(false);
     const history = useHistory();
 
     const [showAddModal, setShowAddModal] = useState<Boolean>(false);
@@ -53,10 +49,13 @@ const Dashboard = () => {
                     onClick={() => history.push('/dashboard')}
                 ></img>
                 <div>
-                    <BiUserCircle />
+                    <BiUserCircle onClick={() => setShowStatusModal(true)} />
                     <FaUsers onClick={() => history.push('/comunidade')} />
                 </div>
             </LogoHeader>
+            {showStatusModal && (
+                <UserStatusModal setShowStatusModal={setShowStatusModal} />
+            )}
             <Container>
                 <MenuDesktop />
                 <Main>
@@ -100,7 +99,7 @@ const Dashboard = () => {
                                           .map((item, index) => (
                                               <CardTask
                                                   key={index}
-                                                  item={objTask}
+                                                  item={item}
                                                   setShowEditModal={
                                                       setShowEditModal
                                                   }
@@ -112,22 +111,14 @@ const Dashboard = () => {
                                               (item) => item.finished === false,
                                           )
                                           .map((item, index) => (
-                                              <div
-                                                  onClick={() => {
-                                                      handleClick(item);
-                                                  }}
-                                              >
-                                                  <CardTask
-                                                      key={index}
-                                                      item={item}
-                                                      setShowEditModal={
-                                                          setShowEditModal
-                                                      }
-                                                      showEditModal={
-                                                          showEditModal
-                                                      }
-                                                  ></CardTask>
-                                              </div>
+                                              <CardTask
+                                                  key={index}
+                                                  item={item}
+                                                  setShowEditModal={
+                                                      setShowEditModal
+                                                  }
+                                                  showEditModal={showEditModal}
+                                              ></CardTask>
                                           ))}
                             </TasksContainer>
                         </AddButtonBox>
