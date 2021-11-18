@@ -11,20 +11,20 @@ import {
 import { SubMenu, TaskButton, TaskCard } from './style';
 import { useTasks } from '../../providers/Tasks';
 import { Title } from '../DifficultyCards/styles';
-import EditTaskModal from '../EditTaskModal';
-import { useState } from 'react';
 
 interface TasksInterface {
-    item: any;
+    item: TasksProps;
     setShowEditModal: React.Dispatch<React.SetStateAction<Boolean>>;
     showEditModal: Boolean;
     id?: number;
+    setItemToEdit?: any;
 }
 
 const CardTask = ({
     item,
     setShowEditModal,
     showEditModal,
+    setItemToEdit,
 }: TasksInterface) => {
     const { deleteTask, completeTask, getUserTasks } = useTasks();
 
@@ -38,6 +38,7 @@ const CardTask = ({
                         <MdOutlineModeEditOutline
                             onClick={() => {
                                 setShowEditModal(true);
+                                setItemToEdit(item);
                             }}
                         ></MdOutlineModeEditOutline>
                     )}
@@ -46,12 +47,6 @@ const CardTask = ({
                             deleteTask(Number(item.id));
                         }}
                     />
-                    {showEditModal && (
-                        <EditTaskModal
-                            setShowEditModal={setShowEditModal}
-                            item={item}
-                        />
-                    )}
                 </SubMenu>
 
                 <Title>{item.title}</Title>

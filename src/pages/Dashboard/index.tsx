@@ -24,6 +24,8 @@ import { FadeAnimation } from '../../components/FadeAnimation';
 import { BiUserCircle } from 'react-icons/bi';
 import { FaUsers } from 'react-icons/fa';
 import UserStatusModal from '../../components/UserStatusModal';
+import EditTaskModal from '../../components/EditTaskModal';
+import { TasksProps } from '../../types/tasks';
 
 const Dashboard = () => {
     const { tasks, setShowEditModal, showEditModal, getUserTasks } = useTasks();
@@ -31,6 +33,8 @@ const Dashboard = () => {
     const { id, auth } = useUser();
     const [showStatusModal, setShowStatusModal] = useState<Boolean>(false);
     const history = useHistory();
+
+    const [itemToEdit, setItemToEdit] = useState<TasksProps>({} as TasksProps);
 
     const [showAddModal, setShowAddModal] = useState<Boolean>(false);
     const [showCompletedTasks, setShowCompletedTasks] =
@@ -58,6 +62,12 @@ const Dashboard = () => {
             )}
             <Container>
                 <MenuDesktop />
+                {showEditModal && (
+                    <EditTaskModal
+                        setShowEditModal={setShowEditModal}
+                        item={itemToEdit}
+                    />
+                )}
                 <Main>
                     <SubTitle>
                         Quests <img src={Sword} alt="" />
@@ -118,6 +128,7 @@ const Dashboard = () => {
                                                       setShowEditModal
                                                   }
                                                   showEditModal={showEditModal}
+                                                  setItemToEdit={setItemToEdit}
                                               ></CardTask>
                                           ))}
                             </TasksContainer>
