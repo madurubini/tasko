@@ -9,11 +9,9 @@ context('task CRUD', () => {
         login();
         cy.get('svg[class="sc-nVkyK bYTxVD"]').click();
         cy.contains('Adicione uma nova Quest!');
-        cy.get('input[placeholder="Tirar o lixo..."]').type(
-            'Hmm bolho de murango',
-        );
+        cy.get('input[placeholder="Tirar o lixo..."]').type('Nova Tarefa');
         cy.contains('Adicionar Tarefa').click();
-        cy.contains('Hmm bolho de murango');
+        cy.contains('Nova Tarefa');
         cy.contains('Completar').click();
         deleteCreatedTask();
     });
@@ -23,11 +21,9 @@ context('task CRUD', () => {
 
         cy.get('svg[class="sc-nVkyK bYTxVD"]').click();
         cy.contains('Adicione uma nova Quest!');
-        cy.get('input[placeholder="Tirar o lixo..."]').type(
-            'Hmm bolho de murango',
-        );
+        cy.get('input[placeholder="Tirar o lixo..."]').type('Nova Tarefa');
         cy.contains('Adicionar Tarefa').click();
-        cy.contains('Hmm bolho de murango');
+        cy.contains('Nova Tarefa');
         cy.get('.sc-hiwPVj > :nth-child(1)').click();
         cy.get('.sc-jUosCB').select('Médio');
         cy.contains('Salvar Atualizações').click();
@@ -42,11 +38,9 @@ context('task CRUD', () => {
 
         cy.get('svg[class="sc-nVkyK bYTxVD"]').click();
         cy.contains('Adicione uma nova Quest!');
-        cy.get('input[placeholder="Tirar o lixo..."]').type(
-            'Hmm bolho de murango',
-        );
+        cy.get('input[placeholder="Tirar o lixo..."]').type('Nova Tarefa');
         cy.contains('Adicionar Tarefa').click();
-        cy.contains('Hmm bolho de murango');
+        cy.contains('Nova Tarefa');
         deleteCreatedTask();
     });
 });
