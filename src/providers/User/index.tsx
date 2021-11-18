@@ -33,7 +33,7 @@ export const UserProvider = ({ children }: UserProps) => {
                 localStorage.setItem('@token', data.accessToken);
                 localStorage.setItem('@id', data.user.id);
                 setId(data.user.id);
-                setUserName(data.user.name);
+                setUserName(data.user.firstName);
                 history.push('/dashboard');
 
                 toast('Bem vindo!', {

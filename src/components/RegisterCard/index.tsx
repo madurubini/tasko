@@ -30,7 +30,7 @@ export const RegisterCard = () => {
     const emptyMessage = 'Este campo não pode estar vazio!';
 
     const schema = yup.object().shape({
-        name: yup
+        firstName: yup
             .string()
             .required(emptyMessage)
             .min(3, 'Minimo 3 caracteres')
@@ -93,14 +93,14 @@ export const RegisterCard = () => {
                 <SubTitle>Faça seus dias melhores</SubTitle>
             </RegisterHeader>
             <RegisterForm onSubmit={handleSubmit(toSubmit)}>
-                <FormControl isInvalid={!!errors?.name}>
+                <FormControl isInvalid={!!errors?.firstName}>
                     <TextField
                         variant="filled"
                         type="text"
                         placeholder="Nome"
-                        {...register('name')}
+                        {...register('firstName')}
                     />
-                    <Error>{errors.name?.message}</Error>
+                    <Error>{errors.firstName?.message}</Error>
                 </FormControl>
                 <FormControl isInvalid={!!errors?.lastname}>
                     <TextField
