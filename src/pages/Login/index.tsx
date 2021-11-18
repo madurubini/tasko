@@ -15,7 +15,7 @@ const Login = () => {
             </LogoHeader>
             <MainContainer>
                 <motion.div
-                    initial={{ x: -300, y: '15vh' }}
+                    initial={{ x: -300, y: '30vh' }}
                     animate={{ x: 0 }}
                     exit={{ x: -300 }}
                     transition={{ duration: 1.5 }}
@@ -25,7 +25,7 @@ const Login = () => {
                     </CardBox>
                 </motion.div>
                 <motion.div
-                    initial={{ x: 400, y: '10vh' }}
+                    initial={{ x: 400, y: '25vh' }}
                     animate={{ x: '0vw' }}
                     exit={{ x: 400 }}
                     transition={{ duration: 1.5 }}

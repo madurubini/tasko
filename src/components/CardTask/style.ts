@@ -1,5 +1,9 @@
 import { Button } from '@chakra-ui/button';
-import { MdAdd } from 'react-icons/md';
+import {
+    MdAdd,
+    MdOutlineDeleteForever,
+    MdOutlineModeEditOutline,
+} from 'react-icons/md';
 import styled from 'styled-components';
 import Diamond from '../../assets/diamond.svg';
 
@@ -58,6 +62,20 @@ export const AddIcon = styled(MdAdd)`
 
     :hover {
         filter: brightness(0.8);
+    }
+`;
+
+export const EditIcon = styled(MdOutlineModeEditOutline)`
+    svg,
+    svg path {
+        color: var(--background) !important;
+    }
+`;
+
+export const DeleteForever = styled(MdOutlineDeleteForever)`
+    svg,
+    svg path {
+        color: var(--background) !important;
     }
 `;
 
