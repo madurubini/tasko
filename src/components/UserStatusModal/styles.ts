@@ -14,7 +14,7 @@ export const ContainerStatusModal = styled.div`
 
 export const ContainerStatus = styled.div`
     width: 269px;
-    height: 275px;
+    height: 320px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -31,6 +31,9 @@ export const ContainerStatus = styled.div`
 
     p {
         padding: 5px;
+    }
+    h3 {
+        font-family: 'Press Start 2P', cursive;
     }
 `;
 
