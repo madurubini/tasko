@@ -74,12 +74,10 @@ export const LogoHeader = styled.div`
     @media (min-width: 1024px) {
         right: 10px;
         justify-content: flex-end;
-               position: fixed;
-
+        position: absolute;
+        top: 0;
+        transition: all 0.5s ease-in-out;
     }
-
- 
-
 
     @media (min-width: 768px) {
         div {

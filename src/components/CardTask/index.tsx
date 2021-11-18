@@ -5,10 +5,12 @@ import {
     MediumDifficulty,
 } from '../DifficultyCards';
 import {
-    MdOutlineDeleteForever,
-    MdOutlineModeEditOutline,
-} from 'react-icons/md';
-import { SubMenu, TaskButton, TaskCard } from './style';
+    DeleteForever,
+    EditIcon,
+    SubMenu,
+    TaskButton,
+    TaskCard,
+} from './style';
 import { useTasks } from '../../providers/Tasks';
 import { Title } from '../DifficultyCards/styles';
 
@@ -36,13 +38,13 @@ const CardTask = ({
                         <p></p>
                     ) : (
                         <>
-                            <MdOutlineModeEditOutline
+                            <EditIcon
                                 onClick={() => {
                                     setShowEditModal(true);
                                     setItemToEdit(item);
                                 }}
-                            ></MdOutlineModeEditOutline>
-                            <MdOutlineDeleteForever
+                            ></EditIcon>
+                            <DeleteForever
                                 onClick={() => {
                                     deleteTask(Number(item.id));
                                 }}

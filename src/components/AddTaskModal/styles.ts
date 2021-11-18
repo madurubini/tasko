@@ -86,6 +86,7 @@ export const ButtonBox = styled(AddButtonBox)`
         width: 40%;
         font-size: 14px;
         max-width: 150px;
+        color: var(--background) !important;
     }
 `;
 

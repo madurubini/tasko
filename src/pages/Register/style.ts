@@ -4,7 +4,7 @@ export const MainContainer = styled.main`
     display: flex;
     justify-content: center;
     background-color: var(--background);
-    min-height: 80vh;
+    height: 100vh;
 
     @media (min-width: 1024px) {
         justify-content: space-evenly;

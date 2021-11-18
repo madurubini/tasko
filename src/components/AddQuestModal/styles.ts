@@ -78,7 +78,7 @@ export const InputField = styled(Input)`
 export const MenuButton = styled(Button)`
     width: 70% !important;
     background: var(--green-linear) !important;
-    color: var(--font-color) !important;
+    color: var(--background) !important;
 
     @media (min-width: 768px) {
         width: 50% !important;

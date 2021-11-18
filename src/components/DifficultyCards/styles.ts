@@ -10,6 +10,7 @@ export const DifficultyBox = styled.div`
 
     svg {
         font-size: 25px;
+        color: var(--background) !important;
     }
 `;
 
