@@ -26,4 +26,5 @@ export interface UserContextData {
     id: string;
     xp: number;
     patchXp: (xpPoints: Xp) => void;
+    setXp: (xp: number) => void;
 }

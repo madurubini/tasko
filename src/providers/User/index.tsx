@@ -33,7 +33,7 @@ export const UserProvider = ({ children }: UserProps) => {
                 localStorage.setItem('@token', data.accessToken);
                 localStorage.setItem('@id', data.user.id);
                 setId(data.user.id);
-                setUserName(data.user.firstName);
+                setUserName(data.user.name);
                 history.push('/dashboard');
 
                 toast('Bem vindo!', {
@@ -131,6 +131,7 @@ export const UserProvider = ({ children }: UserProps) => {
                 id,
                 xp,
                 patchXp,
+                setXp,
             }}
         >
             {children}

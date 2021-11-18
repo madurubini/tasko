@@ -5,18 +5,27 @@ import { useHistory } from 'react-router';
 import { useLevels } from '../../providers/Levels';
 import { FaPowerOff } from 'react-icons/fa';
 import { useUser } from '../../providers/User';
+import CircleProgress from '../CircleXpProgress';
 
 const MenuDesktop = () => {
     const history = useHistory();
     const { userLevel } = useLevels();
+    const { userName } = useUser();
 
     const { logout } = useUser();
 
     return (
         <Container>
             <div>
-                <img src={User} alt="" />
-                <h3>Usuário</h3>
+                <CircleProgress>
+                    <img
+                        src={User}
+                        alt=""
+                        style={{ position: 'absolute', top: '25px' }}
+                    />
+                </CircleProgress>
+                <h3>{userName}</h3>
+                <p>Título: {userLevel.title}</p>
                 <p>Level: {userLevel?.level}</p>
             </div>
             <VStack spacing="5">

@@ -23,7 +23,7 @@ export const LevelsProvider = ({ children }: ChildrenProps) => {
         [] as LevelsProps[] | any[],
     );
 
-    const { auth, id, xp } = useUser();
+    const { auth, id, xp, setXp, patchXp } = useUser();
     const [userLevelId, setUserLevelId] = useState<number>(0);
     const [userLevel, setUserLevel] = useState<UserLevelProps | any>(
         {} as UserLevelProps,
@@ -100,9 +100,13 @@ export const LevelsProvider = ({ children }: ChildrenProps) => {
         );
 
         if (xp >= nextlevel?.reqXp) {
+            const data = { xp: 0 };
+            patchXp(data);
+            setXp(0);
+
             patchLevel(nextlevel);
         }
-    }, [userLevel?.LevelId, levels, xp, patchLevel, nextlevel]);
+    }, [userLevel?.LevelId, levels, xp, patchLevel, nextlevel, setXp, patchXp]);
 
     useEffect(() => {
         nextLevel();
