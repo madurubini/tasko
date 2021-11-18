@@ -71,6 +71,7 @@ export const LogoHeader = styled.div`
     @media (min-width: 1024px) {
         right: 10px;
         justify-content: flex-end;
+        position: fixed;
 
         div {
             display: none;
