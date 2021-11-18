@@ -1,12 +1,132 @@
-import { createContext, useState, useEffect, useContext } from "react";
-import { ChildrenProps } from "../../types";
+import {
+    createContext,
+    useState,
+    useEffect,
+    useContext,
+    useCallback,
+} from 'react';
+import toast from 'react-hot-toast';
+import api from '../../services/api';
+import { ChildrenProps } from '../../types/children';
+import { CommentsProps } from '../../types/comments';
+import { useUser } from '../User';
 
-export const CommentsContext = createContext({});
+interface CommentsContextProps {
+    comments: CommentsProps[];
+    addComment: (comment: string, userId: number, questId: number) => void;
+    editComment: (commentId: number, update: string) => void;
+    getAllComments: () => void;
+    getQuestComments: (id: number) => void;
+    getUserComments: (id: number) => void;
+    userComments: CommentsProps[];
+}
+
+export const CommentsContext = createContext<CommentsContextProps>(
+    {} as CommentsContextProps,
+);
 
 export const CommentsProvider = ({ children }: ChildrenProps) => {
-  return (
-    <CommentsContext.Provider value={{}}>{children}</CommentsContext.Provider>
-  );
+    const [comments, setComments] = useState<CommentsProps[]>(
+        [] as CommentsProps[],
+    );
+
+    const [userComments, setUserComments] = useState<CommentsProps[]>(
+        [] as CommentsProps[],
+    );
+
+    const { auth, id } = useUser();
+
+    const addComment = (comment: string, userId: number, questId: number) => {
+        const data = { comment: comment, questId: questId, userId: userId };
+
+        api.post('/comments', data, {
+            headers: {
+                Authorization: `Bearer ${auth}`,
+            },
+        })
+            .then((res) => {
+                getAllComments();
+            })
+            .catch((err) =>
+                toast('É preciso estar logado para comentar!', {
+                    icon: '❌',
+                    style: {
+                        border: '2px groove #FF0000',
+                        borderRadius: '10px',
+                        background: '#333',
+                        color: '#FF0000',
+                        fontFamily: 'Press Start 2P',
+                        fontWeight: 'bold',
+                    },
+                }),
+            );
+    };
+
+    const editComment = (commentId: number, update: string) => {
+        const data = { comment: update };
+
+        api.patch(`/comments/${commentId}`, data, {
+            headers: {
+                Authorization: `Bearer ${auth}`,
+            },
+        })
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err));
+    };
+
+    const getAllComments = useCallback(() => {
+        api.get(`/comments`)
+            .then((res) => setComments(res.data))
+            .catch((err) => console.log(err));
+    }, []);
+
+    useEffect(() => {
+        getAllComments();
+    }, [getAllComments]);
+
+    const getQuestComments = (id: number) => {
+        api.get(`/quests/${id}/comments`)
+            .then((res) => {
+                console.log(res);
+                setComments(res.data);
+            })
+            .catch((err) => console.log(err));
+    };
+
+    const getUserComments = useCallback(
+        (id: number) => {
+            api.get(`/users/${id}/comments`, {
+                headers: {
+                    Authorization: `Bearer ${auth}`,
+                },
+            })
+                .then((res) => {
+                    setUserComments(res.data);
+                })
+                .catch((err) => console.log(err));
+        },
+        [auth],
+    );
+
+    useEffect(() => {
+        getUserComments(Number(id));
+    }, [getUserComments, id]);
+
+    return (
+        <CommentsContext.Provider
+            value={{
+                addComment,
+                editComment,
+                getQuestComments,
+                getAllComments,
+                comments,
+                getUserComments,
+                userComments,
+            }}
+        >
+            {children}
+        </CommentsContext.Provider>
+    );
 };
 
 export const useComments = () => useContext(CommentsContext);

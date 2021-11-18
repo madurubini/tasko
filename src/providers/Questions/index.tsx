@@ -1,12 +1,183 @@
-import { createContext, useState, useEffect, useContext } from "react";
-import { ChildrenProps } from "../../types";
+import request from './../../services/api';
 
-export const QuestionsContext = createContext({});
+import {
+    createContext,
+    useState,
+    useContext,
+    useEffect,
+    useCallback,
+} from 'react';
+import { ChildrenProps } from '../../types/children';
+import { Quest, QuestBody, QuestionsContextData } from '../../types/questions';
+import { useUser } from '../User';
+import toast from 'react-hot-toast';
+import { MdDeleteForever } from 'react-icons/md';
+
+export const QuestionsContext = createContext<QuestionsContextData>(
+    {} as QuestionsContextData,
+);
 
 export const QuestionsProvider = ({ children }: ChildrenProps) => {
-  return (
-    <QuestionsContext.Provider value={{}}>{children}</QuestionsContext.Provider>
-  );
+    const { auth, id } = useUser();
+    const [allQuestions, setAllQuestions] = useState<Quest[]>([] as Quest[]);
+    const [userQuests, setUserQuests] = useState<Quest[]>([] as Quest[]);
+
+    const postQuestion = (quest: QuestBody) => {
+        request
+            .post(`/quests`, quest, {
+                headers: {
+                    Authorization: `Bearer ${auth}`,
+                },
+            })
+            .then((_) => {
+                toast('Nova pergunta postada!', {
+                    icon: '❓',
+                    style: {
+                        border: '2px groove #008000',
+                        borderRadius: '10px',
+                        background: '#333',
+                        color: '#008000',
+                        fontFamily: 'Press Start 2P',
+                        fontWeight: 'bold',
+                    },
+                });
+                getAllQuestions();
+                getUserQuestions(parseInt(id));
+            })
+            .catch((_) =>
+                toast('É preciso estar logado para perguntar!', {
+                    icon: '❌',
+                    style: {
+                        border: '2px groove #FF0000',
+                        borderRadius: '10px',
+                        background: '#333',
+                        color: '#FF0000',
+                        fontFamily: 'Press Start 2P',
+                        fontWeight: 'bold',
+                    },
+                }),
+            );
+        console.log('quest', quest);
+    };
+
+    const getAllQuestions = useCallback(() => {
+        request
+            .get(`/quests`)
+            .then(({ data }) => setAllQuestions([...data]))
+            .catch((error) => console.error(error));
+    }, []);
+
+    useEffect(() => {
+        getAllQuestions();
+    }, [getAllQuestions]);
+
+    const getUserQuestions = useCallback(
+        (userId: number) => {
+            request
+                .get(`/quests?userId=${id}`)
+                .then(({ data }) => setUserQuests([...data]))
+                .catch((error) => console.error(error));
+        },
+        [id],
+    );
+
+    useEffect(() => {
+        getUserQuestions(parseInt(id));
+    }, [getUserQuestions, id]);
+
+    const getAllQuestsByTitle = useCallback(
+        (questionTitle: string) => {
+            request
+                .get(`/quests?body_like=${questionTitle}`, {
+                    headers: {
+                        Authorization: `Bearer ${auth}`,
+                    },
+                })
+                .then(({ data }) => setAllQuestions([...data]))
+                .catch((error) => {
+                    console.error('Pergunta não encontrada: ', error);
+                });
+        },
+        [auth],
+    );
+
+    const editQuestion = (questId: number, question: string | any) => {
+        request
+            .patch(
+                `/quests/${questId}`,
+                { body: question },
+                {
+                    headers: {
+                        Authorization: `Bearer ${auth}`,
+                    },
+                },
+            )
+            .then((res) => {
+                getAllQuestions();
+                getUserQuestions(parseInt(id));
+            })
+            .catch((error) => console.error(error));
+    };
+
+    const deleteQuestion = (questId: number) => {
+        request
+            .delete(`/quests/${questId}`, {
+                headers: {
+                    Authorization: `Bearer ${auth}`,
+                },
+            })
+            .then((response) => {
+                getAllQuestions();
+                getUserQuestions(parseInt(id));
+                toast('Pergunta removida com sucesso!', {
+                    icon: (
+                        <MdDeleteForever style={{ color: 'var(--redToast)' }} />
+                    ),
+                    style: {
+                        border: '2px groove #008000',
+                        borderRadius: '10px',
+                        background: '#333',
+                        color: '#008000',
+                        fontFamily: 'Press Start 2P',
+                        fontWeight: 'bold',
+                    },
+                });
+            })
+            .catch((error) => console.error(error));
+    };
+
+    const like = (questId: number, update: number) => {
+        const data = { likes: update };
+        request
+            .patch(`/quests/${questId}/`, data, {
+                headers: {
+                    Authorization: `Bearer ${auth}`,
+                },
+            })
+            .then((res) => {
+                getAllQuestions();
+                getUserQuestions(parseInt(id));
+            })
+            .catch((err) => console.error(err));
+    };
+
+    return (
+        <QuestionsContext.Provider
+            value={{
+                allQuestions,
+                userQuests,
+                postQuestion,
+                editQuestion,
+                deleteQuestion,
+                getAllQuestions,
+                getUserQuestions,
+                getAllQuestsByTitle,
+                like,
+            }}
+        >
+            {children}
+        </QuestionsContext.Provider>
+    );
 };
 
 export const useQuestions = () => useContext(QuestionsContext);
