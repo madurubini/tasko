@@ -12,6 +12,8 @@ const MenuDesktop = () => {
     const { userLevel } = useLevels();
     const { userName } = useUser();
 
+    console.log(userName);
+
     const { logout } = useUser();
 
     return (

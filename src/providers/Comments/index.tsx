@@ -101,7 +101,6 @@ export const CommentsProvider = ({ children }: ChildrenProps) => {
                 },
             })
                 .then((res) => {
-                    console.log(res);
                     setUserComments(res.data);
                 })
                 .catch((err) => console.log(err));

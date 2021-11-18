@@ -28,6 +28,11 @@ const Dashboard = () => {
     const { tasks, setShowEditModal, showEditModal, getUserTasks } = useTasks();
     const { controllBadges } = useBadges();
     const { id, auth } = useUser();
+    const [objTask, setObjTask] = useState();
+
+    const handleClick = (t: any) => {
+        setObjTask(t);
+    };
 
     const history = useHistory();
 
@@ -95,7 +100,7 @@ const Dashboard = () => {
                                           .map((item, index) => (
                                               <CardTask
                                                   key={index}
-                                                  item={item}
+                                                  item={objTask}
                                                   setShowEditModal={
                                                       setShowEditModal
                                                   }
@@ -107,14 +112,22 @@ const Dashboard = () => {
                                               (item) => item.finished === false,
                                           )
                                           .map((item, index) => (
-                                              <CardTask
-                                                  key={index}
-                                                  item={item}
-                                                  setShowEditModal={
-                                                      setShowEditModal
-                                                  }
-                                                  showEditModal={showEditModal}
-                                              ></CardTask>
+                                              <div
+                                                  onClick={() => {
+                                                      handleClick(item);
+                                                  }}
+                                              >
+                                                  <CardTask
+                                                      key={index}
+                                                      item={item}
+                                                      setShowEditModal={
+                                                          setShowEditModal
+                                                      }
+                                                      showEditModal={
+                                                          showEditModal
+                                                      }
+                                                  ></CardTask>
+                                              </div>
                                           ))}
                             </TasksContainer>
                         </AddButtonBox>

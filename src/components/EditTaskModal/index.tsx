@@ -22,6 +22,7 @@ const EditTaskModal = ({ setShowEditModal, item }: EditTaskModalProps) => {
         title: item.title,
         xp: 1,
     });
+    console.log(item);
 
     const { updateTask } = useTasks();
 
@@ -60,6 +61,7 @@ const EditTaskModal = ({ setShowEditModal, item }: EditTaskModalProps) => {
                 <EditButton
                     onClick={() => {
                         updateTask(Number(item.id), updateTaskData);
+
                         setShowEditModal(false);
                     }}
                 >
