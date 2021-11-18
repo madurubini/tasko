@@ -67,7 +67,7 @@ const Community = () => {
                             <span>Perguntar</span>
                         </MakeQuestButtonTop>
                     </QuestHeader>
-                    <QuestionsTab data-testid="allQuestions-tab">
+                    <QuestionsTab data-testid="questions-tab">
                         {allQuestions.map(
                             ({ body, id, likes, userId }, index) => (
                                 <QuestCard
