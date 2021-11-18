@@ -24,6 +24,7 @@ const MenuDesktop = () => {
                         style={{ position: 'absolute', top: '25px' }}
                     />
                 </CircleProgress>
+                {console.log(userName)}
                 <h3>{userName}</h3>
                 <p>Título: {userLevel.title}</p>
                 <p>Level: {userLevel?.level}</p>
