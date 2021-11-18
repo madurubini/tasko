@@ -50,3 +50,4 @@ export const Logout = styled.footer`
         font-size: 20px;
     }
 `;
+

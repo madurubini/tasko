@@ -12,6 +12,8 @@ const MenuDesktop = () => {
     const { userLevel } = useLevels();
     const { userName } = useUser();
 
+    console.log(userName);
+
     const { logout } = useUser();
 
     return (
@@ -24,7 +26,6 @@ const MenuDesktop = () => {
                         style={{ position: 'absolute', top: '25px' }}
                     />
                 </CircleProgress>
-                {console.log(userName)}
                 <h3>{userName}</h3>
                 <p>Título: {userLevel.title}</p>
                 <p>Level: {userLevel?.level}</p>

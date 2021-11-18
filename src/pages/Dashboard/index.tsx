@@ -23,12 +23,13 @@ import { Redirect, useHistory } from 'react-router';
 import { FadeAnimation } from '../../components/FadeAnimation';
 import { BiUserCircle } from 'react-icons/bi';
 import { FaUsers } from 'react-icons/fa';
+import UserStatusModal from '../../components/UserStatusModal';
 
 const Dashboard = () => {
     const { tasks, setShowEditModal, showEditModal, getUserTasks } = useTasks();
     const { controllBadges } = useBadges();
     const { id, auth } = useUser();
-
+    const [showStatusModal, setShowStatusModal] = useState<Boolean>(false);
     const history = useHistory();
 
     const [showAddModal, setShowAddModal] = useState<Boolean>(false);
@@ -48,10 +49,13 @@ const Dashboard = () => {
                     onClick={() => history.push('/dashboard')}
                 ></img>
                 <div>
-                    <BiUserCircle />
+                    <BiUserCircle onClick={() => setShowStatusModal(true)} />
                     <FaUsers onClick={() => history.push('/comunidade')} />
                 </div>
             </LogoHeader>
+            {showStatusModal && (
+                <UserStatusModal setShowStatusModal={setShowStatusModal} />
+            )}
             <Container>
                 <MenuDesktop />
                 <Main>
